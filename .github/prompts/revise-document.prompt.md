@@ -13,7 +13,15 @@ Steps:
    - Positions *Bean* as Leticia's **feature debut**
    - Highlights her 20+ years theatre + award-winning TV + two feature attachments
    - Uses first person, professional but warm tone
-   - UK/Australian English spelling
-   - Shows don't tells — references specific credits and outcomes
-5. Update the draft in `drafts/`
-6. If HTML output exists, update both `output/assessment.html` and `output/assessment-standalone.html`
+   - UK/Australian English spelling throughout (colour, programme, organise, centre, etc.)
+   - Never uses em dashes (—) or en dashes (–); use commas, semicolons, colons, or full stops
+   - Uses "to" for date/number ranges (e.g., "2012 to 2015", not "2012–2015")
+   - Shows don't tells: references specific credits and outcomes
+   - Follows professional application writing rules in `.github/instructions/writing-rules.instructions.md`
+5. Run the content quality checklist before saving:
+   - No em/en dashes in prose
+   - AU/UK English spellings verified
+   - Word/page counts within limits
+   - Active voice throughout
+6. Update the draft in `drafts/`
+7. If HTML output exists, update both `output/assessment.html` and `output/assessment-standalone.html`

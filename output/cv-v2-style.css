@@ -1,5 +1,5 @@
 /* ============================================================
-   LETICIA CÁCERES — CV & FILMOGRAPHY  (Version 2)
+   LETICIA CÁCERES: CV & FILMOGRAPHY  (Version 2)
    8pt baseline grid · min 9pt, body 10pt
    Fonts: Source Serif 4 + Inter
    ============================================================ */
@@ -71,7 +71,7 @@ body {
 }
 
 /* ============================================================
-   PAGE 1 — CV
+   PAGE 1: CV
    ============================================================ */
 
 .cv-header {
@@ -233,7 +233,7 @@ h2 {
 }
 
 /* ============================================================
-   PAGES 2–3 — FILMOGRAPHY  (two-column layout)
+   PAGES 2 to 3: FILMOGRAPHY  (two-column layout)
    ============================================================ */
 
 .filmography-header {
@@ -286,7 +286,7 @@ h3 {
   break-inside: avoid;
 }
 
-/* Title line — inline flow, year next to title */
+/* Title line: inline flow, year next to title */
 .film-entry .film-title-line,
 .theatre-entry .film-title-line {
   /* inline flow, no flex push */

@@ -13,5 +13,6 @@ The standalone version has:
 When syncing:
 1. Compare the body content of both files
 2. Copy content changes from the A4 version to the standalone
-3. Keep the standalone's CSS, layout, and TOC intact
-4. Do NOT copy A4-specific font sizes or layout widths into the standalone
+3. Verify all content complies with writing rules (no em/en dashes, AU/UK English)
+4. Keep the standalone's CSS, layout, and TOC intact
+5. Do NOT copy A4-specific font sizes or layout widths into the standalone
