@@ -107,6 +107,9 @@ New output pages should reuse these tokens; see `output/cv-v2-style.css` for the
 - When describing Leticia's strengths, show don't tell, reference specific credits and outcomes
 
 ### Spelling & Language (AU/UK English)
+
+**⚠️ PRE-ACTION RULE:** AU/UK English and no-dash rules must be applied **before and during writing**, not as post-production fixes. Write correctly from the first draft. Never use American spellings intending to fix them later.
+
 All content must use Australian/UK English throughout. Never use American spellings.
 
 Common examples:

@@ -8,6 +8,16 @@ applyTo:
 
 These rules apply to all content files in `drafts/` and `output/` (any format). They are mandatory and must be followed without exception.
 
+## ⚠️ PRE-ACTION ENFORCEMENT (Critical)
+
+These rules must be applied **before and during writing**, not as post-production fixes. When generating or editing any content file:
+
+1. **Before writing**: Internalise AU/UK spelling and no-dash rules. Write correctly from the start.
+2. **During writing**: Use Australian/UK spellings natively. Never draft with American spellings intending to fix later.
+3. **Before finalising**: Run the quality checklist (Section 4) as a final verification, not as the primary enforcement mechanism.
+
+This is a **pre-action rule**, not a post-production lint pass. Every word must be correct as it is written.
+
 **Scope clarification:** These rules govern readable prose and human-visible text only. They do not apply to:
 - CSS property names or values (e.g., `color`, `text-align`, `border`)
 - HTML entity references (e.g., `&amp;`, `&#8212;`)
