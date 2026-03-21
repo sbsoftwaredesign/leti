@@ -30,11 +30,11 @@
       --bg-blockquote: #f5f2ec;
       --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-      --space-xs: 2pt;
-      --space-sm: 4pt;
-      --space-md: 8pt;
-      --space-lg: 16pt;
-      --space-xl: 24pt;
+      --space-xs: 3pt;
+      --space-sm: 6pt;
+      --space-md: 12pt;
+      --space-lg: 24pt;
+      --space-xl: 36pt;
     }
 
     @page {
@@ -50,14 +50,14 @@
 
     body {
       font-family: var(--font-sans);
-      font-size: 10pt;
-      line-height: 1.5;
+      font-size: 14pt;
+      line-height: 1.6;
       color: var(--text-primary);
       background: var(--bg-body);
       -webkit-font-smoothing: antialiased;
-      max-width: 210mm;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 16mm;
+      padding: 48px 64px;
     }
 
     @media print {
@@ -88,7 +88,7 @@
     }
     .doc-header h1 {
       font-family: var(--font-serif);
-      font-size: 18pt;
+      font-size: 26pt;
       font-weight: 700;
       letter-spacing: 2pt;
       text-transform: uppercase;
@@ -97,7 +97,7 @@
     }
     .doc-header .doc-subtitle {
       font-family: var(--font-serif);
-      font-size: 11pt;
+      font-size: 16pt;
       font-weight: 400;
       font-style: italic;
       letter-spacing: 1pt;
@@ -106,7 +106,7 @@
     }
     .doc-header .doc-meta {
       font-family: var(--font-sans);
-      font-size: 9pt;
+      font-size: 13pt;
       font-weight: 400;
       color: var(--text-muted);
     }
@@ -114,7 +114,7 @@
     /* ---------- HEADINGS ---------- */
     h2 {
       font-family: var(--font-serif);
-      font-size: 13pt;
+      font-size: 19pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5pt;
@@ -128,7 +128,7 @@
 
     h3 {
       font-family: var(--font-serif);
-      font-size: 11pt;
+      font-size: 16pt;
       font-weight: 700;
       color: var(--accent);
       margin-top: var(--space-lg);
@@ -138,7 +138,7 @@
 
     h4 {
       font-family: var(--font-sans);
-      font-size: 10pt;
+      font-size: 14pt;
       font-weight: 600;
       color: var(--text-primary);
       margin-top: var(--space-lg);
@@ -148,15 +148,15 @@
     /* ---------- BODY TEXT ---------- */
     p {
       font-family: var(--font-serif);
-      font-size: 10pt;
-      line-height: 1.55;
+      font-size: 14pt;
+      line-height: 1.6;
       color: var(--text-primary);
       margin-bottom: var(--space-md);
       text-align: justify;
       hyphens: auto;
     }
     p.intro {
-      font-size: 10.5pt;
+      font-size: 15pt;
       color: var(--text-secondary);
       font-style: italic;
     }
@@ -172,7 +172,7 @@
       margin-bottom: var(--space-xl);
       page-break-inside: avoid;
     }
-    .exec-summary h3 { margin-top: 0; font-size: 10pt; text-transform: uppercase; letter-spacing: 1.2pt; }
+    .exec-summary h3 { margin-top: 0; font-size: 14pt; text-transform: uppercase; letter-spacing: 1.2pt; }
     .exec-summary p { margin-bottom: var(--space-sm); }
 
     /* ---------- STRENGTHS & GAPS ---------- */
@@ -190,7 +190,7 @@
     .gaps { background: var(--bg-issue); border-left: 3pt solid var(--accent-amber); }
 
     .strengths h4, .gaps h4 {
-      font-family: var(--font-sans); font-size: 9pt; font-weight: 600;
+      font-family: var(--font-sans); font-size: 13pt; font-weight: 600;
       text-transform: uppercase; letter-spacing: 1pt;
       margin-top: 0; margin-bottom: var(--space-md);
     }
@@ -199,12 +199,12 @@
 
     .strengths ul, .gaps ul { list-style: none; padding: 0; }
     .strengths li, .gaps li {
-      font-family: var(--font-serif); font-size: 9pt; line-height: 1.4;
+      font-family: var(--font-serif); font-size: 13pt; line-height: 1.4;
       padding-left: 12pt; position: relative;
       margin-bottom: var(--space-sm); color: var(--text-secondary);
     }
-    .strengths li::before { content: "✦"; position: absolute; left: 0; color: var(--accent-green); font-size: 7pt; top: 2pt; }
-    .gaps li::before { content: "▸"; position: absolute; left: 0; color: var(--accent-amber); font-size: 8pt; top: 1pt; }
+    .strengths li::before { content: "✦"; position: absolute; left: 0; color: var(--accent-green); font-size: 10pt; top: 2pt; }
+    .gaps li::before { content: "▸"; position: absolute; left: 0; color: var(--accent-amber); font-size: 11pt; top: 1pt; }
 
     /* ---------- ISSUE CALLOUT ---------- */
     .issue-box {
@@ -215,9 +215,9 @@
       margin: var(--space-md) 0 var(--space-lg) 0;
       page-break-inside: avoid;
     }
-    .issue-box h4 { font-family: var(--font-sans); font-size: 9.5pt; font-weight: 600; color: var(--accent-amber); margin-top: 0; margin-bottom: var(--space-sm); }
-    .issue-box p { font-size: 9.5pt; margin-bottom: var(--space-sm); }
-    .issue-box .recommendation { font-family: var(--font-sans); font-size: 9pt; font-weight: 500; color: var(--accent-green); margin-top: var(--space-sm); }
+    .issue-box h4 { font-family: var(--font-sans); font-size: 13pt; font-weight: 600; color: var(--accent-amber); margin-top: 0; margin-bottom: var(--space-sm); }
+    .issue-box p { font-size: 13pt; margin-bottom: var(--space-sm); }
+    .issue-box .recommendation { font-family: var(--font-sans); font-size: 13pt; font-weight: 500; color: var(--accent-green); margin-top: var(--space-sm); }
     .issue-box .recommendation::before { content: "→ "; font-weight: 700; }
 
     /* ---------- REVISED VERSION ---------- */
@@ -228,13 +228,13 @@
       margin: var(--space-lg) 0;
     }
     .revised-version h3 {
-      font-family: var(--font-serif); font-size: 11pt; font-weight: 700;
+      font-family: var(--font-serif); font-size: 16pt; font-weight: 700;
       color: var(--text-primary); text-transform: none; letter-spacing: 0;
       margin-top: var(--space-lg); margin-bottom: var(--space-md);
     }
     .revised-version h3:first-child { margin-top: 0; }
     .revised-version .revised-label {
-      font-family: var(--font-sans); font-size: 8pt; font-weight: 600;
+      font-family: var(--font-sans); font-size: 11pt; font-weight: 600;
       text-transform: uppercase; letter-spacing: 1.5pt;
       color: var(--accent-green); margin-bottom: var(--space-md); display: block;
     }
@@ -242,7 +242,7 @@
 
     /* ---------- BLOCKQUOTE ---------- */
     blockquote {
-      font-family: var(--font-serif); font-size: 10pt; line-height: 1.55;
+      font-family: var(--font-serif); font-size: 14pt; line-height: 1.6;
       color: var(--text-primary); background: var(--bg-blockquote);
       border-left: 3pt solid var(--accent);
       padding: var(--space-md) var(--space-lg);
@@ -253,7 +253,7 @@
     blockquote p:last-child { margin-bottom: 0; }
 
     .word-count {
-      font-family: var(--font-sans); font-size: 8pt; font-weight: 500;
+      font-family: var(--font-sans); font-size: 11pt; font-weight: 500;
       color: var(--accent-green); text-align: right; margin-top: var(--space-xs);
     }
 
@@ -268,17 +268,15 @@
       position: absolute; left: 0; top: 0;
       width: 22pt; height: 22pt;
       background: var(--accent); color: white;
-      font-family: var(--font-sans); font-size: 10pt; font-weight: 600;
+      font-family: var(--font-sans); font-size: 14pt; font-weight: 600;
       text-align: center; line-height: 22pt; border-radius: 50%;
     }
-    .pitch-step h4 { font-family: var(--font-sans); font-size: 10pt; font-weight: 600; color: var(--text-primary); margin-top: 0; margin-bottom: var(--space-sm); }
-    .pitch-step .timecode { font-family: var(--font-sans); font-size: 8pt; font-weight: 500; color: var(--text-muted); margin-bottom: var(--space-sm); }
-    .pitch-step p, .pitch-step ul { font-size: 9.5pt; }
+    .pitch-step h4 { font-family: var(--font-sans); font-size: 14pt; font-weight: 600; color: var(--text-primary); margin-top: 0; margin-bottom: var(--space-sm); }
+    .pitch-step .timecode { font-family: var(--font-sans); font-size: 11pt; font-weight: 500; color: var(--text-muted); margin-bottom: var(--space-sm); }
+    .pitch-step p, .pitch-step ul { font-size: 13pt; }
     .pitch-step ul { list-style: none; padding: 0; }
     .pitch-step li {
-      font-family: var(--font-serif); font-size: 9.5pt;
-      padding-left: 10pt; position: relative;
-      margin-bottom: var(--space-xs); color: var(--text-secondary);
+      font-family: var(--font-serif); font-size: 13pt;
     }
     .pitch-step li::before { content: "·"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
 
@@ -289,23 +287,23 @@
       padding: var(--space-md) var(--space-lg);
       margin: var(--space-lg) 0; page-break-inside: avoid;
     }
-    .tips-box h4 { font-family: var(--font-sans); font-size: 9pt; font-weight: 600; text-transform: uppercase; letter-spacing: 1pt; color: var(--accent-green); margin-top: 0; margin-bottom: var(--space-md); }
+    .tips-box h4 { font-family: var(--font-sans); font-size: 13pt; font-weight: 600; text-transform: uppercase; letter-spacing: 1pt; color: var(--accent-green); margin-top: 0; margin-bottom: var(--space-md); }
     .tips-box ul { list-style: none; padding: 0; }
     .tips-box li {
-      font-family: var(--font-serif); font-size: 9pt;
+      font-family: var(--font-serif); font-size: 13pt;
       padding-left: 12pt; position: relative;
       margin-bottom: var(--space-sm); color: var(--text-secondary);
     }
-    .tips-box li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-green); font-weight: 700; font-size: 8pt; }
+    .tips-box li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-green); font-weight: 700; font-size: 11pt; }
 
     /* ---------- CHECKLIST TABLE ---------- */
     .checklist-table {
       width: 100%; border-collapse: collapse;
-      margin: var(--space-lg) 0; font-family: var(--font-sans); font-size: 9pt;
+      margin: var(--space-lg) 0; font-family: var(--font-sans); font-size: 13pt;
     }
     .checklist-table th {
       background: var(--bg-callout); font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.8pt; font-size: 8pt; color: var(--text-secondary);
+      letter-spacing: 0.8pt; font-size: 11pt; color: var(--text-secondary);
       padding: var(--space-md); text-align: left;
       border-bottom: 1pt solid var(--border-strong);
     }
@@ -314,7 +312,7 @@
       vertical-align: top; line-height: 1.4; color: var(--text-secondary);
     }
     .checklist-table tr:last-child td { border-bottom: 1pt solid var(--border-strong); }
-    .checklist-table .status { text-align: center; font-size: 12pt; }
+    .checklist-table .status { text-align: center; font-size: 16pt; }
     .checklist-table .status-ready { color: var(--accent-green); }
     .checklist-table .status-verify { color: var(--accent-amber); }
     .checklist-table .status-missing { color: var(--accent-red); }
@@ -322,7 +320,7 @@
 
     /* ---------- READINESS BADGE ---------- */
     .readiness {
-      display: inline-block; font-family: var(--font-sans); font-size: 9pt;
+      display: inline-block; font-family: var(--font-sans); font-size: 13pt;
       font-weight: 600; text-transform: uppercase; letter-spacing: 1pt;
       padding: var(--space-sm) var(--space-md); border-radius: 2pt; margin-top: var(--space-sm);
     }
@@ -334,15 +332,15 @@
       padding: var(--space-md) var(--space-lg); text-align: center;
       margin: var(--space-xl) 0; page-break-inside: avoid;
     }
-    .deadline-banner .deadline-primary { font-family: var(--font-sans); font-size: 11pt; font-weight: 600; color: var(--accent-amber); }
-    .deadline-banner .deadline-secondary { font-family: var(--font-sans); font-size: 9pt; font-weight: 400; color: var(--text-secondary); margin-top: var(--space-xs); }
+    .deadline-banner .deadline-primary { font-family: var(--font-sans); font-size: 16pt; font-weight: 600; color: var(--accent-amber); }
+    .deadline-banner .deadline-secondary { font-family: var(--font-sans); font-size: 13pt; font-weight: 400; color: var(--text-secondary); margin-top: var(--space-xs); }
 
     /* ---------- MISC ---------- */
     .section-divider { border: none; border-top: 0.5pt solid var(--border); margin: var(--space-xl) 0; }
 
     ul.changes-list { list-style: none; padding: 0; margin: var(--space-md) 0; }
     ul.changes-list li {
-      font-family: var(--font-serif); font-size: 9pt;
+      font-family: var(--font-serif); font-size: 13pt;
       padding-left: 14pt; position: relative;
       margin-bottom: var(--space-sm); color: var(--text-secondary);
     }
@@ -351,7 +349,7 @@
     .doc-footer {
       margin-top: var(--space-xl); padding-top: var(--space-md);
       border-top: 0.5pt solid var(--border);
-      font-family: var(--font-serif); font-size: 8pt; font-style: italic;
+      font-family: var(--font-serif); font-size: 11pt; font-style: italic;
       color: var(--text-muted); text-align: center;
     }
 
@@ -365,7 +363,7 @@
     .toc h3 { margin-top: 0; color: var(--text-primary); }
     .toc ol { padding-left: 20pt; margin: var(--space-md) 0 0 0; }
     .toc li {
-      font-family: var(--font-sans); font-size: 9.5pt;
+      font-family: var(--font-sans); font-size: 13pt;
       margin-bottom: var(--space-sm); color: var(--text-secondary);
     }
     .toc a { color: var(--accent); text-decoration: none; }
