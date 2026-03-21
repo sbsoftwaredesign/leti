@@ -29,8 +29,21 @@ output/               — Final deliverables (HTML/CSS → PDF via browser print
 ### Document Workflow
 1. Edit content in `drafts/*.md`
 2. Generate/update HTML in `output/`
-3. Export PDF via browser Print → Save as PDF
+3. Generate PDF via Chrome headless (see command below)
 4. Store PDFs in `output/pdf/`
+
+### PDF Generation (Chrome Headless)
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless \
+  --disable-gpu \
+  --no-pdf-header-footer \
+  --print-to-pdf="output/pdf/FILENAME.pdf" \
+  "file://$PWD/output/FILENAME.html"
+```
+- Uses the A4 `@page` rules and margins defined in each CSS file
+- `--no-pdf-header-footer` suppresses Chrome's default URL/date headers
+- PDFs are gitignored (regenerable from HTML)
 
 ### Styling
 - **Design system**: Source Serif 4 (body/headings) + Inter (UI/meta) — warm palette
