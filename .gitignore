@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+._*
+
+# Generated PDFs (large binary files — regenerate from HTML)
+output/pdf/
+
+# Editor
+.vscode/settings.json
+*.swp
+*~
