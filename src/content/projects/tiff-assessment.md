@@ -175,3 +175,79 @@ Desperate for cash, Jem calls **BOMBER**, the boarding-school jock she had a sum
 When Christine discovers Jem has been lying and travels to Sydney to bring her home, Jem faces her hardest choice: tell her mum the truth and ask for the help she desperately needs, or face the abortion alone.
 
 _248 words_
+
+---
+
+## Part 5 · Pitch Video Guidance
+
+TIFF states: "The jury will not be evaluating the quality of the video but the statements made by the applicant." Passion and specificity are more persuasive than polish.
+
+### 0:00 to 0:20 · Who You Are: The Director
+
+- Name, background in one sentence
+- "I'm a director with twenty years of experience in theatre and television, and _Bean_ will be my feature debut."
+- Acknowledge the transition, theatre → TV → feature, as a deliberate trajectory
+
+### 0:20 to 0:50 · What Bean Is About
+
+- The logline, spoken naturally, not read
+- Why this story matters to you personally, one authentic, specific detail
+- Genre and tone: "coming-of-age romantic comedy with real dramatic stakes"
+
+### 0:50 to 1:20 · Your Directing Vision
+
+- The two visual modes: expansive road-movie cinematography / intimate handheld performance work
+- One sentence about visual touchstones (_Thelma & Louise_ meets _Juno_)
+- What your theatre background brings to this film specifically
+
+### 1:20 to 1:40 · Where the Project Is Now
+
+- Script status (third draft), Screen NSW funding, producer attached
+- What you need next: marketplace connections, mentorship, the pathway from development to production
+
+### 1:40 to 2:00 · Why TIFF Directors' Lab
+
+- Specific: market readiness focus, mentorship from directors who've navigated debuts
+- End with conviction: what participation would mean for _Bean_ and for your career
+
+### Delivery Tips
+
+- Speak to camera directly, conversational tone, not scripted or performed
+- One take is fine; cuts between sections are also fine
+- Record in a quiet, well-lit space (natural light preferred)
+- Dress as you would for a professional meeting, not overly formal
+- Passion and specificity are more persuasive than polish
+
+---
+
+## Part 6 · Application Alignment Checklist
+
+| #   | Requirement                                        | Status | Notes                                                                                                                                                                                                                            |
+| --- | -------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Feature film script (80 to 120 pages)              | ⚠️     | Third draft in progress with Screen NSW funding. Confirm page count meets 80-page minimum before submission.                                                                                                                     |
+| 2a  | Project Logline (max 50 words)                     | ✅     | Revised version: 49 words.                                                                                                                                                                                                       |
+| 2b  | Synopsis (max 250 words)                           | ✅     | Revised version: 248 words.                                                                                                                                                                                                      |
+| 2c  | Artist Statement / Creative Approach (max 2 pages) | ✅     | Revised version restructured and trimmed. Verify page count when formatted as PDF.                                                                                                                                               |
+| 2d  | Resume/CV and Filmography                          | ✅     | CV-v2 prepared. Verify consolidated PDF fits: CV max 1 page + filmography max 2 pages.                                                                                                                                           |
+| 3   | Lookbook (max 10 pages)                            | ❌     | Not yet created. Needs: Australian landscapes (Dubbo/NSW → Sydney corridor), vehicle/road shots, tone boards, lighting references, cast visual inspiration.                                                                      |
+| 4a  | Applicant biography (150 to 300 words)             | ⚠️     | CV Profile is ~70 words. Needs expansion to 150 to 300 words for the FilmFreeway "Director's Bio" field.                                                                                                                         |
+| 4b  | Headshot (.jpg)                                    | ⚠️     | Required for FilmFreeway "Director" section. Confirm you have a current professional headshot.                                                                                                                                   |
+| 5   | Pitch video (2 min max)                            | ⚠️     | Structure and talking points provided in this document. To be recorded.                                                                                                                                                          |
+| 6   | Video sample of previous work (5 min max)          | ⚠️     | Must be directed by Leticia. Suggest: 5-min clip from _Erotic Stories_ or _Bump_ demonstrating tonal range (comedy + emotion). English subtitles required if not in English. Context must be provided in "Clip Description" box. |
+| 7   | Custom Form (FilmFreeway)                          | ⚠️     | Complete after all materials are finalised.                                                                                                                                                                                      |
+
+### Consolidated PDF Structure
+
+TIFF requires one consolidated PDF containing all written materials:
+
+| Order | Section                              | Max Length |
+| ----- | ------------------------------------ | ---------- |
+| 1     | Resume / CV                          | 1 page     |
+| 2     | Filmography                          | 2 pages    |
+| 3     | Artist Statement / Creative Approach | 2 pages    |
+| 4     | Project Logline & Synopsis           | 1 page     |
+
+Total: maximum 6 pages. The cv-v2 currently runs 3 pages (CV + 2 filmography). The revised statement + logline/synopsis should add 3 pages. This is tight but feasible.
+
+**Early Bird Deadline: March 23, 2026 · $46.75 CAD**
+**Regular Deadline: April 13, 2026 · $55.00 CAD**
