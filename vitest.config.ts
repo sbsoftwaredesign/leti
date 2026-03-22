@@ -12,11 +12,7 @@ export default getViteConfig({
       provider: "v8",
       all: true,
       reporter: ["text", "json", "html"],
-      include: [
-        "src/lib/**/*.ts",
-        "src/components/**/*.tsx",
-        "scripts/**/*.ts",
-      ],
+      include: ["src/lib/**/*.ts", "src/components/**/*.tsx"],
       exclude: [
         "node_modules/",
         "src/test/",

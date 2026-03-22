@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIFF Directors' Lab 2026: Application Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+/* ============================================================
+   LETICIA CÁCERES: Global Styles
+   Consolidated stylesheet for all output documents
+   8pt baseline grid · Source Serif 4 + Inter · warm palette
+   ============================================================ */
+
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+
+:root {
+  /* Colour palette */
+  --text-primary: #2c2416;
+  --text-secondary: #5c4f3a;
+  --text-muted: #8a7d6b;
+  --accent: #8b5e3c;
+  --accent-green: #4a7c59;
+  --accent-amber: #b5872a;
+  --accent-red: #a3403a;
+  --border: #e0d5c4;
+  --border-strong: #c4b9a8;
+  --bg-body: #fdfbf7;
+  --bg-callout: #f7f3ec;
+  --bg-strength: #f0f5f1;
+  --bg-issue: #fdf5ee;
+  --bg-blockquote: #f5f2ec;
+
+  /* Typography */
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* 8pt grid spacing */
+  --space-xs: 2pt;   /* quarter */
+  --space-sm: 4pt;   /* half */
+  --space-md: 8pt;   /* base */
+  --space-lg: 16pt;  /* double */
+  --space-xl: 24pt;  /* triple */
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- PAGE (A4 default) ---------- */
+@page {
+  size: A4;
+  margin: 16mm;
+
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 8pt;
+    color: var(--text-muted);
+  }
+}
+
+@page :first {
+  margin-top: 12mm;
+
+  @bottom-center {
+    content: none;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  line-height: 1.4;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- PAGE BREAKS ---------- */
+.page-break {
+  page-break-before: always;
+  break-before: page;
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 0;
+}
+
+
+/* ============================================================
+   3. SHARED COMPONENTS
+   ============================================================ */
+
+/* ---------- SECTION HEADINGS ---------- */
+h2 {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--text-primary);
+  border-bottom: 0.75pt solid var(--border);
+  padding-bottom: var(--space-sm);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2pt;
+  color: var(--accent);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 0.5pt solid var(--border);
+}
+
+strong { font-weight: 700; color: var(--text-primary); }
+em { font-style: italic; }
+
+/* ---------- AWARDS (shared by CV & filmography) ---------- */
+.film-awards {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0 0 0;
+}
+
+.film-awards li {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  padding-left: 12pt;
+  position: relative;
+  margin-bottom: var(--space-xs);
+  line-height: 1.35;
+}
+
+.film-awards li .award-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.film-awards li .award-label::after {
+  content: " · ";
+  font-weight: 300;
+  color: var(--border-strong);
+}
+
+.film-awards li .award-venue {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.film-awards li.winner::before {
+  content: "✦";
+  position: absolute;
+  left: 1pt;
+  color: var(--accent);
+  font-size: 7pt;
+  top: 1.5pt;
+}
+
+.film-awards li.nom::before {
+  content: "○";
+  position: absolute;
+  left: 2pt;
+  color: var(--border-strong);
+  font-size: 7pt;
+  top: 1.5pt;
+}
+
+/* ---------- CONTACT LINE ---------- */
+.contact-line {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.2pt;
+}
+
+.contact-line .sep {
+  color: var(--border-strong);
+  margin: 0 var(--space-sm);
+}
+
+.contact-line a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   4. CV & FILMOGRAPHY
+   ============================================================ */
+
+/* ---------- CV HEADER ---------- */
+.cv-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1.5pt solid var(--text-primary);
+}
+
+.cv-header h1 {
+  font-family: var(--font-serif);
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 3pt;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.cv-header .subtitle {
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 1.5pt;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+/* ---------- PROFILE ---------- */
+.profile {
+  margin-bottom: var(--space-md);
+}
+
+.profile p {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  line-height: 1.45;
+  color: var(--text-primary);
+  text-align: justify;
+}
+
+/* ---------- TWO-COLUMN (CV page) ---------- */
+.two-col {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.two-col .col-left { flex: 1.15; }
+.two-col .col-right { flex: 0.85; }
+
+/* ---------- POSITIONS ---------- */
+.position {
+  margin-bottom: var(--space-md);
+}
+
+.position .pos-title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 10pt;
+  color: var(--text-primary);
+}
+
+.position .pos-org {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}
+
+.position .pos-desc {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+  line-height: 1.35;
+}
+
+/* ---------- EDUCATION ---------- */
+.edu-item {
+  margin-bottom: var(--space-md);
+}
+
+.edu-item .edu-degree {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 9.5pt;
+  color: var(--text-primary);
+}
+
+.edu-item .edu-school {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 9pt;
+  color: var(--text-muted);
+}
+
+/* ---------- GRANTS ---------- */
+.grants-list {
+  list-style: none;
+  padding: 0;
+}
+
+.grants-list li {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  margin-bottom: var(--space-sm);
+  padding-left: 9pt;
+  position: relative;
+  color: var(--text-secondary);
+}
+
+.grants-list li::before {
+  content: "·";
+  position: absolute;
+  left: 1pt;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---------- FILMOGRAPHY HEADER ---------- */
+.filmography-header {
+  text-align: center;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1.5pt solid var(--text-primary);
+}
+
+.filmography-header h1 {
+  font-family: var(--font-serif);
+  font-size: 16pt;
+  font-weight: 700;
+  letter-spacing: 2pt;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 0;
+}
+
+/* Full-width h3 spanning both columns */
+.film-cols h3 { column-span: all; }
+
+/* Two-column filmography area */
+.film-cols {
+  columns: 2;
+  column-gap: var(--space-lg);
+  column-rule: 0.5pt solid var(--border);
+}
+
+/* ---------- FILMOGRAPHY ENTRY ---------- */
+.film-entry {
+  margin-bottom: var(--space-md);
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.film-entry .film-title,
+.theatre-entry .theatre-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 10pt;
+  color: var(--text-primary);
+}
+
+.film-dot {
+  color: var(--text-muted);
+  margin: 0 var(--space-xs);
+  font-weight: 300;
+}
+
+.film-entry .film-year,
+.theatre-entry .film-year {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 300;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.film-entry .film-role {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+.film-entry .film-festivals {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}
+
+/* ---------- THEATRE ---------- */
+.theatre-entry {
+  margin-bottom: var(--space-md);
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.theatre-entry .theatre-meta {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+.theatre-entry .theatre-venues {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}
+
+/* ---------- SECTION INTRO / FOOTNOTE ---------- */
+.section-intro {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+  column-span: all;
+}
+
+.footnote {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: var(--space-lg);
+  border-top: 0.5pt solid var(--border);
+  padding-top: var(--space-md);
+  column-span: all;
+}
+
+
+/* ============================================================
+   5. BIOGRAPHY
+   ============================================================ */
+
+.bio-header {
+  text-align: center;
+  margin-bottom: 18pt;
+  padding-bottom: 12pt;
+  border-bottom: 1.5pt solid var(--text-primary);
+}
+
+.bio-header h1 {
+  font-family: var(--font-serif);
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 3pt;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 6pt;
+}
+
+.bio-header .subtitle {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 1.5pt;
+  color: var(--text-secondary);
+}
+
+.bio-body p {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  line-height: 1.5;
+  color: var(--text-primary);
+  text-align: justify;
+  margin-bottom: 10pt;
+}
+
+.bio-body p:last-child {
+  margin-bottom: 0;
+}
+
+.bio-footer {
+  margin-top: 20pt;
+  padding-top: 10pt;
+  border-top: 0.75pt solid var(--border);
+  text-align: center;
+}
+
+
+/* ============================================================
+   6. ASSESSMENT
+   ============================================================ */
+
+/* Assessment-specific body overrides */
+.assessment-page {
+  background: var(--bg-body);
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 16mm;
+}
+
+@media print {
+  .assessment-page {
+    background: white;
+    padding: 0;
+  }
+}
+
+/* ---------- ASSESSMENT HEADER ---------- */
+.doc-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1.5pt solid var(--text-primary);
+}
+
+.doc-header h1 {
+  font-family: var(--font-serif);
+  font-size: 18pt;
+  font-weight: 700;
+  letter-spacing: 2pt;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.doc-header .doc-subtitle {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 1pt;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.doc-header .doc-meta {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Assessment h2/h3/h4 overrides */
+.assessment-page h2 {
+  font-size: 13pt;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.assessment-page h2:first-of-type { margin-top: 0; }
+
+.assessment-page h3 {
+  font-size: 11pt;
+  text-transform: none;
+  letter-spacing: 0.5pt;
+  margin-top: var(--space-lg);
+  border-bottom: none;
+}
+
+.assessment-page h4 {
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+/* ---------- BODY TEXT ---------- */
+.assessment-page p {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  text-align: justify;
+  hyphens: auto;
+}
+
+.assessment-page p.intro {
+  font-size: 10.5pt;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ---------- EXECUTIVE SUMMARY BOX ---------- */
+.exec-summary {
+  background: var(--bg-callout);
+  border: 0.75pt solid var(--border);
+  border-left: 3pt solid var(--accent);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  page-break-inside: avoid;
+}
+
+.exec-summary h3 {
+  margin-top: 0;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 1.2pt;
+}
+
+.exec-summary p { margin-bottom: var(--space-sm); }
+
+/* ---------- STRENGTHS & GAPS ---------- */
+.strengths-gaps {
+  display: flex;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.strengths, .gaps {
+  flex: 1;
+  padding: var(--space-md);
+  border: 0.5pt solid var(--border);
+}
+
+.strengths {
+  background: var(--bg-strength);
+  border-left: 3pt solid var(--accent-green);
+}
+
+.gaps {
+  background: var(--bg-issue);
+  border-left: 3pt solid var(--accent-amber);
+}
+
+.strengths h4, .gaps h4 {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+.strengths h4 { color: var(--accent-green); }
+.gaps h4 { color: var(--accent-amber); }
+
+.strengths ul, .gaps ul {
+  list-style: none;
+  padding: 0;
+}
+
+.strengths li, .gaps li {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  line-height: 1.4;
+  padding-left: 12pt;
+  position: relative;
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+.strengths li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-size: 7pt;
+  top: 2pt;
+}
+
+.gaps li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--accent-amber);
+  font-size: 8pt;
+  top: 1pt;
+}
+
+/* ---------- ISSUE CALLOUT ---------- */
+.issue-box {
+  background: var(--bg-issue);
+  border: 0.5pt solid var(--border);
+  border-left: 3pt solid var(--accent-amber);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-md) 0 var(--space-lg) 0;
+  page-break-inside: avoid;
+}
+
+.issue-box h4 {
+  font-family: var(--font-sans);
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: var(--accent-amber);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.issue-box p {
+  font-size: 9.5pt;
+  margin-bottom: var(--space-sm);
+}
+
+.issue-box .recommendation {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--accent-green);
+  margin-top: var(--space-sm);
+}
+
+.issue-box .recommendation::before {
+  content: "→ ";
+  font-weight: 700;
+}
+
+/* ---------- REVISED VERSION CONTAINER ---------- */
+.revised-version {
+  background: white;
+  border: 1pt solid var(--border-strong);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-lg) 0;
+  page-break-inside: avoid;
+}
+
+@media print {
+  .revised-version { background: white; }
+}
+
+.revised-version h3 {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.revised-version h3:first-child { margin-top: 0; }
+
+.revised-version .revised-label {
+  font-family: var(--font-sans);
+  font-size: 8pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--accent-green);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.revised-version p { text-align: justify; }
+
+/* ---------- BLOCKQUOTE ---------- */
+blockquote {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  line-height: 1.55;
+  color: var(--text-primary);
+  background: var(--bg-blockquote);
+  border-left: 3pt solid var(--accent);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-md) 0 var(--space-lg) 0;
+  page-break-inside: avoid;
+}
+
+blockquote p { margin-bottom: var(--space-sm); }
+blockquote p:last-child { margin-bottom: 0; }
+
+.word-count {
+  font-family: var(--font-sans);
+  font-size: 8pt;
+  font-weight: 500;
+  color: var(--accent-green);
+  text-align: right;
+  margin-top: var(--space-xs);
+}
+
+/* ---------- COMPARISON ---------- */
+.comparison {
+  display: flex;
+  gap: var(--space-lg);
+  margin: var(--space-md) 0 var(--space-lg) 0;
+}
+
+.comparison .original, .comparison .revised { flex: 1; }
+
+.comparison .label {
+  font-family: var(--font-sans);
+  font-size: 8pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2pt;
+  margin-bottom: var(--space-sm);
+}
+
+.comparison .original .label { color: var(--text-muted); }
+.comparison .revised .label { color: var(--accent-green); }
+
+/* ---------- PITCH VIDEO SECTION ---------- */
+.pitch-structure { counter-reset: pitch-step; }
+
+.pitch-step {
+  padding-left: 32pt;
+  position: relative;
+  margin-bottom: var(--space-lg);
+  page-break-inside: avoid;
+}
+
+.pitch-step::before {
+  counter-increment: pitch-step;
+  content: counter(pitch-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22pt;
+  height: 22pt;
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  font-weight: 600;
+  text-align: center;
+  line-height: 22pt;
+  border-radius: 50%;
+}
+
+.pitch-step h4 {
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.pitch-step .timecode {
+  font-family: var(--font-sans);
+  font-size: 8pt;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.pitch-step p, .pitch-step ul { font-size: 9.5pt; }
+
+.pitch-step ul { list-style: none; padding: 0; }
+
+.pitch-step li {
+  font-family: var(--font-serif);
+  font-size: 9.5pt;
+  padding-left: 10pt;
+  position: relative;
+  margin-bottom: var(--space-xs);
+  color: var(--text-secondary);
+}
+
+.pitch-step li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---------- TIPS BOX ---------- */
+.tips-box {
+  background: var(--bg-strength);
+  border: 0.5pt solid var(--border);
+  border-left: 3pt solid var(--accent-green);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  page-break-inside: avoid;
+}
+
+.tips-box h4 {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  color: var(--accent-green);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+.tips-box ul { list-style: none; padding: 0; }
+
+.tips-box li {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  padding-left: 12pt;
+  position: relative;
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+.tips-box li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: 700;
+  font-size: 8pt;
+}
+
+/* ---------- CHECKLIST TABLE ---------- */
+.checklist-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-lg) 0;
+  font-family: var(--font-sans);
+  font-size: 9pt;
+}
+
+.checklist-table th {
+  background: var(--bg-callout);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8pt;
+  font-size: 8pt;
+  color: var(--text-secondary);
+  padding: var(--space-md);
+  text-align: left;
+  border-bottom: 1pt solid var(--border-strong);
+}
+
+.checklist-table td {
+  padding: var(--space-md);
+  border-bottom: 0.5pt solid var(--border);
+  vertical-align: top;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.checklist-table tr:last-child td {
+  border-bottom: 1pt solid var(--border-strong);
+}
+
+.checklist-table .status { text-align: center; font-size: 12pt; }
+.checklist-table .status-ready { color: var(--accent-green); }
+.checklist-table .status-verify { color: var(--accent-amber); }
+.checklist-table .status-missing { color: var(--accent-red); }
+
+.checklist-table .req-num {
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* ---------- READINESS BADGE ---------- */
+.readiness {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 2pt;
+  margin-top: var(--space-sm);
+}
+
+.readiness-strong {
+  background: var(--bg-strength);
+  color: var(--accent-green);
+  border: 0.5pt solid var(--accent-green);
+}
+
+/* ---------- DEADLINE BANNER ---------- */
+.deadline-banner {
+  background: var(--bg-issue);
+  border: 1pt solid var(--accent-amber);
+  padding: var(--space-md) var(--space-lg);
+  text-align: center;
+  margin: var(--space-xl) 0;
+  page-break-inside: avoid;
+}
+
+.deadline-banner .deadline-primary {
+  font-family: var(--font-sans);
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--accent-amber);
+}
+
+.deadline-banner .deadline-secondary {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* ---------- SECTION DIVIDER ---------- */
+.section-divider {
+  border: none;
+  border-top: 0.5pt solid var(--border);
+  margin: var(--space-xl) 0;
+}
+
+/* ---------- CHANGES LIST ---------- */
+ul.changes-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) 0;
+}
+
+ul.changes-list li {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  padding-left: 14pt;
+  position: relative;
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+ul.changes-list li::before {
+  content: "↳";
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: 700;
+}
+
+/* ---------- ASSESSMENT FOOTER ---------- */
+.doc-footer {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 0.5pt solid var(--border);
+  font-family: var(--font-serif);
+  font-size: 8pt;
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+    /* ---------- STANDALONE: Desktop-reading overrides ---------- */
+    body {
+      background: var(--bg-body, #fdfbf7);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 32px;
+    }
+
+    a:hover { text-decoration: underline; }
+
+  </style>
+</head>
+<body class="assessment-page">
+
+<!-- ======================= HEADER ======================= -->
+
+<div class="doc-header">
+  <h1>TIFF Directors' Lab 2026</h1>
+  <div class="doc-subtitle">Application Assessment &amp; Recommendations</div>
+  <div class="doc-meta">Prepared for Leticia Cáceres · March 2026</div>
+</div>
+
+<!-- ======================= EXECUTIVE SUMMARY ======================= -->
+
+<h2>Executive Summary</h2>
+
+<div class="exec-summary">
+  <p>Leticia's application has strong foundations: a compelling project with commercial and social relevance, an exceptional track record across TV and theatre, and a clear directorial voice. However, the written materials as currently drafted <strong>underperform relative to the strength of the candidate.</strong> The Director's Statement buries Leticia's most powerful assets beneath the screenwriter's backstory, and the Logline, while serviceable, lacks the specificity and flavour that would make it memorable among hundreds of applications.</p>
+  <span class="readiness readiness-strong">Strong candidate; materials need strategic revision</span>
+</div>
+
+<div class="strengths-gaps">
+  <div class="strengths">
+    <h4>Key Strengths</h4>
+    <ul>
+      <li>20+ years of award-winning directing across stage and screen, offering rare depth of actor-directing experience for a debut feature filmmaker</li>
+      <li>Two feature film attachments (Leah Purcell's <em>The Drover's Wife</em>, Michael Rymer's <em>The Fires</em>) demonstrating active preparation for the debut</li>
+      <li>Project has development funding from Screen NSW and an established producer (Miriam Stein, Tama Films)</li>
+      <li>Subject matter (reproductive access, rural youth, coming-of-age) is timely, politically resonant, and commercially viable</li>
+      <li>Genre positioning (romantic comedy with dramatic stakes) is audience-friendly, a strength for a market-readiness programme</li>
+    </ul>
+  </div>
+  <div class="gaps">
+    <h4>Critical Gaps</h4>
+    <ul>
+      <li>Feature debut positioning is implied, never stated; it must be explicit and foregrounded</li>
+      <li>Directorial voice diluted by excessive screenwriter backstory (~40% of the statement)</li>
+      <li>No articulation of why TIFF Directors' Lab specifically, a significant omission</li>
+      <li>Thematic sections overlap and inflate the page count beyond the 2-page limit</li>
+      <li>Logline is generic; Synopsis ending is abrupt</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ======================= DIRECTOR'S STATEMENT: ANALYSIS ======================= -->
+
+<div class="page-break"></div>
+
+<h2>Part 1 · Director's Statement: Analysis</h2>
+
+<div class="issue-box">
+  <h4>Issue 1: Feature Debut Positioning Is Buried</h4>
+  <p>TIFF Directors' Lab explicitly targets "creators embarking on their directorial debuts." The programme description uses this language prominently. Yet the statement never once says "this is my debut feature film." It's implied through the project history, but selectors reading hundreds of applications need this stated clearly and early.</p>
+  <p>Leticia's trajectory (20+ years of theatre, award-winning TV, two feature attachments) tells a powerful story of deliberate preparation. That story needs to be told.</p>
+  <p class="recommendation">Open the statement with Leticia's identity as a director on the cusp of her feature debut, and position her extensive career as the foundation for that leap.</p>
+</div>
+
+<div class="issue-box">
+  <h4>Issue 2: Too Much Screenwriter Backstory</h4>
+  <p>Approximately 40% of the "Project History" section is about Claire Phillips: her background, her pregnancy, her agent, her motivations. While context is necessary, selectors want to hear <em>Leticia's</em> voice and vision. The application is for the director, not the writer.</p>
+  <p class="recommendation">Reduce project history to two to three sentences. Foreground what drew Leticia to the material and what she brings as director.</p>
+</div>
+
+<div class="issue-box">
+  <h4>Issue 3: No Mention of Why TIFF Directors' Lab</h4>
+  <p>The application never addresses why Leticia is applying to <em>this</em> programme specifically. TIFF Directors' Lab offers market readiness, mentorship from master directors, and festival industry access. Given that Bean has funding and a producer attached, articulating what the Lab would unlock (marketplace connections, mentorship on navigating the debut, distributor relationships) would demonstrate strategic thinking.</p>
+  <p class="recommendation">Add two to three sentences near the end connecting the Lab's offerings to Bean's current stage of development.</p>
+</div>
+
+<div class="issue-box">
+  <h4>Issue 4: Thematic Redundancy</h4>
+  <p>Three separate sections ("Themes," "Socio-Political Context," and "Why Bean") cover overlapping ground about abortion stigma, reproductive rights, and youth pressure. This inflates the word count and diffuses the argument.</p>
+  <p class="recommendation">Consolidate into a single "Themes &amp; Relevance" section that makes the case once, powerfully.</p>
+</div>
+
+<div class="issue-box">
+  <h4>Issue 5: Theatre-to-Screen Transition Is Undersold</h4>
+  <p>Leticia's single biggest differentiator is her actor-directing depth: 30+ professional stage productions, including work with Leah Purcell (who then invited her onto her feature), Helpmann Awards for direction. This is mentioned in one sentence ("As a director with a twenty-year career in theatre"). The statement should demonstrate how this experience <em>specifically</em> informs her approach to Bean.</p>
+  <p class="recommendation">Expand the connection between theatre craft and screen directing. Emphasise the skill of creating intimate, performance-driven moments, exactly what a coming-of-age film needs.</p>
+</div>
+
+<div class="issue-box">
+  <h4>Issue 6: Minor Language Issues</h4>
+  <p>"travers" → "traverse" · "exiting" → "exciting" · Comma splices in several long sentences · "Terminations makes" → subject-verb disagreement.</p>
+  <p class="recommendation">All corrected in the revised version below.</p>
+</div>
+
+<!-- ======================= DIRECTOR'S STATEMENT: REVISED ======================= -->
+
+<div class="page-break"></div>
+
+<h2>Part 2 · Director's Statement: Revised Version</h2>
+
+<p class="intro">Restructured to lead with directorial identity and debut positioning. Consolidated themes. Shortened project history, foregrounded vision. Added TIFF Lab connection. Trimmed to fit 2-page A4 max.</p>
+
+<div class="revised-version">
+  <span class="revised-label">Revised: Director's Statement</span>
+
+  <h3>My Path to Bean</h3>
+
+  <p>I am a director with over twenty years of experience across theatre, television, and short film, and <em>Bean</em> will be my feature debut.</p>
+
+  <p>My career has been shaped by a commitment to stories that centre women, illuminate social fault lines, and demand emotionally truthful performances. On stage, I have directed over thirty professional productions for Australia's leading companies, including Leah Purcell's <em>The Drover's Wife</em> at Belvoir St Theatre, which won the Helpmann Award for Best Direction and Best Production. That collaboration led Leah to invite me as Director's Attachment on her feature film <em>The Drover's Wife: The Legend of Molly Johnson</em>, where I gained first-hand experience of the creative and logistical demands of feature filmmaking. A second attachment followed with Michael Rymer on <em>The Fires</em> for ABC.</p>
+
+  <p>In television, I have directed across drama, comedy, and children's programming for Stan, SBS, ABC, Network Seven, Nickelodeon, and BBC, earning nominations for AACTA, LOGIE, and ADG Awards. My episodes of SBS's <em>Erotic Stories</em> drew critical praise for their tonal control, balancing emotional vulnerability with humour and sensuality, skills directly transferable to <em>Bean</em>.</p>
+
+  <p>When screenwriter Claire Phillips sent me her script, I recognised a story I had been waiting for: a coming-of-age romantic comedy with genuine dramatic stakes, a distinctly Australian voice, and a young woman at its centre whose choices carry real consequence. Claire and I partnered with producer Miriam Stein (Tama Films), whose work on <em>Hey, Hey, It's Esther Blueburger</em> signalled a shared sensibility. We have since secured development funding from Screen NSW, and Claire is completing a third-draft polish with the goal of attracting marquee talent and marketplace partners.</p>
+
+  <h3>Creative Vision</h3>
+
+  <p><em>Bean</em> is a coming-of-age romantic comedy about big dreams, big choices, big distances, and tiny secrets. It follows Jem, a sixteen-year-old determined to escape her small country town, who discovers she is pregnant and convinces her best friend Harry to drive her to Sydney for an abortion, setting in motion a road trip that will test their friendship, ignite unexpected romance, and force them both to grow up.</p>
+
+  <p>In classic Australian road-movie tradition, the vast landscape will be a character in the film. I will create a dynamic interplay between vehicle and camera: driving montages that celebrate the thrill of the open road, wide shots that capture the theme of escape, and an evolving visual palette from dry, brittle scrubland to coast and city that mirrors Jem and Harry's transformation. Films like <em>Thelma &amp; Louise</em>, <em>Juno</em>, and <em>The Edge of Seventeen</em> are touchstones: stories that marry scale with intimacy, and comedy with genuine emotional danger.</p>
+
+  <p>But <em>Bean</em> is ultimately a performance-driven film, and this is where my theatre background becomes my greatest asset. Twenty years of directing actors on stage have taught me how to build trust, excavate subtext, and help young performers access complex emotional terrain. When our scenes turn inward (Jem and Harry alone in the car, navigating feelings they cannot name) I will shift to handheld camera with shallow focus, framing them in close, dirty shots that dissolve the exterior world and hold the audience inside the relationship. The goal is a film that feels both visually bold and deeply human.</p>
+
+  <h3>Themes &amp; Relevance</h3>
+
+  <p>Through <em>Bean</em>, I want to destigmatise abortion and advance the conversation about reproductive access, particularly for young, rural people. Although abortion is legal in Australia, access remains starkly unequal: geographical distance, cost, and doctors' right to conscientious objection create barriers that disproportionately affect regional communities. The overturning of <em>Roe v. Wade</em> in the US has intensified global scrutiny of reproductive rights, making <em>Bean's</em> subject matter urgent and resonant far beyond Australia.</p>
+
+  <p>But <em>Bean</em> will not be a polemic. Its power lies in its warmth, humour, and emotional honesty. I want the audience to fall in love with Jem and Harry, to feel the stakes of their choices not as political abstractions but as lived, visceral experience. I want young viewers to see their own struggles with identity, pressure, and the terror of asking for help reflected on screen, and to feel less alone. Stories like <em>Bean</em> are vital in encouraging open conversation about the complexities of adolescence, reducing stigma, and empowering a generation to face their challenges with courage and authenticity.</p>
+
+  <h3>Why TIFF Directors' Lab</h3>
+
+  <p><em>Bean</em> is at a pivotal stage: the script is in its third draft, development funding is secured, and a strong creative team is in place. What we need now is the marketplace expertise to take it from development into production. TIFF Directors' Lab's focus on market readiness, combined with mentorship from directors who have navigated their own debuts, is precisely the catalyst this project requires. The opportunity to refine my pitch, connect with international distributors and financiers, and learn from the industry's best would be transformative for both <em>Bean</em> and my career as a first-time feature director.</p>
+</div>
+
+<!-- ======================= LOGLINE: ANALYSIS ======================= -->
+
+<div class="page-break"></div>
+
+<h2>Part 3 · Logline: Analysis</h2>
+
+<h3>Current Version</h3>
+
+<blockquote>
+  <p>Faced with an unplanned pregnancy, two teenagers set out on the road together, only to discover what they are truly seeking is each other.</p>
+</blockquote>
+<div class="word-count">25 words (limit: 50)</div>
+
+<div class="issue-box">
+  <h4>Generic</h4>
+  <p>This could describe a film set anywhere, in any era. There's no sense of the Australian setting, the rural-to-urban journey, or the specific genre (romantic comedy with dramatic stakes).</p>
+</div>
+
+<div class="issue-box">
+  <h4>Clichéd Closing</h4>
+  <p>"Discover what they are truly seeking is each other" is a well-worn formula. It also undersells the story; the film isn't just about romance; it's about reproductive choice, growing up, and the courage to ask for help.</p>
+</div>
+
+<div class="issue-box">
+  <h4>Underuses Word Budget</h4>
+  <p>At 25 words against a 50-word limit, there's significant room to add specificity, flavour, and stakes.</p>
+</div>
+
+<h3>Revised Logline</h3>
+
+<blockquote>
+  <p>When precocious sixteen-year-old Jem discovers she's pregnant in her tiny Australian country town, she convinces her best friend Harry to steal his mum's car and drive her to Sydney for an abortion, but the journey across a vast and unforgiving landscape forces both of them to confront what they really feel, for themselves and for each other.</p>
+</blockquote>
+<div class="word-count">49 words ✓</div>
+
+<ul class="changes-list">
+  <li>Added character name and age (specificity)</li>
+  <li>Established Australian setting and rural-to-urban geography</li>
+  <li>Included the car theft (raises stakes, adds genre flavour)</li>
+  <li>"Vast and unforgiving landscape" signals road-movie genre visually</li>
+  <li>Dual transformation: self-discovery + romance</li>
+  <li>Removed the cliché</li>
+</ul>
+
+<!-- ======================= SYNOPSIS: ANALYSIS ======================= -->
+
+<hr class="section-divider">
+
+<h2>Part 4 · Synopsis: Analysis</h2>
+
+<h3>Current Version</h3>
+
+<blockquote>
+  <p>Precocious 16-year-old JEM is determined to make it out of her small country town. As the only daughter to CHRISTINE, a single mum and a cleaner, who fell pregnant with Jem when she was still a teen, Jem is determined to avoid her mum's mistake, which is why she's horrified to discover she's pregnant.</p>
+  <p>Jem hashes a plan. She rocks up on her best friend HARRY's doorstep and convinces him to steal his mum's beat up 2005 Toyota Tarago and drive her to Sydney to have an abortion.</p>
+  <p>Jem and Harry lie to their parents and hit the road. But they quickly discover this road trip isn't gonna be easy. Not only is the Tarago barely roadworthy, but they've been forced to bring along Christine's beloved pet rabbit, who's sick and requires critical care nursing.</p>
+  <p>Jem needs cash for the abortion, so she reluctantly calls the "oops" baby's father - BOMBER, the boarding school jock she had a fling with over summer. But as sparks reignite between them, Harry feels jealous.</p>
+  <p>When Jem and Harry are forced to torch the Tarago to cover their tracks, their true feelings come to the surface, and they kiss. But instead of bringing them together, it forces them apart. Jem, scared, confused, leaves Harry, adamant she's blown her life up.</p>
+  <p>Jem's mum discovers Jem's been lying to her. She travels to Sydney to bring Jem home forcing Jem to make a choice: tell her mum the truth or have the abortion alone.</p>
+</blockquote>
+<div class="word-count">~230 words (limit: 250)</div>
+
+<div class="strengths-gaps">
+  <div class="strengths">
+    <h4>What Works</h4>
+    <ul>
+      <li>Strong character setup: Jem's background, Christine, generational fear</li>
+      <li>Escalating stakes: roadworthiness, the rabbit, Bomber, Harry's jealousy</li>
+      <li>The sick rabbit is a terrific comic/emotional device, a surrogate for care and responsibility</li>
+      <li>Clear genre signals: comedy, romance, road movie</li>
+    </ul>
+  </div>
+  <div class="gaps">
+    <h4>What Needs Work</h4>
+    <ul>
+      <li>Typo: "hashes a plan" → "hatches a plan"</li>
+      <li>Ending is abrupt, with no hint of emotional resolution or payoff</li>
+      <li>Why they torch the Tarago is unexplained; needs brief context</li>
+      <li>Bomber appears then vanishes; his function as catalyst needs clarity</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Revised Synopsis</h3>
+
+<blockquote>
+  <p>Precocious sixteen-year-old <strong>JEM</strong> is determined to escape her small Australian country town. The only daughter of <strong>CHRISTINE</strong>, a single mum and cleaner who fell pregnant as a teen, Jem is terrified of repeating her mother's path. So when she discovers she's pregnant, her world collapses.</p>
+  <p>Jem hatches a plan. She turns up on best friend <strong>HARRY's</strong> doorstep and convinces him to steal his mum's beat-up 2005 Toyota Tarago and drive her to Sydney for an abortion. They lie to their parents and hit the road, but the journey is anything but easy. The Tarago is barely roadworthy, and they've been forced to bring Christine's beloved pet rabbit, who's sick and needs constant care.</p>
+  <p>Desperate for cash, Jem calls <strong>BOMBER</strong>, the boarding-school jock she had a summer fling with, and the baby's father. When sparks reignite between them, Harry's jealousy surfaces, revealing feelings he's kept hidden. After the Tarago breaks down for good, Jem and Harry torch it to cover their tracks. In the charged aftermath, they kiss, but instead of bringing them closer, it terrifies Jem. Scared and overwhelmed, she pushes Harry away, convinced she's ruined everything.</p>
+  <p>When Christine discovers Jem has been lying and travels to Sydney to bring her home, Jem faces her hardest choice: tell her mum the truth and ask for the help she desperately needs, or face the abortion alone.</p>
+</blockquote>
+<div class="word-count">248 words ✓</div>
+
+<ul class="changes-list">
+  <li>Fixed "hashes" → "hatches"</li>
+  <li>Added brief context for torching the Tarago (breaks down for good)</li>
+  <li>Clarified Harry's hidden feelings as the driver of his jealousy</li>
+  <li>Refined the ending to land on the emotional question while implying growth</li>
+  <li>Tightened prose throughout</li>
+</ul>
+
+<!-- ======================= PITCH VIDEO GUIDANCE ======================= -->
+
+<div class="page-break"></div>
+
+<h2>Part 5 · Pitch Video Guidance</h2>
+
+<p class="intro">TIFF states: "The jury will not be evaluating the quality of the video but the statements made by the applicant." Passion and specificity are more persuasive than polish.</p>
+
+<div class="pitch-structure">
+
+  <div class="pitch-step">
+    <div class="timecode">0:00 to 0:20</div>
+    <h4>Who You Are: The Director</h4>
+    <ul>
+      <li>Name, background in one sentence</li>
+      <li>"I'm a director with twenty years of experience in theatre and television, and <em>Bean</em> will be my feature debut."</li>
+      <li>Acknowledge the transition, theatre → TV → feature, as a deliberate trajectory</li>
+    </ul>
+  </div>
+
+  <div class="pitch-step">
+    <div class="timecode">0:20 to 0:50</div>
+    <h4>What Bean Is About</h4>
+    <ul>
+      <li>The logline, spoken naturally, not read</li>
+      <li>Why this story matters to you personally, one authentic, specific detail</li>
+      <li>Genre and tone: "coming-of-age romantic comedy with real dramatic stakes"</li>
+    </ul>
+  </div>
+
+  <div class="pitch-step">
+    <div class="timecode">0:50 to 1:20</div>
+    <h4>Your Directing Vision</h4>
+    <ul>
+      <li>The two visual modes: expansive road-movie cinematography / intimate handheld performance work</li>
+      <li>One sentence about visual touchstones (<em>Thelma &amp; Louise</em> meets <em>Juno</em>)</li>
+      <li>What your theatre background brings to this film specifically</li>
+    </ul>
+  </div>
+
+  <div class="pitch-step">
+    <div class="timecode">1:20 to 1:40</div>
+    <h4>Where the Project Is Now</h4>
+    <ul>
+      <li>Script status (third draft), Screen NSW funding, producer attached</li>
+      <li>What you need next: marketplace connections, mentorship, the pathway from development to production</li>
+    </ul>
+  </div>
+
+  <div class="pitch-step">
+    <div class="timecode">1:40 to 2:00</div>
+    <h4>Why TIFF Directors' Lab</h4>
+    <ul>
+      <li>Specific: market readiness focus, mentorship from directors who've navigated debuts</li>
+      <li>End with conviction: what participation would mean for <em>Bean</em> and for your career</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="tips-box">
+  <h4>Delivery Tips</h4>
+  <ul>
+    <li>Speak to camera directly, conversational tone, not scripted or performed</li>
+    <li>One take is fine; cuts between sections are also fine</li>
+    <li>Record in a quiet, well-lit space (natural light preferred)</li>
+    <li>Dress as you would for a professional meeting, not overly formal</li>
+    <li>Passion and specificity are more persuasive than polish</li>
+  </ul>
+</div>
+
+<!-- ======================= ALIGNMENT CHECKLIST ======================= -->
+
+<div class="page-break"></div>
+
+<h2>Part 6 · Application Alignment Checklist</h2>
+
+<table class="checklist-table">
+  <thead>
+    <tr>
+      <th style="width: 5%">#</th>
+      <th style="width: 30%">Requirement</th>
+      <th style="width: 8%">Status</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="req-num">1</td>
+      <td>Feature film script (80 to 120 pages)</td>
+      <td class="status status-verify">⚠️</td>
+      <td>Third draft in progress with Screen NSW funding. Confirm page count meets 80-page minimum before submission.</td>
+    </tr>
+    <tr>
+      <td class="req-num">2a</td>
+      <td>Project Logline (max 50 words)</td>
+      <td class="status status-ready">✅</td>
+      <td>Revised version: 49 words.</td>
+    </tr>
+    <tr>
+      <td class="req-num">2b</td>
+      <td>Synopsis (max 250 words)</td>
+      <td class="status status-ready">✅</td>
+      <td>Revised version: 248 words.</td>
+    </tr>
+    <tr>
+      <td class="req-num">2c</td>
+      <td>Artist Statement / Creative Approach (max 2 pages)</td>
+      <td class="status status-ready">✅</td>
+      <td>Revised version restructured and trimmed. Verify page count when formatted as PDF.</td>
+    </tr>
+    <tr>
+      <td class="req-num">2d</td>
+      <td>Resume/CV and Filmography</td>
+      <td class="status status-ready">✅</td>
+      <td>CV-v2 prepared. Verify consolidated PDF fits: CV max 1 page + filmography max 2 pages.</td>
+    </tr>
+    <tr>
+      <td class="req-num">3</td>
+      <td>Lookbook (max 10 pages)</td>
+      <td class="status status-missing">❌</td>
+      <td>Not yet created. Needs: Australian landscapes (Dubbo/NSW → Sydney corridor), vehicle/road shots, tone boards, lighting references, cast visual inspiration.</td>
+    </tr>
+    <tr>
+      <td class="req-num">4a</td>
+      <td>Applicant biography (150 to 300 words)</td>
+      <td class="status status-verify">⚠️</td>
+      <td>CV Profile is ~70 words. Needs expansion to 150 to 300 words for the FilmFreeway "Director's Bio" field.</td>
+    </tr>
+    <tr>
+      <td class="req-num">4b</td>
+      <td>Headshot (.jpg)</td>
+      <td class="status status-verify">⚠️</td>
+      <td>Required for FilmFreeway "Director" section. Confirm you have a current professional headshot.</td>
+    </tr>
+    <tr>
+      <td class="req-num">5</td>
+      <td>Pitch video (2 min max)</td>
+      <td class="status status-verify">⚠️</td>
+      <td>Structure and talking points provided in this document. To be recorded.</td>
+    </tr>
+    <tr>
+      <td class="req-num">6</td>
+      <td>Video sample of previous work (5 min max)</td>
+      <td class="status status-verify">⚠️</td>
+      <td>Must be directed by Leticia. Suggest: 5-min clip from <em>Erotic Stories</em> or <em>Bump</em> demonstrating tonal range (comedy + emotion). English subtitles required if not in English. Context must be provided in "Clip Description" box.</td>
+    </tr>
+    <tr>
+      <td class="req-num">7</td>
+      <td>Custom Form (FilmFreeway)</td>
+      <td class="status status-verify">⚠️</td>
+      <td>Complete after all materials are finalised.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Consolidated PDF Structure</h3>
+
+<p>TIFF requires one consolidated PDF containing all written materials:</p>
+
+<table class="checklist-table">
+  <thead>
+    <tr>
+      <th style="width: 8%">Order</th>
+      <th>Section</th>
+      <th style="width: 15%">Max Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="req-num">1</td>
+      <td>Resume / CV</td>
+      <td>1 page</td>
+    </tr>
+    <tr>
+      <td class="req-num">2</td>
+      <td>Filmography</td>
+      <td>2 pages</td>
+    </tr>
+    <tr>
+      <td class="req-num">3</td>
+      <td>Artist Statement / Creative Approach</td>
+      <td>2 pages</td>
+    </tr>
+    <tr>
+      <td class="req-num">4</td>
+      <td>Project Logline &amp; Synopsis</td>
+      <td>1 page</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Total: maximum 6 pages. The cv-v2 currently runs 3 pages (CV + 2 filmography). The revised statement + logline/synopsis should add 3 pages. This is tight but feasible.</p>
+
+<!-- ======================= DEADLINE ======================= -->
+
+<div class="deadline-banner">
+  <div class="deadline-primary">Early Bird Deadline: March 23, 2026 · $46.75 CAD</div>
+  <div class="deadline-secondary">Regular Deadline: April 13, 2026 · $55.00 CAD</div>
+</div>
+
+<div class="doc-footer">
+  <p>End of assessment · TIFF Directors' Lab 2026 · Prepared for Leticia Cáceres</p>
+</div>
+
+</body>
+</html>

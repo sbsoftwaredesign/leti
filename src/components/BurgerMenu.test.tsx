@@ -64,4 +64,45 @@ describe('BurgerMenu', () => {
     fireEvent.click(screen.getByLabelText(/close navigation menu/i));
     expect(sidebar.className).not.toContain('open');
   });
+
+  it('closes on Escape key', () => {
+    render(<BurgerMenu projects={mockProjects} />);
+    fireEvent.click(screen.getByLabelText(/open navigation menu/i));
+    const sidebar = screen.getByRole('navigation');
+    expect(sidebar.className).toContain('open');
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(sidebar.className).not.toContain('open');
+  });
+
+  it('closes on overlay backdrop click', () => {
+    render(<BurgerMenu projects={mockProjects} />);
+    fireEvent.click(screen.getByLabelText(/open navigation menu/i));
+    const sidebar = screen.getByRole('navigation');
+    expect(sidebar.className).toContain('open');
+
+    const backdrop = document.querySelector('.overlay-backdrop');
+    fireEvent.click(backdrop!);
+    expect(sidebar.className).not.toContain('open');
+  });
+
+  it('collapses expanded category on second click', () => {
+    render(<BurgerMenu projects={mockProjects} />);
+    fireEvent.click(screen.getByLabelText(/open navigation menu/i));
+
+    const cvButton = screen.getByText('CV');
+    fireEvent.click(cvButton);
+    expect(screen.getByText('CV & Filmography')).toBeInTheDocument();
+
+    fireEvent.click(cvButton);
+    expect(screen.queryByText('CV & Filmography')).not.toBeInTheDocument();
+  });
+
+  it('renders without currentSlug', () => {
+    render(<BurgerMenu projects={mockProjects} />);
+    fireEvent.click(screen.getByLabelText(/open navigation menu/i));
+    // Home should be highlighted (bold font) when no currentSlug
+    const homeLink = screen.getByText('Home');
+    expect(homeLink).toBeInTheDocument();
+  });
 });

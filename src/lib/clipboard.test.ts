@@ -32,4 +32,27 @@ describe("copyToClipboard", () => {
     expect(result).toBe(true);
     expect(document.execCommand).toHaveBeenCalledWith("copy");
   });
+
+  it("returns false when execCommand throws", async () => {
+    vi.stubGlobal("navigator", {});
+    document.execCommand = vi.fn().mockImplementation(() => {
+      throw new Error("not supported");
+    });
+
+    const result = await copyToClipboard("throw text");
+    expect(result).toBe(false);
+  });
+
+  it("returns false when navigator is undefined", async () => {
+    const originalNavigator = globalThis.navigator;
+    // @ts-expect-error — testing SSR guard
+    delete globalThis.navigator;
+    Object.defineProperty(globalThis, 'navigator', { value: undefined, writable: true, configurable: true });
+
+    const { copyToClipboard: copy } = await import("@lib/clipboard");
+    const result = await copy("test");
+    expect(result).toBe(false);
+
+    Object.defineProperty(globalThis, 'navigator', { value: originalNavigator, writable: true, configurable: true });
+  });
 });

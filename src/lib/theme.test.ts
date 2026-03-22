@@ -21,6 +21,28 @@ describe("getTheme", () => {
     expect(getTheme()).toBe("light");
   });
 
+  it("returns dark when prefers-color-scheme is dark and no stored value", () => {
+    const original = window.matchMedia;
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: (query: string) => ({
+        matches: query === "(prefers-color-scheme: dark)",
+        media: query,
+        onchange: null,
+        addListener: () => {},
+        removeListener: () => {},
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        dispatchEvent: () => false,
+      }),
+    });
+    expect(getTheme()).toBe("dark");
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: original,
+    });
+  });
+
   it("ignores invalid stored values", () => {
     localStorage.setItem("writer-factory-theme", "invalid");
     expect(getTheme()).toBe("light");

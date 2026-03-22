@@ -21,6 +21,9 @@ coverage/
 *.swp
 *~
 
+# Internal network instructions (local AI context only)
+drafts/how-to-publish-a-project-in-my-network.md
+
 # Environment
 .env
 .env.*

@@ -124,6 +124,31 @@ body,
   transform: translateX(0);
 }
 
+/* ---- Desktop: sidebar always visible ---- */
+@media (min-width: 1024px) {
+  .burger-sidebar {
+    transform: translateX(0);
+    top: var(--header-height, 3.5rem);
+    max-width: 18rem;
+  }
+
+  .burger-toggle {
+    display: none;
+  }
+
+  .sidebar-close {
+    display: none;
+  }
+
+  .overlay-backdrop {
+    display: none;
+  }
+
+  .desktop-sidebar-offset {
+    margin-left: 18rem;
+  }
+}
+
 /* ---- Search overlay ---- */
 .search-overlay {
   position: fixed;

@@ -28,4 +28,13 @@ describe('ThemeToggle', () => {
     fireEvent.click(button);
     expect(setTheme).toHaveBeenCalledWith('dark');
   });
+
+  it('toggles back to light on second click', async () => {
+    const { setTheme } = await import('@lib/theme');
+    render(<ThemeToggle />);
+    const button = screen.getByRole('button');
+    fireEvent.click(button); // light → dark
+    fireEvent.click(button); // dark → light
+    expect(setTheme).toHaveBeenCalledWith('light');
+  });
 });

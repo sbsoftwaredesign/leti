@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leticia Cáceres · Biography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+/* ============================================================
+   LETICIA CÁCERES: Global Styles
+   Consolidated stylesheet for all output documents
+   8pt baseline grid · Source Serif 4 + Inter · warm palette
+   ============================================================ */
+
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+
+:root {
+  /* Colour palette */
+  --text-primary: #2c2416;
+  --text-secondary: #5c4f3a;
+  --text-muted: #8a7d6b;
+  --accent: #8b5e3c;
+  --accent-green: #4a7c59;
+  --accent-amber: #b5872a;
+  --accent-red: #a3403a;
+  --border: #e0d5c4;
+  --border-strong: #c4b9a8;
+  --bg-body: #fdfbf7;
+  --bg-callout: #f7f3ec;
+  --bg-strength: #f0f5f1;
+  --bg-issue: #fdf5ee;
+  --bg-blockquote: #f5f2ec;
+
+  /* Typography */
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* 8pt grid spacing */
+  --space-xs: 2pt;   /* quarter */
+  --space-sm: 4pt;   /* half */
+  --space-md: 8pt;   /* base */
+  --space-lg: 16pt;  /* double */
+  --space-xl: 24pt;  /* triple */
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- PAGE (A4 default) ---------- */
+@page {
+  size: A4;
+  margin: 16mm;
+
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 8pt;
+    color: var(--text-muted);
+  }
+}
+
+@page :first {
+  margin-top: 12mm;
+
+  @bottom-center {
+    content: none;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  line-height: 1.4;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- PAGE BREAKS ---------- */
+.page-break {
+  page-break-before: always;
+  break-before: page;
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 0;
+}
+
+
+/* ============================================================
+   3. SHARED COMPONENTS
+   ============================================================ */
+
+/* ---------- SECTION HEADINGS ---------- */
+h2 {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--text-primary);
+  border-bottom: 0.75pt solid var(--border);
+  padding-bottom: var(--space-sm);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2pt;
+  color: var(--accent);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 0.5pt solid var(--border);
+}
+
+strong { font-weight: 700; color: var(--text-primary); }
+em { font-style: italic; }
+
+/* ---------- AWARDS (shared by CV & filmography) ---------- */
+.film-awards {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0 0 0;
+}
+
+.film-awards li {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  padding-left: 12pt;
+  position: relative;
+  margin-bottom: var(--space-xs);
+  line-height: 1.35;
+}
+
+.film-awards li .award-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.film-awards li .award-label::after {
+  content: " · ";
+  font-weight: 300;
+  color: var(--border-strong);
+}
+
+.film-awards li .award-venue {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.film-awards li.winner::before {
+  content: "✦";
+  position: absolute;
+  left: 1pt;
+  color: var(--accent);
+  font-size: 7pt;
+  top: 1.5pt;
+}
+
+.film-awards li.nom::before {
+  content: "○";
+  position: absolute;
+  left: 2pt;
+  color: var(--border-strong);
+  font-size: 7pt;
+  top: 1.5pt;
+}
+
+/* ---------- CONTACT LINE ---------- */
+.contact-line {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.2pt;
+}
+
+.contact-line .sep {
+  color: var(--border-strong);
+  margin: 0 var(--space-sm);
+}
+
+.contact-line a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   4. CV & FILMOGRAPHY
+   ============================================================ */
+
+/* ---------- CV HEADER ---------- */
+.cv-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1.5pt solid var(--text-primary);
+}
+
+.cv-header h1 {
+  font-family: var(--font-serif);
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 3pt;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.cv-header .subtitle {
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 1.5pt;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+/* ---------- PROFILE ---------- */
+.profile {
+  margin-bottom: var(--space-md);
+}
+
+.profile p {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  line-height: 1.45;
+  color: var(--text-primary);
+  text-align: justify;
+}
+
+/* ---------- TWO-COLUMN (CV page) ---------- */
+.two-col {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.two-col .col-left { flex: 1.15; }
+.two-col .col-right { flex: 0.85; }
+
+/* ---------- POSITIONS ---------- */
+.position {
+  margin-bottom: var(--space-md);
+}
+
+.position .pos-title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 10pt;
+  color: var(--text-primary);
+}
+
+.position .pos-org {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}
+
+.position .pos-desc {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+  line-height: 1.35;
+}
+
+/* ---------- EDUCATION ---------- */
+.edu-item {
+  margin-bottom: var(--space-md);
+}
+
+.edu-item .edu-degree {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 9.5pt;
+  color: var(--text-primary);
+}
+
+.edu-item .edu-school {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 9pt;
+  color: var(--text-muted);
+}
+
+/* ---------- GRANTS ---------- */
+.grants-list {
+  list-style: none;
+  padding: 0;
+}
+
+.grants-list li {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  margin-bottom: var(--space-sm);
+  padding-left: 9pt;
+  position: relative;
+  color: var(--text-secondary);
+}
+
+.grants-list li::before {
+  content: "·";
+  position: absolute;
+  left: 1pt;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---------- FILMOGRAPHY HEADER ---------- */
+.filmography-header {
+  text-align: center;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1.5pt solid var(--text-primary);
+}
+
+.filmography-header h1 {
+  font-family: var(--font-serif);
+  font-size: 16pt;
+  font-weight: 700;
+  letter-spacing: 2pt;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 0;
+}
+
+/* Full-width h3 spanning both columns */
+.film-cols h3 { column-span: all; }
+
+/* Two-column filmography area */
+.film-cols {
+  columns: 2;
+  column-gap: var(--space-lg);
+  column-rule: 0.5pt solid var(--border);
+}
+
+/* ---------- FILMOGRAPHY ENTRY ---------- */
+.film-entry {
+  margin-bottom: var(--space-md);
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.film-entry .film-title,
+.theatre-entry .theatre-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 10pt;
+  color: var(--text-primary);
+}
+
+.film-dot {
+  color: var(--text-muted);
+  margin: 0 var(--space-xs);
+  font-weight: 300;
+}
+
+.film-entry .film-year,
+.theatre-entry .film-year {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 300;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.film-entry .film-role {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+.film-entry .film-festivals {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}
+
+/* ---------- THEATRE ---------- */
+.theatre-entry {
+  margin-bottom: var(--space-md);
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.theatre-entry .theatre-meta {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+.theatre-entry .theatre-venues {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}
+
+/* ---------- SECTION INTRO / FOOTNOTE ---------- */
+.section-intro {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+  column-span: all;
+}
+
+.footnote {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: var(--space-lg);
+  border-top: 0.5pt solid var(--border);
+  padding-top: var(--space-md);
+  column-span: all;
+}
+
+
+/* ============================================================
+   5. BIOGRAPHY
+   ============================================================ */
+
+.bio-header {
+  text-align: center;
+  margin-bottom: 18pt;
+  padding-bottom: 12pt;
+  border-bottom: 1.5pt solid var(--text-primary);
+}
+
+.bio-header h1 {
+  font-family: var(--font-serif);
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 3pt;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 6pt;
+}
+
+.bio-header .subtitle {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 1.5pt;
+  color: var(--text-secondary);
+}
+
+.bio-body p {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  line-height: 1.5;
+  color: var(--text-primary);
+  text-align: justify;
+  margin-bottom: 10pt;
+}
+
+.bio-body p:last-child {
+  margin-bottom: 0;
+}
+
+.bio-footer {
+  margin-top: 20pt;
+  padding-top: 10pt;
+  border-top: 0.75pt solid var(--border);
+  text-align: center;
+}
+
+
+/* ============================================================
+   6. ASSESSMENT
+   ============================================================ */
+
+/* Assessment-specific body overrides */
+.assessment-page {
+  background: var(--bg-body);
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 16mm;
+}
+
+@media print {
+  .assessment-page {
+    background: white;
+    padding: 0;
+  }
+}
+
+/* ---------- ASSESSMENT HEADER ---------- */
+.doc-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1.5pt solid var(--text-primary);
+}
+
+.doc-header h1 {
+  font-family: var(--font-serif);
+  font-size: 18pt;
+  font-weight: 700;
+  letter-spacing: 2pt;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.doc-header .doc-subtitle {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 1pt;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.doc-header .doc-meta {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Assessment h2/h3/h4 overrides */
+.assessment-page h2 {
+  font-size: 13pt;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.assessment-page h2:first-of-type { margin-top: 0; }
+
+.assessment-page h3 {
+  font-size: 11pt;
+  text-transform: none;
+  letter-spacing: 0.5pt;
+  margin-top: var(--space-lg);
+  border-bottom: none;
+}
+
+.assessment-page h4 {
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+/* ---------- BODY TEXT ---------- */
+.assessment-page p {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  text-align: justify;
+  hyphens: auto;
+}
+
+.assessment-page p.intro {
+  font-size: 10.5pt;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ---------- EXECUTIVE SUMMARY BOX ---------- */
+.exec-summary {
+  background: var(--bg-callout);
+  border: 0.75pt solid var(--border);
+  border-left: 3pt solid var(--accent);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  page-break-inside: avoid;
+}
+
+.exec-summary h3 {
+  margin-top: 0;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 1.2pt;
+}
+
+.exec-summary p { margin-bottom: var(--space-sm); }
+
+/* ---------- STRENGTHS & GAPS ---------- */
+.strengths-gaps {
+  display: flex;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.strengths, .gaps {
+  flex: 1;
+  padding: var(--space-md);
+  border: 0.5pt solid var(--border);
+}
+
+.strengths {
+  background: var(--bg-strength);
+  border-left: 3pt solid var(--accent-green);
+}
+
+.gaps {
+  background: var(--bg-issue);
+  border-left: 3pt solid var(--accent-amber);
+}
+
+.strengths h4, .gaps h4 {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+.strengths h4 { color: var(--accent-green); }
+.gaps h4 { color: var(--accent-amber); }
+
+.strengths ul, .gaps ul {
+  list-style: none;
+  padding: 0;
+}
+
+.strengths li, .gaps li {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  line-height: 1.4;
+  padding-left: 12pt;
+  position: relative;
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+.strengths li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-size: 7pt;
+  top: 2pt;
+}
+
+.gaps li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--accent-amber);
+  font-size: 8pt;
+  top: 1pt;
+}
+
+/* ---------- ISSUE CALLOUT ---------- */
+.issue-box {
+  background: var(--bg-issue);
+  border: 0.5pt solid var(--border);
+  border-left: 3pt solid var(--accent-amber);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-md) 0 var(--space-lg) 0;
+  page-break-inside: avoid;
+}
+
+.issue-box h4 {
+  font-family: var(--font-sans);
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: var(--accent-amber);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.issue-box p {
+  font-size: 9.5pt;
+  margin-bottom: var(--space-sm);
+}
+
+.issue-box .recommendation {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--accent-green);
+  margin-top: var(--space-sm);
+}
+
+.issue-box .recommendation::before {
+  content: "→ ";
+  font-weight: 700;
+}
+
+/* ---------- REVISED VERSION CONTAINER ---------- */
+.revised-version {
+  background: white;
+  border: 1pt solid var(--border-strong);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-lg) 0;
+  page-break-inside: avoid;
+}
+
+@media print {
+  .revised-version { background: white; }
+}
+
+.revised-version h3 {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.revised-version h3:first-child { margin-top: 0; }
+
+.revised-version .revised-label {
+  font-family: var(--font-sans);
+  font-size: 8pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--accent-green);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.revised-version p { text-align: justify; }
+
+/* ---------- BLOCKQUOTE ---------- */
+blockquote {
+  font-family: var(--font-serif);
+  font-size: 10pt;
+  line-height: 1.55;
+  color: var(--text-primary);
+  background: var(--bg-blockquote);
+  border-left: 3pt solid var(--accent);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-md) 0 var(--space-lg) 0;
+  page-break-inside: avoid;
+}
+
+blockquote p { margin-bottom: var(--space-sm); }
+blockquote p:last-child { margin-bottom: 0; }
+
+.word-count {
+  font-family: var(--font-sans);
+  font-size: 8pt;
+  font-weight: 500;
+  color: var(--accent-green);
+  text-align: right;
+  margin-top: var(--space-xs);
+}
+
+/* ---------- COMPARISON ---------- */
+.comparison {
+  display: flex;
+  gap: var(--space-lg);
+  margin: var(--space-md) 0 var(--space-lg) 0;
+}
+
+.comparison .original, .comparison .revised { flex: 1; }
+
+.comparison .label {
+  font-family: var(--font-sans);
+  font-size: 8pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2pt;
+  margin-bottom: var(--space-sm);
+}
+
+.comparison .original .label { color: var(--text-muted); }
+.comparison .revised .label { color: var(--accent-green); }
+
+/* ---------- PITCH VIDEO SECTION ---------- */
+.pitch-structure { counter-reset: pitch-step; }
+
+.pitch-step {
+  padding-left: 32pt;
+  position: relative;
+  margin-bottom: var(--space-lg);
+  page-break-inside: avoid;
+}
+
+.pitch-step::before {
+  counter-increment: pitch-step;
+  content: counter(pitch-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22pt;
+  height: 22pt;
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  font-weight: 600;
+  text-align: center;
+  line-height: 22pt;
+  border-radius: 50%;
+}
+
+.pitch-step h4 {
+  font-family: var(--font-sans);
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.pitch-step .timecode {
+  font-family: var(--font-sans);
+  font-size: 8pt;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.pitch-step p, .pitch-step ul { font-size: 9.5pt; }
+
+.pitch-step ul { list-style: none; padding: 0; }
+
+.pitch-step li {
+  font-family: var(--font-serif);
+  font-size: 9.5pt;
+  padding-left: 10pt;
+  position: relative;
+  margin-bottom: var(--space-xs);
+  color: var(--text-secondary);
+}
+
+.pitch-step li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---------- TIPS BOX ---------- */
+.tips-box {
+  background: var(--bg-strength);
+  border: 0.5pt solid var(--border);
+  border-left: 3pt solid var(--accent-green);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  page-break-inside: avoid;
+}
+
+.tips-box h4 {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  color: var(--accent-green);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+.tips-box ul { list-style: none; padding: 0; }
+
+.tips-box li {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  padding-left: 12pt;
+  position: relative;
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+.tips-box li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: 700;
+  font-size: 8pt;
+}
+
+/* ---------- CHECKLIST TABLE ---------- */
+.checklist-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-lg) 0;
+  font-family: var(--font-sans);
+  font-size: 9pt;
+}
+
+.checklist-table th {
+  background: var(--bg-callout);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8pt;
+  font-size: 8pt;
+  color: var(--text-secondary);
+  padding: var(--space-md);
+  text-align: left;
+  border-bottom: 1pt solid var(--border-strong);
+}
+
+.checklist-table td {
+  padding: var(--space-md);
+  border-bottom: 0.5pt solid var(--border);
+  vertical-align: top;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.checklist-table tr:last-child td {
+  border-bottom: 1pt solid var(--border-strong);
+}
+
+.checklist-table .status { text-align: center; font-size: 12pt; }
+.checklist-table .status-ready { color: var(--accent-green); }
+.checklist-table .status-verify { color: var(--accent-amber); }
+.checklist-table .status-missing { color: var(--accent-red); }
+
+.checklist-table .req-num {
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* ---------- READINESS BADGE ---------- */
+.readiness {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 2pt;
+  margin-top: var(--space-sm);
+}
+
+.readiness-strong {
+  background: var(--bg-strength);
+  color: var(--accent-green);
+  border: 0.5pt solid var(--accent-green);
+}
+
+/* ---------- DEADLINE BANNER ---------- */
+.deadline-banner {
+  background: var(--bg-issue);
+  border: 1pt solid var(--accent-amber);
+  padding: var(--space-md) var(--space-lg);
+  text-align: center;
+  margin: var(--space-xl) 0;
+  page-break-inside: avoid;
+}
+
+.deadline-banner .deadline-primary {
+  font-family: var(--font-sans);
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--accent-amber);
+}
+
+.deadline-banner .deadline-secondary {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* ---------- SECTION DIVIDER ---------- */
+.section-divider {
+  border: none;
+  border-top: 0.5pt solid var(--border);
+  margin: var(--space-xl) 0;
+}
+
+/* ---------- CHANGES LIST ---------- */
+ul.changes-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) 0;
+}
+
+ul.changes-list li {
+  font-family: var(--font-serif);
+  font-size: 9pt;
+  padding-left: 14pt;
+  position: relative;
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+ul.changes-list li::before {
+  content: "↳";
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: 700;
+}
+
+/* ---------- ASSESSMENT FOOTER ---------- */
+.doc-footer {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 0.5pt solid var(--border);
+  font-family: var(--font-serif);
+  font-size: 8pt;
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+    /* ---------- STANDALONE: Desktop-reading overrides ---------- */
+    body {
+      background: var(--bg-body, #fdfbf7);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 32px;
+    }
+
+    a:hover { text-decoration: underline; }
+
+  </style>
+</head>
+<body>
+
+<div class="bio-header">
+  <h1>Leticia Cáceres</h1>
+  <div class="subtitle">Australian screen and stage director.</div>
+</div>
+
+<div class="bio-body">
+
+  <p>Leticia Cáceres is an award-winning Argentine/Australian director with over 20 years of experience across screen and stage. Her work spans drama, comedy, opera, musicals, and new writing, earning recognition at Australia's highest levels: Helpmann Awards, Green Room Awards, Sydney Theatre Awards, and nominations for AACTA, LOGIE, and Australian Directors Guild Awards.</p>
+
+  <p>On stage, Leticia has directed more than 30 professional productions for Australia's leading theatre companies. As Associate Director at Melbourne Theatre Company (2012 to 2015), she directed mainstage seasons and championed pathways for emerging artists. Her Helpmann Award-winning production of <em>The Drover's Wife</em> by Leah Purcell at Belvoir St Theatre cemented her reputation for visceral, actor-driven storytelling. Other landmark credits include <em>Barbara and the Camp Dogs</em> (Helpmann Award, Best Musical), <em>Birdland</em> (Green Room Award, Best Direction), and nationally and internationally touring work that reached the Sydney Opera House, the Kennedy Centre in Washington DC, and festivals across Europe.</p>
+
+  <p>For television, Leticia has directed across networks and genres: <em>Bump</em> for Stan (Seasons 1 and 2), <em>Erotic Stories</em> for SBS, <em>RFDS</em> Season 3 for Network Seven, <em>Spooky Files</em> for ABC and BBC, and <em>Rock Island Mysteries</em> for Network 10 and Nickelodeon. Her screen work has garnered AACTA, LOGIE, and ADG Award nominations, and her series have sold internationally to BBC One, HBO Max, CW Network, and CBC.</p>
+
+  <p>Leticia is currently developing her feature debut, <em>Bean</em>, a coming-of-age road movie written by Claire Phillips and produced by Miriam Stein of Tama Films, with development funding from Screen NSW. In 2025, she wrote and directed <em>Weight Limit</em>, a short film exploring her personal experience of migration from 1980s Argentina, reimagined in a contemporary Latin/Australian context. In 2026, Leticia returns to the stage to direct <em>Losing Face</em> by Marieke Hardy for Melbourne Theatre Company.</p>
+
+</div>
+
+<div class="bio-footer">
+  <div class="contact-line">
+    Cameron's Management<span class="sep">·</span>Joel Pettersson, joel.pettersson@cameronsmanagement.com.au<span class="sep">·</span><a href="https://www.leticiacaceres.com">www.leticiacaceres.com</a>
+  </div>
+</div>
+
+</body>
+</html>

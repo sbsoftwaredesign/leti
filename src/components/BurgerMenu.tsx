@@ -40,9 +40,10 @@ export default function BurgerMenu({ projects, currentSlug }: Props) {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open]);
 
-  // Trap focus inside sidebar when open
+  // Lock body scroll when sidebar overlay is open (mobile only)
   useEffect(() => {
-    if (open) {
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    if (open && !isDesktop) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -68,7 +69,7 @@ export default function BurgerMenu({ projects, currentSlug }: Props) {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open navigation menu"
-        className="p-2 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors"
+        className="burger-toggle p-2 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors"
       >
         <Menu size={20} />
       </button>
@@ -94,7 +95,7 @@ export default function BurgerMenu({ projects, currentSlug }: Props) {
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close navigation menu"
-                className="p-1 rounded hover:bg-[var(--color-bg-secondary)] transition-colors"
+                className="sidebar-close p-1 rounded hover:bg-[var(--color-bg-secondary)] transition-colors"
               >
                 <X size={18} />
               </button>
