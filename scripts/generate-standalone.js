@@ -3,18 +3,24 @@
  * Generate standalone HTML + Markdown from A4 print-ready HTML + external CSS.
  *
  * Usage:
- *   node scripts/generate-standalone.js output/bio.html
+ *   node scripts/generate-standalone.js output/web/bio.html
  *   node scripts/generate-standalone.js --all
  *
- * Outputs per input file:
- *   <name>-standalone.html  — self-contained (CSS inlined, Google Fonts linked)
- *   <name>.md               — markdown extracted from HTML content
+ * Output structure (relative to project root):
+ *   output/web/<name>.html              — A4 print-ready (source, not generated)
+ *   output/web/<name>-standalone.html   — self-contained (CSS inlined, fonts linked)
+ *   output/md/<name>.md                 — markdown extracted from HTML content
+ *   output/pdf/<name>.pdf               — PDF via Chrome headless (separate step)
  */
 
 const fs = require('fs');
 const path = require('path');
 
 // ── Config ──────────────────────────────────────────────────────────────────
+
+const PROJECT_ROOT = path.resolve(__dirname, '..');
+const WEB_DIR = path.join(PROJECT_ROOT, 'output', 'web');
+const MD_DIR = path.join(PROJECT_ROOT, 'output', 'md');
 
 const FONT_PRECONNECT = [
   '<link rel="preconnect" href="https://fonts.googleapis.com">',
@@ -33,6 +39,10 @@ const DESKTOP_OVERRIDES = `
     a:hover { text-decoration: underline; }
 `;
 
+function ensureDir(dir) {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+}
+
 // ── Standalone HTML generation ──────────────────────────────────────────────
 
 function generateStandalone(inputFile) {
@@ -45,8 +55,10 @@ function generateStandalone(inputFile) {
     return;
   }
 
+  ensureDir(MD_DIR);
+
   const standalonePath = path.join(inputDir, `${baseName}-standalone.html`);
-  const mdPath = path.join(inputDir, `${baseName}.md`);
+  const mdPath = path.join(MD_DIR, `${baseName}.md`);
 
   // Read input HTML
   let html = fs.readFileSync(inputPath, 'utf8');
@@ -166,23 +178,23 @@ Generate standalone HTML + Markdown from A4 print-ready HTML + external CSS.
 
 Usage:
   node scripts/generate-standalone.js <file.html>     Process a single file
-  node scripts/generate-standalone.js --all            Process all HTML in output/
+  node scripts/generate-standalone.js --all            Process all HTML in output/web/
 
-Outputs per input file:
-  <name>-standalone.html   Self-contained HTML (CSS inlined, fonts linked)
-  <name>.md                Markdown extracted from HTML content
+Output structure:
+  output/web/<name>-standalone.html   Self-contained HTML (CSS inlined, fonts linked)
+  output/md/<name>.md                 Markdown extracted from HTML content
+  output/pdf/<name>.pdf               PDF (generated separately via Chrome headless)
 `);
   process.exit(0);
 }
 
 if (args.includes('--all')) {
-  const outputDir = path.resolve(path.join(__dirname, '..', 'output'));
-  const files = fs.readdirSync(outputDir)
+  const files = fs.readdirSync(WEB_DIR)
     .filter(f => f.endsWith('.html') && !f.endsWith('-standalone.html'))
-    .map(f => path.join(outputDir, f));
+    .map(f => path.join(WEB_DIR, f));
 
   if (files.length === 0) {
-    console.log('No HTML files found in output/');
+    console.log('No HTML files found in output/web/');
     process.exit(0);
   }
 

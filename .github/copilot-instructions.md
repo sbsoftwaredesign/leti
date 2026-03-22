@@ -18,14 +18,19 @@ drafts/                         : Active working documents (EDIT THESE)
   logline-and-synopsis.md       : Project logline (≤50 words) & synopsis (≤250 words)
   cv-filmography.md             : CV (1 page) & filmography (2 pages) markdown source
 
-output/                         : Final deliverables (HTML/CSS → PDF via Chrome headless)
-  cv-v2.html + cv-v2-style.css  : Current CV & Filmography (A4 print-ready)
-  cv.html + cv-style.css        : Earlier CV version (legacy, kept for reference)
-  assessment.html               : TIFF Application Assessment (A4 multi-file)
-  assessment-style.css          : Assessment stylesheet (A4 print-optimised)
-  assessment-standalone.html    : Assessment (self-contained, AAA-accessible, desktop layout)
-  assessment.md                 : Assessment (markdown version)
+output/                         : Final deliverables (organised by format)
+  web/                          : HTML + CSS files
+    styles.css                  : Consolidated global stylesheet (all design tokens)
+    cv.html                     : CV & Filmography (A4 print-ready)
+    bio.html                    : Biography (A4 print-ready)
+    assessment.html             : TIFF Application Assessment (A4 print-ready)
+    weight-limit.html           : Weight Limit pitch (A4 print-ready)
+    *-standalone.html           : Self-contained versions (CSS inlined, fonts linked)
+  md/                           : Generated markdown versions
   pdf/                          : Generated PDF exports (gitignored)
+
+scripts/
+  generate-standalone.js        : Generates standalone HTML + markdown from print-ready HTML
 ```
 
 ### File Purposes Quick-Reference
@@ -33,9 +38,11 @@ output/                         : Final deliverables (HTML/CSS → PDF via Chrom
 | File | Purpose | Editable? |
 |------|---------|-----------|
 | `drafts/*.md` | Source content (edit here first) | ✅ Primary |
-| `output/*.html` | Generated HTML for PDF/sharing | ✅ Regenerate from drafts |
-| `output/*-style.css` | Stylesheets for A4 print output | ✅ Design changes |
-| `output/assessment-standalone.html` | Self-contained shareable HTML (CSS inlined) | ✅ But keep CSS in sync |
+| `output/web/*.html` | A4 print-ready HTML for PDF generation | ✅ Regenerate from drafts |
+| `output/web/styles.css` | Consolidated global stylesheet | ✅ Design changes |
+| `output/web/*-standalone.html` | Self-contained shareable HTML (CSS inlined) | 🔄 Regenerated via script |
+| `output/md/*.md` | Markdown versions of each document | 🔄 Regenerated via script |
+| `output/pdf/*.pdf` | PDF exports (gitignored) | 🔄 Regenerated via Chrome headless |
 | `sources/*` | Reference materials | ❌ Read-only |
 
 ---
@@ -44,15 +51,15 @@ output/                         : Final deliverables (HTML/CSS → PDF via Chrom
 
 ### Document Workflow
 1. Edit content in `drafts/*.md`
-2. Generate/update HTML in `output/`
-3. Generate PDF via Chrome headless (see command below)
-4. Store PDFs in `output/pdf/`
+2. Generate/update A4 print-ready HTML in `output/web/`
+3. Run `node scripts/generate-standalone.js --all` to generate standalone HTML + markdown
+4. Generate PDF via Chrome headless (see command below)
 
 ### Two Output Modes
-- **A4 print** (`assessment.html` + `assessment-style.css`): optimised for `@page` A4 PDF generation
-- **Desktop reading** (`assessment-standalone.html`): self-contained single file, AAA-accessible fonts (14pt body), 960px wide layout, all CSS inlined, for sharing directly with clients
+- **A4 print** (`output/web/<name>.html` + `output/web/styles.css`): optimised for `@page` A4 PDF generation
+- **Desktop reading** (`output/web/<name>-standalone.html`): self-contained single file, AAA-accessible fonts (14pt body), 720px wide layout, all CSS inlined, for sharing directly with clients
 
-When updating assessment content, **both files must be updated** to stay in sync.
+Standalone HTML and markdown are auto-generated from print-ready HTML via the generation script.
 
 ### PDF Generation (Chrome Headless)
 ```bash
@@ -61,12 +68,12 @@ When updating assessment content, **both files must be updated** to stay in sync
   --disable-gpu \
   --no-pdf-header-footer \
   --print-to-pdf="output/pdf/FILENAME.pdf" \
-  "file://$PWD/output/FILENAME.html"
+  "file://$PWD/output/web/FILENAME.html"
 ```
-- Uses the A4 `@page` rules and margins defined in each CSS file
+- Uses the A4 `@page` rules and margins defined in `output/web/styles.css`
 - `--no-pdf-header-footer` suppresses Chrome's default URL/date headers
 - PDFs are gitignored (regenerable from HTML)
-- Only use A4 print versions (`assessment.html`, `cv-v2.html`) for PDF, not the standalone
+- Only use A4 print versions (`output/web/<name>.html`), never standalone versions, for PDF
 
 ### Styling
 

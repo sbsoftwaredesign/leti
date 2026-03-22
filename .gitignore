@@ -2,8 +2,8 @@
 .DS_Store
 ._*
 
-# Generated PDFs (large binary files — regenerate from HTML)
-output/pdf/
+# PDFs (large binary files — regenerate from HTML)
+*.pdf
 
 # Editor
 .vscode/settings.json
