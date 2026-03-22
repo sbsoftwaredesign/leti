@@ -2,6 +2,7 @@
 applyTo:
   - "drafts/**"
   - "output/**"
+  - "src/content/projects/**"
 ---
 
 # Writing & Language Rules

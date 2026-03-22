@@ -23,6 +23,13 @@ coverage/
 Thumbs.db
 *.log
 
+# Legacy output (superseded by Astro content collection)
+output/web/*.html
+output/web/*-standalone.html
+output/md/
+drafts/md/
+drafts/Web Format/
+
 # Binary files
 *.png
 *.jpg

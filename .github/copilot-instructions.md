@@ -8,67 +8,94 @@ This workspace manages professional documents for **Leticia Cáceres**, an award
 
 ## Workspace Structure
 
+This project is an **Astro SSG web application** (Writer Factory) that renders professional documents from markdown content collections.
+
 ```
-sources/                        : Original/reference materials (READ-ONLY)
-  application-url.txt           : Programme criteria, deadlines & requirements
-  md-conversions/               : Raw Word→Markdown conversions (historical reference)
-
-drafts/                         : Active working documents (EDIT THESE)
-  directors-statement.md        : Director's Statement / Artist Statement (max 2 pages)
-  logline-and-synopsis.md       : Project logline (≤50 words) & synopsis (≤250 words)
-  cv-filmography.md             : CV (1 page) & filmography (2 pages) markdown source
-
-output/                         : Final deliverables (organised by format)
-  web/                          : HTML + CSS files
-    styles.css                  : Consolidated global stylesheet (all design tokens)
-    cv.html                     : CV & Filmography (A4 print-ready)
-    bio.html                    : Biography (A4 print-ready)
-    assessment.html             : TIFF Application Assessment (A4 print-ready)
-    weight-limit.html           : Weight Limit pitch (A4 print-ready)
-    *-standalone.html           : Self-contained versions (CSS inlined, fonts linked)
-  md/                           : Generated markdown versions
-  pdf/                          : Generated PDF exports (gitignored)
+src/
+  content/projects/               : ⭐ SOURCE OF TRUTH — edit content here
+    biography.md                  : Biography (category: bio)
+    cv-filmography.md             : CV & Filmography (category: cv)
+    tiff-assessment.md            : TIFF Application Assessment (category: assessment)
+    weight-limit.md               : Weight Limit pitch (category: pitch)
+  content.config.ts               : Content collection schema (Zod validation)
+  pages/
+    index.astro                   : Home page (document listing)
+    projects/[slug].astro         : Project detail pages
+    print/[slug].astro            : Print-optimised pages (for PDF generation)
+  layouts/                        : BaseLayout, ProjectLayout, PrintLayout
+  components/                     : React islands (BurgerMenu, SearchOverlay, ThemeToggle, MarkdownViewer)
+  styles/
+    global.css                    : Tailwind @theme tokens + component styles
+    document.css                  : Scoped .document-content styles (warm serif design)
+    print.css                     : A4 PDF stylesheet (@page rules)
+  lib/
+    content-utils.ts              : Category labels, badge classes, helpers
 
 scripts/
-  generate-standalone.js        : Generates standalone HTML + markdown from print-ready HTML
+  generate-exports.ts             : Generates public/exports/ (markdown + PDF) from content collection
+  generate-standalone.js          : Legacy: generates standalone HTML from output/web/ (not part of main pipeline)
+  lint-content.ts                 : Validates AU/UK spelling, no-dash rules
+
+public/exports/                   : 🔄 Generated downloadable files (markdown + PDF)
+
+drafts/                           : Reference drafts and legacy working documents
+output/                           : Legacy output (superseded by Astro pipeline)
+sources/                          : Original reference materials (READ-ONLY)
 ```
 
 ### File Purposes Quick-Reference
 
 | File | Purpose | Editable? |
 |------|---------|-----------|
-| `drafts/*.md` | Source content (edit here first) | ✅ Primary |
-| `output/web/*.html` | A4 print-ready HTML for PDF generation | ✅ Regenerate from drafts |
-| `output/web/styles.css` | Consolidated global stylesheet | ✅ Design changes |
-| `output/web/*-standalone.html` | Self-contained shareable HTML (CSS inlined) | 🔄 Regenerated via script |
-| `output/md/*.md` | Markdown versions of each document | 🔄 Regenerated via script |
-| `output/pdf/*.pdf` | PDF exports (gitignored) | 🔄 Regenerated via Chrome headless |
-| `sources/*` | Reference materials | ❌ Read-only |
+| `src/content/projects/*.md` | Source of truth content (edit here) | ✅ Primary |
+| `src/styles/*.css` | Application and document styling | ✅ Design changes |
+| `src/layouts/*.astro` | Page layouts | ✅ Structure changes |
+| `src/components/*.tsx` | React interactive components | ✅ Behaviour changes |
+| `public/exports/*` | Downloadable exports | 🔄 Regenerated via `pnpm exports` |
+| `output/*` | Legacy output (not part of Astro pipeline) | ⚠️ Reference only |
+| `drafts/*` | Reference drafts | ⚠️ Reference only |
+| `sources/*` | Original reference materials | ❌ Read-only |
 
 ---
 
 ## Key Conventions
 
 ### Document Workflow
-1. Edit content in `drafts/*.md`
-2. Generate/update A4 print-ready HTML in `output/web/`
-3. Run `node scripts/generate-standalone.js --all` to generate standalone HTML + markdown
-4. Generate PDF via Chrome headless (see command below)
+1. Edit content in `src/content/projects/*.md` (source of truth)
+2. Run `pnpm build` to generate static site in `dist/`
+3. Run `pnpm exports` to generate downloadable markdown + PDF in `public/exports/`
+4. CI/CD (Woodpecker) handles deployment to miniweb-vm on push to main
 
-### Two Output Modes
-- **A4 print** (`output/web/<name>.html` + `output/web/styles.css`): optimised for `@page` A4 PDF generation
-- **Desktop reading** (`output/web/<name>-standalone.html`): self-contained single file, AAA-accessible fonts (14pt body), 720px wide layout, all CSS inlined, for sharing directly with clients
+### Content Collection Schema
+Each `.md` file in `src/content/projects/` requires YAML frontmatter:
+```yaml
+---
+title: "Document Title"
+subtitle: "Optional subtitle"
+date: "2026-03-01"
+category: "application" | "pitch" | "cv" | "bio" | "assessment"
+status: "draft" | "review" | "final"
+order: 1
+description: "Brief description for card listing."
+---
+```
 
-Standalone HTML and markdown are auto-generated from print-ready HTML via the generation script.
+### Routes
+| Route | Purpose |
+|-------|---------|
+| `/` | Document listing (grouped by category) |
+| `/projects/:slug/` | Full document view (with markdown viewer + downloads) |
+| `/print/:slug/` | Print-optimised view (for PDF generation) |
 
 ### PDF Generation (Chrome Headless)
 ```bash
+# After pnpm build:
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
   --headless \
   --disable-gpu \
   --no-pdf-header-footer \
-  --print-to-pdf="output/pdf/FILENAME.pdf" \
-  "file://$PWD/output/web/FILENAME.html"
+  --print-to-pdf="public/exports/SLUG.pdf" \
+  "file://$PWD/dist/print/SLUG/index.html"
 ```
 - Uses the A4 `@page` rules and margins defined in `output/web/styles.css`
 - `--no-pdf-header-footer` suppresses Chrome's default URL/date headers
@@ -207,3 +234,28 @@ Exceptions:
 - **Awards nominated**: AACTA, LOGIE, ADG
 - **Key credits**: *The Drover's Wife* (stage, Helpmann winner), *Erotic Stories* (SBS), *Bump* (Stan), *RFDS* S3 (Seven)
 - **Key positions held**: Associate Director at Melbourne Theatre Company (2012 to 2015), Artistic Director at Tantrum Theatre (2006 to 2008)
+
+---
+
+## AI Agent Rules
+
+### Content Integrity
+- **Source of truth is `src/content/projects/*.md`** — never edit `output/`, `drafts/md/`, or `public/exports/` directly (these are generated or legacy)
+- Before editing any content file, **read the full file first** to understand its complete structure
+- After editing a content file, verify the edit preserved all existing sections (count headings before and after)
+- Never assume content is complete from a summary; always read the actual file
+
+### Content Structure Registry
+These are the expected section counts for each content file. If a file has fewer sections after editing, something was lost.
+
+| File | Expected H2 sections |
+|------|---------------------|
+| `tiff-assessment.md` | 6 (Exec Summary, Parts 1 to 6) |
+| `cv-filmography.md` | Varies (CV + Filmography sections) |
+| `biography.md` | 0 (flowing prose, no H2s) |
+| `weight-limit.md` | 6 (Logline, Synopsis, Director's Vision, Specifications, Key Cast, Key Crew) |
+
+### Build Verification
+- Always run `pnpm build` after content changes to verify rendering
+- Always run `pnpm test:run` before committing
+- Check that page count in build output matches expected number of content files (currently 4 projects × 2 routes = 8 pages + index = 9)
