@@ -20,6 +20,7 @@ These rules must be applied **before and during writing**, not as post-productio
 This is a **pre-action rule**, not a post-production lint pass. Every word must be correct as it is written.
 
 **Scope clarification:** These rules govern readable prose and human-visible text only. They do not apply to:
+
 - CSS property names or values (e.g., `color`, `text-align`, `border`)
 - HTML entity references (e.g., `&amp;`, `&#8212;`)
 - Code-level identifiers (class names, variable names, selectors)
@@ -30,6 +31,7 @@ This is a **pre-action rule**, not a post-production lint pass. Every word must 
 All content must use Australian/UK English. Never use American spellings.
 
 Key examples:
+
 - colour, favour, honour, behaviour (not -or)
 - programme, catalogue (not -am, -og)
 - organise, recognise, destigmatise, emphasise (not -ize)
@@ -45,15 +47,16 @@ Key examples:
 
 **Never use em dashes (—) or en dashes (–) in prose.** Use commas, semicolons, colons, parentheses, or full stops instead.
 
-| Instead of | Use |
-|------------|-----|
-| Parenthetical clause with em dashes | Commas or parentheses |
-| List or explanation after em dash | Colon |
-| Date/number ranges (2012–2015) | "to" (2012 to 2015) |
-| Attribution or aside after em dash | Comma, semicolon, or full stop |
-| Contrast or pivot after em dash | Semicolon or full stop |
+| Instead of                          | Use                            |
+| ----------------------------------- | ------------------------------ |
+| Parenthetical clause with em dashes | Commas or parentheses          |
+| List or explanation after em dash   | Colon                          |
+| Date/number ranges (2012–2015)      | "to" (2012 to 2015)            |
+| Attribution or aside after em dash  | Comma, semicolon, or full stop |
+| Contrast or pivot after em dash     | Semicolon or full stop         |
 
 **Exceptions (these are fine):**
+
 - Hyphens in compound adjectives: "coming-of-age", "award-winning", "beat-up"
 - Hyphens in prefixed words: "co-producer", "first-hand"
 - External proper names that include dashes (e.g., FilmFreeway project titles)
@@ -73,10 +76,11 @@ Key examples:
 ## 4. Content Quality Checks
 
 Before finalising any document:
+
 - [ ] No em dashes (—) or en dashes (–) in prose
 - [ ] All spellings are AU/UK English
 - [ ] Word/page counts are within limits
 - [ ] Active voice throughout
-- [ ] Film titles in *italics*
+- [ ] Film titles in _italics_
 - [ ] First person, professional but warm tone
 - [ ] No thematic redundancy between sections
