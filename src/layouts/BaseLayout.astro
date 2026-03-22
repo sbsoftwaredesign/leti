@@ -1,0 +1,84 @@
+---
+import '@styles/global.css';
+import '@styles/document.css';
+import ThemeToggle from '@components/ThemeToggle';
+import BurgerMenu from '@components/BurgerMenu';
+import SearchOverlay from '@components/SearchOverlay';
+import type { ProjectMeta } from '@lib/content-utils';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentSlug?: string;
+}
+
+const { title, description = 'Professional documents for Leticia Cáceres', currentSlug } = Astro.props;
+
+const allProjects = await getCollection('projects');
+const projectMetas: ProjectMeta[] = allProjects
+  .map((p) => ({
+    title: p.data.title,
+    subtitle: p.data.subtitle,
+    date: p.data.date,
+    category: p.data.category,
+    status: p.data.status,
+    order: p.data.order,
+    description: p.data.description,
+    slug: p.id,
+  }))
+  .sort((a, b) => a.order - b.order);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <title>{title} · Leticia Cáceres</title>
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('writer-factory-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-dvh">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="sticky top-0 z-30 bg-[var(--color-bg)]/95 backdrop-blur-sm border-b border-[var(--color-border)]">
+      <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
+        <div class="flex items-center gap-2">
+          <BurgerMenu
+            client:load
+            projects={projectMetas}
+            currentSlug={currentSlug}
+          />
+          <a href="/" class="font-serif font-semibold text-lg hover:text-[var(--color-accent)] transition-colors">
+            Leticia Cáceres
+          </a>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <SearchOverlay client:idle />
+          <ThemeToggle client:load />
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="max-w-5xl mx-auto px-4 py-8">
+      <slot />
+    </main>
+
+    <footer class="border-t border-[var(--color-border)] mt-16">
+      <div class="max-w-5xl mx-auto px-4 py-6 text-center text-xs text-[var(--color-text-muted)]">
+        &copy; {new Date().getFullYear()} Leticia Cáceres · All rights reserved
+      </div>
+    </footer>
+  </body>
+</html>

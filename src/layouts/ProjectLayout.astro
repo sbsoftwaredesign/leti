@@ -1,0 +1,53 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import DownloadBar from '@components/DownloadBar.astro';
+import MarkdownViewer from '@components/MarkdownViewer';
+import { CATEGORY_LABELS, getCategoryBadgeClass, getStatusBadgeClass } from '@lib/content-utils';
+import type { Category, Status } from '@lib/content-utils';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  category: Category;
+  status: Status;
+  date: string;
+  slug: string;
+  rawMarkdown: string;
+}
+
+const { title, subtitle, category, status, date, slug, rawMarkdown } = Astro.props;
+---
+
+<BaseLayout title={title} currentSlug={slug}>
+  <article>
+    <div class="mb-6">
+      <div class="flex items-center gap-2 mb-3">
+        <span class={getCategoryBadgeClass(category)}>
+          {CATEGORY_LABELS[category]}
+        </span>
+        <span class={getStatusBadgeClass(status)}>
+          {status}
+        </span>
+        <span class="text-xs text-[var(--color-text-muted)]">
+          {new Date(date).toLocaleDateString('en-AU', { year: 'numeric', month: 'long' })}
+        </span>
+      </div>
+
+      {subtitle && (
+        <p class="text-[var(--color-text-secondary)] text-lg mb-1">{subtitle}</p>
+      )}
+    </div>
+
+    <div class="document-content">
+      <slot />
+    </div>
+
+    <div class="mt-10">
+      <MarkdownViewer client:visible markdown={rawMarkdown} />
+    </div>
+
+    <div class="mt-6">
+      <DownloadBar slug={slug} title={title} />
+    </div>
+  </article>
+</BaseLayout>

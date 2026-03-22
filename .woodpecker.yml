@@ -1,0 +1,48 @@
+when:
+  - event: push
+    branch: main
+
+steps:
+  clean-source:
+    image: appleboy/drone-ssh
+    settings:
+      host: 192.168.50.21
+      username: sebastian
+      key:
+        from_secret: DEPLOY_KEY
+      command_timeout: 1m
+      script:
+        - rm -rf /home/sebastian/writer-factory/src
+        - rm -rf /home/sebastian/writer-factory/public
+
+  deploy-source:
+    image: appleboy/drone-scp
+    settings:
+      host: 192.168.50.21
+      username: sebastian
+      target: /home/sebastian/writer-factory
+      source:
+        - ./*
+      strip_components: 0
+      key:
+        from_secret: DEPLOY_KEY
+
+  build-and-deploy:
+    image: appleboy/drone-ssh
+    settings:
+      host: 192.168.50.21
+      username: sebastian
+      key:
+        from_secret: DEPLOY_KEY
+      command_timeout: 5m
+      script:
+        - cd /home/sebastian/writer-factory
+        - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh"
+        - nvm use 24
+        - corepack enable
+        - pnpm install
+        - pnpm audit --audit-level=moderate
+        - rm -rf dist
+        - pnpm build
+        - pnpm test:run
+        - echo "Deploy complete — http://192.168.50.21:8085"

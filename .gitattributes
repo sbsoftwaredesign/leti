@@ -1,0 +1,36 @@
+# Git Attributes — Writer Factory
+# Mark generated and binary files for better AI agent behaviour and cleaner diffs
+
+# Lock files — treat as generated
+pnpm-lock.yaml linguist-generated=true -diff
+package-lock.json linguist-generated=true -diff
+
+# Build outputs
+dist/** linguist-generated=true
+
+# Minified
+*.min.js linguist-generated=true
+*.min.css linguist-generated=true
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.mp4 binary
+*.mp3 binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# Vendor files
+node_modules/** linguist-vendored=true
+
+# Self-hosted fonts
+public/fonts/** binary
+
+# Legacy standalone HTML (auto-generated, large)
+output/web/*-standalone.html linguist-generated=true -diff

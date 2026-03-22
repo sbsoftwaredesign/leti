@@ -1,0 +1,59 @@
+# Copilot Ignore — Writer Factory
+# Prevents indexing of low-value files to optimise context window usage
+
+# Lock files (large, auto-generated, no semantic value)
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Build outputs & cache
+dist/
+.astro/
+.turbo/
+
+# Dependencies
+node_modules/
+
+# Coverage reports
+coverage/
+
+# System files
+.DS_Store
+._*
+Thumbs.db
+*.log
+
+# Binary files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.pdf
+*.mp4
+*.mp3
+*.m4a
+*.mov
+*.zip
+*.tar
+*.gz
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Self-hosted fonts (binary, no context value)
+public/fonts/
+
+# Generated / minified
+*.min.js
+*.min.css
+*.map
+
+# Legacy output (migrated to Astro content collection)
+output/web/*.html
+output/web/*-standalone.html
+output/md/
+
+# PDF downloads (regenerable)
+public/downloads/*.pdf

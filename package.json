@@ -1,0 +1,44 @@
+{
+  "name": "writer-factory",
+  "version": "1.0.0",
+  "type": "module",
+  "packageManager": "pnpm@10.32.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pnpm pagefind",
+    "preview": "astro preview",
+    "astro": "astro",
+    "pagefind": "pagefind --site dist",
+    "test": "vitest --project=unit",
+    "test:run": "vitest run --project=unit",
+    "test:coverage": "vitest run --project=unit --coverage",
+    "exports": "tsx scripts/generate-exports.ts",
+    "lint:content": "tsx scripts/lint-content.ts",
+    "audit": "pnpm audit --audit-level=moderate"
+  },
+  "dependencies": {
+    "@astrojs/react": "^5.0.1",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/source-serif-4": "^5.2.9",
+    "astro": "^6.0.8",
+    "lucide-react": "^1.0.0-rc.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/coverage-v8": "^4.1.0",
+    "happy-dom": "^20.8.4",
+    "pagefind": "^1.4.0",
+    "tailwindcss": "^4.2.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.8.0",
+    "vitest": "^4.1.0"
+  }
+}

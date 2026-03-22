@@ -1,0 +1,227 @@
+/* ============================================================
+   Document Content Styles
+   Warm serif design from existing Leticia Cáceres documents.
+   Scoped under .document-content wrapper class.
+   ============================================================ */
+
+.document-content {
+  /* Colour palette */
+  --text-primary: #2c2416;
+  --text-secondary: #5c4f3a;
+  --text-muted: #8a7d6b;
+  --doc-accent: #8b5e3c;
+  --accent-green: #4a7c59;
+  --accent-amber: #b5872a;
+  --accent-red: #a3403a;
+  --doc-border: #e0d5c4;
+  --border-strong: #c4b9a8;
+  --bg-body: #fdfbf7;
+  --bg-callout: #f7f3ec;
+  --bg-strength: #f0f5f1;
+  --bg-issue: #fdf5ee;
+  --bg-blockquote: #f5f2ec;
+
+  /* Typography */
+  --font-doc-serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
+  --font-doc-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
+
+  font-family: var(--font-doc-serif);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  background: var(--bg-body);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Dark mode variant */
+:root.dark .document-content {
+  --text-primary: #e8e0d4;
+  --text-secondary: #c4b9a8;
+  --text-muted: #998d7b;
+  --doc-border: #3d352a;
+  --border-strong: #4d4438;
+  --bg-body: #1a1610;
+  --bg-callout: #231f18;
+  --bg-strength: #1a2318;
+  --bg-issue: #231c14;
+  --bg-blockquote: #211e18;
+}
+
+/* ---- Headings ---- */
+.document-content h1 {
+  font-family: var(--font-doc-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.document-content h2 {
+  font-family: var(--font-doc-serif);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--doc-border);
+  padding-bottom: 0.375rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.document-content h3 {
+  font-family: var(--font-doc-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--doc-accent);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--doc-border);
+}
+
+.document-content h4 {
+  font-family: var(--font-doc-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 1.25rem;
+  margin-bottom: 0.375rem;
+}
+
+/* ---- Body text ---- */
+.document-content p {
+  font-family: var(--font-doc-serif);
+  line-height: 1.65;
+  color: var(--text-primary);
+  text-align: justify;
+  margin-bottom: 0.75rem;
+  hyphens: auto;
+}
+
+.document-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Emphasis ---- */
+.document-content strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.document-content em {
+  font-style: italic;
+}
+
+/* ---- Links ---- */
+.document-content a {
+  color: var(--doc-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.document-content a:hover {
+  color: var(--text-primary);
+}
+
+/* ---- Lists ---- */
+.document-content ul,
+.document-content ol {
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.document-content li {
+  font-family: var(--font-doc-serif);
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.document-content li::marker {
+  color: var(--doc-accent);
+}
+
+/* ---- Blockquote ---- */
+.document-content blockquote {
+  font-family: var(--font-doc-serif);
+  line-height: 1.55;
+  color: var(--text-primary);
+  background: var(--bg-blockquote);
+  border-left: 3px solid var(--doc-accent);
+  padding: 0.75rem 1rem;
+  margin: 0.75rem 0 1rem 0;
+}
+
+.document-content blockquote p {
+  margin-bottom: 0.25rem;
+}
+
+.document-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Horizontal rule ---- */
+.document-content hr {
+  border: none;
+  border-top: 1px solid var(--doc-border);
+  margin: 1.5rem 0;
+}
+
+/* ---- Tables ---- */
+.document-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-family: var(--font-doc-sans);
+  font-size: 0.875rem;
+}
+
+.document-content th {
+  background: var(--bg-callout);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.document-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--doc-border);
+  vertical-align: top;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+/* ---- Subtitle / meta ---- */
+.document-content .subtitle {
+  font-family: var(--font-doc-serif);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* ---- Contact line ---- */
+.document-content .contact-line {
+  font-family: var(--font-doc-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-align: center;
+}

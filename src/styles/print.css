@@ -1,0 +1,320 @@
+/* ============================================================
+   Print Stylesheet
+   Shared between print HTML pages and PDF generation.
+   8pt baseline grid · Source Serif 4 + Inter · warm palette
+   Minimum accessible font sizes (12pt body).
+   ============================================================ */
+
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+
+:root {
+  /* Colour palette */
+  --text-primary: #2c2416;
+  --text-secondary: #5c4f3a;
+  --text-muted: #8a7d6b;
+  --accent: #8b5e3c;
+  --accent-green: #4a7c59;
+  --accent-amber: #b5872a;
+  --accent-red: #a3403a;
+  --border: #e0d5c4;
+  --border-strong: #c4b9a8;
+  --bg-body: #fdfbf7;
+  --bg-callout: #f7f3ec;
+  --bg-strength: #f0f5f1;
+  --bg-issue: #fdf5ee;
+  --bg-blockquote: #f5f2ec;
+
+  /* Typography */
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* 8pt grid spacing */
+  --space-xs: 2pt;
+  --space-sm: 4pt;
+  --space-md: 8pt;
+  --space-lg: 16pt;
+  --space-xl: 24pt;
+}
+
+
+/* ============================================================
+   2. RESET & PAGE
+   ============================================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@page {
+  size: A4;
+  margin: 16mm;
+
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 8pt;
+    color: var(--text-muted);
+  }
+}
+
+@page :first {
+  margin-top: 12mm;
+
+  @bottom-center {
+    content: none;
+  }
+}
+
+body {
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: white;
+  -webkit-font-smoothing: antialiased;
+}
+
+.print-page {
+  max-width: 210mm;
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   3. TYPOGRAPHY
+   ============================================================ */
+
+h1 {
+  font-family: var(--font-serif);
+  font-size: 22pt;
+  font-weight: 700;
+  letter-spacing: 2pt;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: 13pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--text-primary);
+  border-bottom: 0.75pt solid var(--border);
+  padding-bottom: var(--space-sm);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2pt;
+  color: var(--accent);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 0.5pt solid var(--border);
+}
+
+h4 {
+  font-family: var(--font-sans);
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+p {
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  line-height: 1.5;
+  color: var(--text-primary);
+  text-align: justify;
+  margin-bottom: var(--space-md);
+  hyphens: auto;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong { font-weight: 700; color: var(--text-primary); }
+em { font-style: italic; }
+
+
+/* ============================================================
+   4. LINKS
+   ============================================================ */
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 1.5pt;
+}
+
+
+/* ============================================================
+   5. LISTS
+   ============================================================ */
+
+ul, ol {
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+li {
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+li::marker {
+  color: var(--accent);
+}
+
+
+/* ============================================================
+   6. BLOCKQUOTES
+   ============================================================ */
+
+blockquote {
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-blockquote);
+  border-left: 3pt solid var(--accent);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-md) 0 var(--space-lg) 0;
+  page-break-inside: avoid;
+}
+
+blockquote p { margin-bottom: var(--space-sm); }
+blockquote p:last-child { margin-bottom: 0; }
+
+
+/* ============================================================
+   7. HORIZONTAL RULES
+   ============================================================ */
+
+hr {
+  border: none;
+  border-top: 0.75pt solid var(--border);
+  margin: var(--space-lg) 0;
+}
+
+
+/* ============================================================
+   8. TABLES
+   ============================================================ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  font-family: var(--font-sans);
+  font-size: 10pt;
+}
+
+th {
+  background: var(--bg-callout);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 9pt;
+  color: var(--text-secondary);
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border-bottom: 1pt solid var(--border-strong);
+}
+
+td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 0.5pt solid var(--border);
+  vertical-align: top;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   9. PAGE BREAKS & UTILITIES
+   ============================================================ */
+
+.page-break {
+  page-break-before: always;
+  break-before: page;
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 0;
+}
+
+.subtitle {
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 1pt;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.contact-line {
+  font-family: var(--font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.2pt;
+}
+
+.contact-line .sep {
+  color: var(--border-strong);
+  margin: 0 var(--space-sm);
+}
+
+.contact-line a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   10. CODE BLOCKS
+   ============================================================ */
+
+code {
+  font-family: ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 10pt;
+  background: var(--bg-callout);
+  padding: 1pt 3pt;
+  border-radius: 2pt;
+}
+
+pre {
+  background: var(--bg-callout);
+  border: 0.5pt solid var(--border);
+  padding: var(--space-md);
+  overflow-x: auto;
+  margin: var(--space-md) 0;
+  border-radius: 3pt;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}

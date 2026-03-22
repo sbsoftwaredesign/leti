@@ -2,10 +2,25 @@
 .DS_Store
 ._*
 
-# PDFs (large binary files — regenerate from HTML)
-*.pdf
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+
+# PDFs (regenerable via Chrome headless)
+output/pdf/
+public/downloads/*.pdf
+
+# Coverage
+coverage/
 
 # Editor
 .vscode/settings.json
 *.swp
 *~
+
+# Environment
+.env
+.env.*
