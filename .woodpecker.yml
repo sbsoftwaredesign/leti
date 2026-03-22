@@ -12,8 +12,8 @@ steps:
         from_secret: DEPLOY_KEY
       command_timeout: 1m
       script:
-        - rm -rf /home/sebastian/writer-factory/src
-        - rm -rf /home/sebastian/writer-factory/public
+        - rm -rf /var/www/writer-factory/src
+        - rm -rf /var/www/writer-factory/public
 
   strip-git:
     image: alpine
@@ -25,7 +25,7 @@ steps:
     settings:
       host: 192.168.50.21
       username: sebastian
-      target: /home/sebastian/writer-factory
+      target: /var/www/writer-factory
       source:
         - ./*
       strip_components: 0
@@ -41,7 +41,7 @@ steps:
         from_secret: DEPLOY_KEY
       command_timeout: 5m
       script:
-        - cd /home/sebastian/writer-factory
+        - cd /var/www/writer-factory
         - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh"
         - nvm use 24
         - corepack enable
