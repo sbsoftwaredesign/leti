@@ -194,7 +194,7 @@ body,
 .md-viewer-content pre {
   margin: 0;
   padding: 1rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   overflow-x: auto;
   white-space: pre-wrap;
@@ -229,7 +229,7 @@ body,
   display: inline-flex;
   align-items: center;
   padding: 0.125rem 0.5rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;

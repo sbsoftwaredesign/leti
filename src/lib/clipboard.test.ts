@@ -47,12 +47,20 @@ describe("copyToClipboard", () => {
     const originalNavigator = globalThis.navigator;
     // @ts-expect-error — testing SSR guard
     delete globalThis.navigator;
-    Object.defineProperty(globalThis, 'navigator', { value: undefined, writable: true, configurable: true });
+    Object.defineProperty(globalThis, "navigator", {
+      value: undefined,
+      writable: true,
+      configurable: true,
+    });
 
     const { copyToClipboard: copy } = await import("@lib/clipboard");
     const result = await copy("test");
     expect(result).toBe(false);
 
-    Object.defineProperty(globalThis, 'navigator', { value: originalNavigator, writable: true, configurable: true });
+    Object.defineProperty(globalThis, "navigator", {
+      value: originalNavigator,
+      writable: true,
+      configurable: true,
+    });
   });
 });

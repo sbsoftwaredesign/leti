@@ -190,7 +190,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
   padding: 0.5rem 0.75rem;
   text-align: left;
@@ -220,7 +220,7 @@
 /* ---- Contact line ---- */
 .document-content .contact-line {
   font-family: var(--font-doc-sans);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 400;
   color: var(--text-muted);
   text-align: center;
