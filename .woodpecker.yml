@@ -15,6 +15,11 @@ steps:
         - rm -rf /home/sebastian/writer-factory/src
         - rm -rf /home/sebastian/writer-factory/public
 
+  strip-git:
+    image: alpine
+    commands:
+      - rm -rf .git
+
   deploy-source:
     image: appleboy/drone-scp
     settings:
