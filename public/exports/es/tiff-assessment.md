@@ -218,9 +218,9 @@ TIFF establece: "The jury will not be evaluating the quality of the video but th
 | 2a  | Logline del proyecto (máx. 50 palabras)            | ✅     | Versión revisada: 49 palabras.                                                                                                                                                                                                                |
 | 2b  | Sinopsis (máx. 250 palabras)                       | ✅     | Versión revisada: 248 palabras.                                                                                                                                                                                                               |
 | 2c  | Declaración artística / Enfoque creativo (máx. 2p) | ✅     | Versión revisada reestructurada y recortada. Verificar conteo de páginas al formatear como PDF.                                                                                                                                               |
-| 2d  | CV y Filmografía                                   | ✅     | CV-v2 preparado. Verificar que el PDF consolidado se ajuste: CV máx. 1 página + filmografía máx. 2 páginas.                                                                                                                                  |
-| 3   | Lookbook (máx. 10 páginas)                         | ❌     | Aún no creado. Necesita: paisajes australianos (corredor Dubbo/NSW → Sídney), tomas de vehículos y rutas, tableros de tono, referencias de iluminación, inspiración visual de reparto.                                                       |
-| 4a  | Biografía del solicitante (150 a 300 palabras)     | ⚠️     | El perfil del CV tiene ~70 palabras. Necesita expansión a 150 a 300 palabras para el campo "Director's Bio" de FilmFreeway.                                                                                                                  |
+| 2d  | CV y Filmografía                                   | ✅     | CV-v2 preparado. Verificar que el PDF consolidado se ajuste: CV máx. 1 página + filmografía máx. 2 páginas.                                                                                                                                   |
+| 3   | Lookbook (máx. 10 páginas)                         | ❌     | Aún no creado. Necesita: paisajes australianos (corredor Dubbo/NSW → Sídney), tomas de vehículos y rutas, tableros de tono, referencias de iluminación, inspiración visual de reparto.                                                        |
+| 4a  | Biografía del solicitante (150 a 300 palabras)     | ⚠️     | El perfil del CV tiene ~70 palabras. Necesita expansión a 150 a 300 palabras para el campo "Director's Bio" de FilmFreeway.                                                                                                                   |
 | 4b  | Foto profesional (.jpg)                            | ⚠️     | Requerida para la sección "Director" de FilmFreeway. Confirmar que se tiene una foto profesional actual.                                                                                                                                      |
 | 5   | Video de presentación (máx. 2 min)                 | ⚠️     | Estructura y puntos de conversación proporcionados en este documento. Por grabar.                                                                                                                                                             |
 | 6   | Muestra de trabajo previo (máx. 5 min)             | ⚠️     | Debe ser dirigida por Leticia. Sugerencia: clip de 5 minutos de _Erotic Stories_ o _Bump_ que demuestre rango tonal (comedia + emoción). Se requieren subtítulos en inglés si no está en inglés. Se debe proporcionar contexto en la sección. |
@@ -230,12 +230,12 @@ TIFF establece: "The jury will not be evaluating the quality of the video but th
 
 TIFF requiere un PDF consolidado que contenga todos los materiales escritos:
 
-| Orden | Sección                              | Extensión máxima |
-| ----- | ------------------------------------ | ---------------- |
-| 1     | CV                                   | 1 página         |
-| 2     | Filmografía                          | 2 páginas        |
-| 3     | Declaración artística / Enfoque creativo | 2 páginas    |
-| 4     | Logline y sinopsis del proyecto      | 1 página         |
+| Orden | Sección                                  | Extensión máxima |
+| ----- | ---------------------------------------- | ---------------- |
+| 1     | CV                                       | 1 página         |
+| 2     | Filmografía                              | 2 páginas        |
+| 3     | Declaración artística / Enfoque creativo | 2 páginas        |
+| 4     | Logline y sinopsis del proyecto          | 1 página         |
 
 Total: máximo 6 páginas. El cv-v2 actualmente ocupa 3 páginas (CV + 2 de filmografía). La declaración revisada + logline/sinopsis deberían agregar 3 páginas. Es ajustado pero factible.
 
