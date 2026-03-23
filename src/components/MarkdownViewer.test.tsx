@@ -1,5 +1,5 @@
 import MarkdownViewer from '@components/MarkdownViewer';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('@lib/clipboard', () => ({
@@ -41,7 +41,9 @@ describe('MarkdownViewer', () => {
     fireEvent.click(screen.getByRole('button', { name: /markdown source/i }));
 
     const copyBtn = screen.getByLabelText(/copy markdown/i);
-    fireEvent.click(copyBtn);
+    await act(async () => {
+      fireEvent.click(copyBtn);
+    });
 
     expect(copyToClipboard).toHaveBeenCalledWith(sampleMarkdown);
   });
@@ -90,11 +92,13 @@ describe('MarkdownViewer', () => {
     expect(document.querySelector('.md-hl-link')).toBeInTheDocument();
   });
 
-  it('handles copy via keyboard (Enter key)', () => {
+  it('handles copy via keyboard (Enter key)', async () => {
     render(<MarkdownViewer markdown={sampleMarkdown} />);
     fireEvent.click(screen.getByRole('button', { name: /markdown source/i }));
     const copyBtn = screen.getByLabelText(/copy markdown/i);
-    fireEvent.keyDown(copyBtn, { key: 'Enter' });
+    await act(async () => {
+      fireEvent.keyDown(copyBtn, { key: 'Enter' });
+    });
     // No error thrown = success
   });
 });
