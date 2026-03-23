@@ -1,24 +1,27 @@
 ---
-import { CATEGORY_LABELS, getCategoryBadgeClass, getStatusBadgeClass } from '@lib/content-utils';
+import { getCategoryBadgeClass, getStatusBadgeClass } from '@lib/content-utils';
 import type { ProjectMeta } from '@lib/content-utils';
+import { type Locale, t, projectPath } from '@lib/i18n';
 
 interface Props {
   project: ProjectMeta;
+  locale?: Locale;
 }
 
-const { project } = Astro.props;
+const { project, locale = 'en' as Locale } = Astro.props;
+const href = projectPath(project.slug, locale);
 ---
 
 <a
-  href={`/projects/${project.slug}/`}
+  href={href}
   class="block p-5 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] hover:border-[var(--color-accent)] hover:shadow-md transition-all group"
 >
   <div class="flex items-center gap-2 mb-3">
     <span class={getCategoryBadgeClass(project.category)}>
-      {CATEGORY_LABELS[project.category]}
+      {t(`category_${project.category}`, locale)}
     </span>
     <span class={getStatusBadgeClass(project.status)}>
-      {project.status}
+      {t(`status_${project.status}`, locale)}
     </span>
   </div>
 

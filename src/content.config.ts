@@ -11,6 +11,7 @@ const projects = defineCollection({
     status: z.enum(["draft", "review", "final"]),
     order: z.number(),
     description: z.string(),
+    locale: z.enum(["en", "es"]).default("en"),
   }),
 });
 

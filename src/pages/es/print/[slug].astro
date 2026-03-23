@@ -1,13 +1,14 @@
 ---
 import PrintLayout from '@layouts/PrintLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { stripLocalePrefix } from '@lib/i18n';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects
-    .filter((p) => (p.data.locale ?? 'en') === 'en')
+    .filter((p) => p.data.locale === 'es')
     .map((project) => ({
-      params: { slug: project.id },
+      params: { slug: stripLocalePrefix(project.id) },
       props: { project },
     }));
 }

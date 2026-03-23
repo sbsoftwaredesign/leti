@@ -26,7 +26,7 @@ describe('BurgerMenu', () => {
     render(<BurgerMenu projects={mockProjects} />);
     fireEvent.click(screen.getByLabelText(/open navigation menu/i));
     expect(screen.getByText('CV')).toBeInTheDocument();
-    expect(screen.getByText('Biography')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /biography/i })).toBeInTheDocument();
     expect(screen.getByText('Pitch')).toBeInTheDocument();
   });
 
@@ -36,22 +36,20 @@ describe('BurgerMenu', () => {
     expect(screen.getByText('Home')).toBeInTheDocument();
   });
 
-  it('expands category to show project links', () => {
+  it('expands all categories by default', () => {
     render(<BurgerMenu projects={mockProjects} />);
     fireEvent.click(screen.getByLabelText(/open navigation menu/i));
 
-    // Click the CV category button
-    const cvButton = screen.getByText('CV');
-    fireEvent.click(cvButton);
-
+    // All project links should be visible without clicking categories
     expect(screen.getByText('CV & Filmography')).toBeInTheDocument();
+    expect(screen.getAllByText('Biography').length).toBeGreaterThanOrEqual(2); // category + project
+    expect(screen.getByText('Weight Limit')).toBeInTheDocument();
   });
 
   it('highlights current page', () => {
     render(<BurgerMenu projects={mockProjects} currentSlug="cv-filmography" />);
     fireEvent.click(screen.getByLabelText(/open navigation menu/i));
 
-    // The CV category should be auto-expanded since currentSlug is in it
     expect(screen.getByText('CV & Filmography')).toBeInTheDocument();
   });
 
@@ -86,23 +84,59 @@ describe('BurgerMenu', () => {
     expect(sidebar.className).not.toContain('open');
   });
 
-  it('collapses expanded category on second click', () => {
+  it('collapses category on click and re-expands on second click', () => {
     render(<BurgerMenu projects={mockProjects} />);
     fireEvent.click(screen.getByLabelText(/open navigation menu/i));
 
-    const cvButton = screen.getByText('CV');
-    fireEvent.click(cvButton);
+    // All expanded by default
     expect(screen.getByText('CV & Filmography')).toBeInTheDocument();
 
+    // Click CV to collapse
+    const cvButton = screen.getByText('CV');
     fireEvent.click(cvButton);
     expect(screen.queryByText('CV & Filmography')).not.toBeInTheDocument();
+
+    // Click CV again to re-expand
+    fireEvent.click(cvButton);
+    expect(screen.getByText('CV & Filmography')).toBeInTheDocument();
   });
 
   it('renders without currentSlug', () => {
     render(<BurgerMenu projects={mockProjects} />);
     fireEvent.click(screen.getByLabelText(/open navigation menu/i));
-    // Home should be highlighted (bold font) when no currentSlug
     const homeLink = screen.getByText('Home');
     expect(homeLink).toBeInTheDocument();
+  });
+
+  // i18n / locale tests
+
+  it('shows Spanish labels when locale is es', () => {
+    render(<BurgerMenu projects={mockProjects} locale="es" />);
+    fireEvent.click(screen.getByLabelText(/open navigation menu/i));
+    expect(screen.getByText('Inicio')).toBeInTheDocument();
+    expect(screen.getByText('Documentos')).toBeInTheDocument();
+    // 'Biografía' appears as category heading
+    expect(screen.getByRole('button', { name: /biografía/i })).toBeInTheDocument();
+  });
+
+  it('links to /es/ paths when locale is es', () => {
+    render(<BurgerMenu projects={mockProjects} locale="es" />);
+    fireEvent.click(screen.getByLabelText(/open navigation menu/i));
+    const homeLink = screen.getByText('Inicio');
+    expect(homeLink.closest('a')).toHaveAttribute('href', '/es/');
+  });
+
+  it('links to / paths when locale is en', () => {
+    render(<BurgerMenu projects={mockProjects} locale="en" />);
+    fireEvent.click(screen.getByLabelText(/open navigation menu/i));
+    const homeLink = screen.getByText('Home');
+    expect(homeLink.closest('a')).toHaveAttribute('href', '/');
+  });
+
+  it('links to /es/projects/ for project items when locale is es', () => {
+    render(<BurgerMenu projects={mockProjects} locale="es" />);
+    fireEvent.click(screen.getByLabelText(/open navigation menu/i));
+    const cvLink = screen.getByText('CV & Filmography');
+    expect(cvLink.closest('a')).toHaveAttribute('href', '/es/projects/cv-filmography/');
   });
 });

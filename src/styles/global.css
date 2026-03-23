@@ -43,8 +43,10 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
+  font-size: 16px;
   color: var(--color-text);
   background-color: var(--color-bg);
+  --header-height: 3.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -128,7 +130,7 @@ body,
 @media (min-width: 1024px) {
   .burger-sidebar {
     transform: translateX(0);
-    top: var(--header-height, 3.5rem);
+    top: var(--header-height);
     max-width: 18rem;
   }
 
@@ -145,8 +147,31 @@ body,
   }
 
   .desktop-sidebar-offset {
-    margin-left: 18rem;
+    padding-left: 18rem;
   }
+}
+
+/* ---- Fixed footer ---- */
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ---- Sticky page header ---- */
+.sticky-page-header {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 20;
+  background: var(--color-bg)/95;
+  backdrop-filter: blur(4px);
+  padding: 0.75rem 0;
+  margin: -0.75rem 0 0.75rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 /* ---- Search overlay ---- */

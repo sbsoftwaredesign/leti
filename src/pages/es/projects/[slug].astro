@@ -2,13 +2,14 @@
 import ProjectLayout from '@layouts/ProjectLayout.astro';
 import { getCollection, render } from 'astro:content';
 import { stripFrontmatter } from '@lib/content-utils';
+import { stripLocalePrefix } from '@lib/i18n';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects
-    .filter((p) => (p.data.locale ?? 'en') === 'en')
+    .filter((p) => p.data.locale === 'es')
     .map((project) => ({
-      params: { slug: project.id },
+      params: { slug: stripLocalePrefix(project.id) },
       props: { project },
     }));
 }
@@ -16,6 +17,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const rawMarkdown = stripFrontmatter(project.body ?? '');
+const slug = stripLocalePrefix(project.id);
 ---
 
 <ProjectLayout
@@ -24,9 +26,9 @@ const rawMarkdown = stripFrontmatter(project.body ?? '');
   category={project.data.category}
   status={project.data.status}
   date={project.data.date}
-  slug={project.id}
+  slug={slug}
   rawMarkdown={rawMarkdown}
-  locale="en"
+  locale="es"
 >
   <Content />
 </ProjectLayout>

@@ -8,27 +8,27 @@ Currently used to prepare application materials for **Leticia Cáceres** (TIFF D
 
 Markdown files in `src/content/projects/` are the single source of truth. Astro renders them into a browsable website with three route types:
 
-| Route | Purpose |
-|-------|---------|
-| `/` | Document listing grouped by category |
+| Route              | Purpose                                                      |
+| ------------------ | ------------------------------------------------------------ |
+| `/`                | Document listing grouped by category                         |
 | `/projects/:slug/` | Full document view with markdown source viewer and downloads |
-| `/print/:slug/` | Print-optimised A4 layout for PDF generation |
+| `/print/:slug/`    | Print-optimised A4 layout for PDF generation                 |
 
 On every push to `main`, Woodpecker CI deploys to the server, builds the site, generates downloadable exports (markdown + PDF via Chrome headless), and runs the test suite.
 
 ## Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Astro 6 (static output) |
-| UI Islands | React 19 (`client:load`, `client:idle`) |
-| Styling | Tailwind CSS 4 + custom CSS (document.css, print.css) |
-| Fonts | Source Serif 4 (body/headings), Inter (UI/meta) |
-| Search | Pagefind (post-build indexing) |
-| Testing | Vitest 4 + Testing Library + happy-dom |
-| CI/CD | Woodpecker CI (Gitea) |
-| Server | Nginx on miniweb-vm (192.168.50.21:8085) |
-| PDF | Chrome headless with `@page` A4 rules |
+| Layer      | Technology                                            |
+| ---------- | ----------------------------------------------------- |
+| Framework  | Astro 6 (static output)                               |
+| UI Islands | React 19 (`client:load`, `client:idle`)               |
+| Styling    | Tailwind CSS 4 + custom CSS (document.css, print.css) |
+| Fonts      | Source Serif 4 (body/headings), Inter (UI/meta)       |
+| Search     | Pagefind (post-build indexing)                        |
+| Testing    | Vitest 4 + Testing Library + happy-dom                |
+| CI/CD      | Woodpecker CI (Gitea)                                 |
+| Server     | Nginx on miniweb-vm (192.168.50.21:8085)              |
+| PDF        | Chrome headless with `@page` A4 rules                 |
 
 ## Content Structure
 
@@ -48,12 +48,12 @@ description: "Brief description for the card listing."
 
 Current documents:
 
-| File | Category | Description |
-|------|----------|-------------|
-| `biography.md` | bio | Professional biography (150 to 300 words) |
-| `cv-filmography.md` | cv | CV (1 page) + filmography (2 pages) |
-| `tiff-assessment.md` | assessment | TIFF application assessment with 6 parts |
-| `weight-limit.md` | pitch | Short film pitch document |
+| File                 | Category   | Description                               |
+| -------------------- | ---------- | ----------------------------------------- |
+| `biography.md`       | bio        | Professional biography (150 to 300 words) |
+| `cv-filmography.md`  | cv         | CV (1 page) + filmography (2 pages)       |
+| `tiff-assessment.md` | assessment | TIFF application assessment with 6 parts  |
+| `weight-limit.md`    | pitch      | Short film pitch document                 |
 
 ## Commands
 
@@ -131,6 +131,7 @@ git push to main (Gitea)
 ## Writing Rules
 
 All content follows strict AU/UK English spelling and punctuation rules:
+
 - No em dashes or en dashes in prose (use commas, semicolons, colons)
 - Australian/UK spellings throughout (colour, programme, organise, centre)
 - Active voice, first person, professional but warm tone
@@ -138,7 +139,7 @@ All content follows strict AU/UK English spelling and punctuation rules:
 
 ## Remotes
 
-| Remote | URL | Purpose |
-|--------|-----|---------|
-| origin | github.com:sbsoftwaredesign/leti.git | GitHub mirror |
-| gitea | ssh://git@192.168.10.110:2222/sebastian/leti.git | Primary (triggers CI) |
+| Remote | URL                                              | Purpose               |
+| ------ | ------------------------------------------------ | --------------------- |
+| origin | github.com:sbsoftwaredesign/leti.git             | GitHub mirror         |
+| gitea  | ssh://git@192.168.10.110:2222/sebastian/leti.git | Primary (triggers CI) |

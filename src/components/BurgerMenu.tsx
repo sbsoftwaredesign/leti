@@ -1,9 +1,10 @@
 import {
     type Category,
-    CATEGORY_LABELS,
+    CATEGORY_ORDER,
     groupByCategory,
     type ProjectMeta,
 } from '@lib/content-utils';
+import { type Locale, t } from '@lib/i18n';
 import { ChevronDown, ChevronRight, FileText, Menu, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
@@ -11,25 +12,16 @@ import ReactDOM from 'react-dom';
 interface Props {
   projects: ProjectMeta[];
   currentSlug?: string;
+  locale?: Locale;
 }
 
-export default function BurgerMenu({ projects, currentSlug }: Props) {
+export default function BurgerMenu({ projects, currentSlug, locale = 'en' }: Props) {
   const [open, setOpen] = useState(false);
-  const [expanded, setExpanded] = useState<Set<Category>>(new Set());
+  const [expanded, setExpanded] = useState<Set<Category>>(new Set(CATEGORY_ORDER));
   const [mounted, setMounted] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { setMounted(true); }, []);
-
-  // Expand the category of the current page on mount
-  useEffect(() => {
-    if (currentSlug) {
-      const current = projects.find((p) => p.slug === currentSlug);
-      if (current) {
-        setExpanded(new Set([current.category]));
-      }
-    }
-  }, [currentSlug, projects]);
 
   // Close on Escape
   useEffect(() => {
@@ -91,7 +83,7 @@ export default function BurgerMenu({ projects, currentSlug }: Props) {
             role="navigation"
           >
             <div className="flex items-center justify-between p-4 border-b border-[var(--color-border)]">
-              <span className="font-semibold text-sm">Documents</span>
+              <span className="font-semibold text-sm">{t('documents', locale)}</span>
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close navigation menu"
@@ -103,12 +95,12 @@ export default function BurgerMenu({ projects, currentSlug }: Props) {
 
             <div className="py-2">
               <a
-                href="/"
+                href={locale === 'en' ? '/' : '/es/'}
                 className={`flex items-center gap-2 px-4 py-2 text-sm hover:bg-[var(--color-bg-secondary)] transition-colors ${
                   !currentSlug ? 'font-semibold text-[var(--color-accent)]' : ''
                 }`}
               >
-                Home
+                {t('home', locale)}
               </a>
 
               {Array.from(grouped.entries()).map(([category, items]) => (
@@ -118,7 +110,7 @@ export default function BurgerMenu({ projects, currentSlug }: Props) {
                     className="flex items-center justify-between w-full px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] hover:bg-[var(--color-bg-secondary)] transition-colors"
                     aria-expanded={expanded.has(category)}
                   >
-                    <span>{CATEGORY_LABELS[category]}</span>
+                    <span>{t(`category_${category}`, locale)}</span>
                     {expanded.has(category) ? (
                       <ChevronDown size={14} />
                     ) : (
@@ -131,7 +123,7 @@ export default function BurgerMenu({ projects, currentSlug }: Props) {
                       {items.map((project) => (
                         <li key={project.slug}>
                           <a
-                            href={`/projects/${project.slug}/`}
+                            href={locale === 'en' ? `/projects/${project.slug}/` : `/es/projects/${project.slug}/`}
                             className={`flex items-center gap-2 pl-6 pr-4 py-1.5 text-sm hover:bg-[var(--color-bg-secondary)] transition-colors ${
                               currentSlug === project.slug
                                 ? 'font-semibold text-[var(--color-accent)]'

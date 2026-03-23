@@ -4,19 +4,24 @@ import '@styles/document.css';
 import ThemeToggle from '@components/ThemeToggle';
 import BurgerMenu from '@components/BurgerMenu';
 import SearchOverlay from '@components/SearchOverlay';
+import LanguageSwitcher from '@components/LanguageSwitcher';
 import type { ProjectMeta } from '@lib/content-utils';
+import { type Locale, t, localeFromSlug, stripLocalePrefix } from '@lib/i18n';
 import { getCollection } from 'astro:content';
 
 interface Props {
   title: string;
   description?: string;
   currentSlug?: string;
+  locale?: Locale;
 }
 
-const { title, description = 'Professional documents for Leticia Cáceres', currentSlug } = Astro.props;
+const { title, description, currentSlug, locale = 'en' as Locale } = Astro.props;
+const localDesc = description ?? t('professional_documents', locale);
 
 const allProjects = await getCollection('projects');
-const projectMetas: ProjectMeta[] = allProjects
+const localeProjects = allProjects.filter((p) => (p.data.locale ?? 'en') === locale);
+const projectMetas: ProjectMeta[] = localeProjects
   .map((p) => ({
     title: p.data.title,
     subtitle: p.data.subtitle,
@@ -25,17 +30,19 @@ const projectMetas: ProjectMeta[] = allProjects
     status: p.data.status,
     order: p.data.order,
     description: p.data.description,
-    slug: p.id,
+    slug: stripLocalePrefix(p.id),
   }))
   .sort((a, b) => a.order - b.order);
+
+const displaySlug = currentSlug ? stripLocalePrefix(currentSlug) : undefined;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale === 'es' ? 'es-AR' : 'en'}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
+    <meta name="description" content={localDesc} />
     <meta name="color-scheme" content="light dark" />
     <title>{title} · Leticia Cáceres</title>
     <script is:inline>
@@ -49,35 +56,37 @@ const projectMetas: ProjectMeta[] = allProjects
     </script>
   </head>
   <body class="min-h-dvh">
-    <a href="#main" class="skip-link">Skip to content</a>
+    <a href="#main" class="skip-link">{t('skip_to_content', locale)}</a>
 
-    <header class="sticky top-0 z-30 bg-[var(--color-bg)]/95 backdrop-blur-sm border-b border-[var(--color-border)]">
-      <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
+    <header class="sticky top-0 z-30 bg-[var(--color-bg)]/95 backdrop-blur-sm border-b border-[var(--color-border)]" style="height: var(--header-height);">
+      <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-3 desktop-sidebar-offset">
         <div class="flex items-center gap-2">
           <BurgerMenu
             client:load
             projects={projectMetas}
-            currentSlug={currentSlug}
+            currentSlug={displaySlug}
+            locale={locale}
           />
-          <a href="/" class="font-serif font-semibold text-lg hover:text-[var(--color-accent)] transition-colors">
+          <a href={locale === 'es' ? '/es/' : '/'} class="font-serif font-semibold text-lg hover:text-[var(--color-accent)] transition-colors">
             Leticia Cáceres
           </a>
         </div>
 
         <div class="flex items-center gap-1">
           <SearchOverlay client:idle />
+          <LanguageSwitcher client:load locale={locale} currentSlug={displaySlug} />
           <ThemeToggle client:load />
         </div>
       </div>
     </header>
 
-    <main id="main" class="max-w-5xl mx-auto px-4 py-8 desktop-sidebar-offset">
+    <main id="main" class="max-w-5xl mx-auto px-4 py-8 pb-20 desktop-sidebar-offset">
       <slot />
     </main>
 
-    <footer class="border-t border-[var(--color-border)] mt-16 desktop-sidebar-offset">
-      <div class="max-w-5xl mx-auto px-4 py-6 text-center text-xs text-[var(--color-text-muted)]">
-        &copy; {new Date().getFullYear()} Leticia Cáceres · All rights reserved
+    <footer class="fixed-footer desktop-sidebar-offset">
+      <div class="max-w-5xl mx-auto px-4 py-3 text-center text-xs text-[var(--color-text-muted)]">
+        &copy; {new Date().getFullYear()} Leticia Cáceres · {t('footer_rights', locale)}
       </div>
     </footer>
   </body>
