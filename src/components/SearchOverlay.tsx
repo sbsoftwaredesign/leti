@@ -13,7 +13,7 @@ export default function SearchOverlay() {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const pagefindRef = useRef<any>(null);
+  const pagefindRef = useRef<any>(undefined);
 
   // Load Pagefind on first open
   const loadPagefind = useCallback(async () => {
