@@ -16,7 +16,9 @@ src/
     biography.md                  : Biography (category: bio)
     cv-filmography.md             : CV & Filmography (category: cv)
     tiff-assessment.md            : TIFF Application Assessment (category: assessment)
+    tiff-questionnaire.md         : TIFF Questionnaire responses (category: application)
     weight-limit.md               : Weight Limit pitch (category: pitch)
+    agent-instructions.md         : AI Agent Instructions (category: guide)
   content.config.ts               : Content collection schema (Zod validation)
   pages/
     index.astro                   : Home page (document listing)
@@ -76,7 +78,7 @@ Each `.md` file in `src/content/projects/` requires YAML frontmatter:
 title: "Document Title"
 subtitle: "Optional subtitle"
 date: "2026-03-01"
-category: "application" | "pitch" | "cv" | "bio" | "assessment"
+category: "application" | "pitch" | "cv" | "bio" | "assessment" | "guide"
 status: "draft" | "review" | "final"
 order: 1
 description: "Brief description for card listing."
@@ -270,15 +272,29 @@ Exceptions:
 
 These are the expected section counts for each content file. If a file has fewer sections after editing, something was lost.
 
-| File                 | Expected H2 sections                                                         |
-| -------------------- | ---------------------------------------------------------------------------- |
-| `tiff-assessment.md` | 6 (Exec Summary, Parts 1 to 6)                                               |
-| `cv-filmography.md`  | Varies (CV + Filmography sections)                                           |
-| `biography.md`       | 0 (flowing prose, no H2s)                                                    |
-| `weight-limit.md`    | 6 (Logline, Synopsis, Director's Vision, Specifications, Key Cast, Key Crew) |
+| File                    | Expected H2 sections                                                         |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| `tiff-assessment.md`    | 6 (Exec Summary, Parts 1 to 6)                                               |
+| `cv-filmography.md`     | Varies (CV + Filmography sections)                                           |
+| `biography.md`          | 0 (flowing prose, no H2s)                                                    |
+| `weight-limit.md`       | 6 (Logline, Synopsis, Director's Vision, Specifications, Key Cast, Key Crew) |
+| `tiff-questionnaire.md` | 7 (form fields + creative responses)                                         |
+| `agent-instructions.md` | 6 (@writer, @translator, @app agents + Document Workflow)                    |
 
 ### Build Verification
 
 - Always run `pnpm build` after content changes to verify rendering
 - Always run `pnpm test:run` before committing
-- Check that page count in build output matches expected number of content files (currently 4 projects × 2 routes = 8 pages + index = 9)
+- Check that page count in build output matches expected number of content files (currently 6 projects × 2 routes × 2 locales + 2 index = 26 pages)
+
+### Agent System
+
+Three custom VS Code agents are defined in `.github/agents/`:
+
+| Agent       | File                  | Purpose                                   |
+| ----------- | --------------------- | ----------------------------------------- |
+| @writer     | `writer.agent.md`     | Improve and create professional documents |
+| @translator | `translator.agent.md` | Translate to Argentinean Spanish          |
+| @app        | `app.agent.md`        | Build, test, deploy, and maintain the app |
+
+Workflow: @writer edits content → @translator creates ES versions → @app builds, tests, and deploys.

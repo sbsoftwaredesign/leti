@@ -20,6 +20,7 @@
   --color-badge-cv: #2563eb;
   --color-badge-bio: #7c3aed;
   --color-badge-assessment: #b5872a;
+  --color-badge-guide: #6366f1;
   --color-status-draft: #ef4444;
   --color-status-review: #f59e0b;
   --color-status-final: #22c55e;
@@ -266,6 +267,7 @@ body,
 .badge-cv { background: color-mix(in srgb, var(--color-badge-cv) 15%, transparent); color: var(--color-badge-cv); }
 .badge-bio { background: color-mix(in srgb, var(--color-badge-bio) 15%, transparent); color: var(--color-badge-bio); }
 .badge-assessment { background: color-mix(in srgb, var(--color-badge-assessment) 15%, transparent); color: var(--color-badge-assessment); }
+.badge-guide { background: color-mix(in srgb, var(--color-badge-guide) 15%, transparent); color: var(--color-badge-guide); }
 
 .badge-draft { background: color-mix(in srgb, var(--color-status-draft) 15%, transparent); color: var(--color-status-draft); }
 .badge-review { background: color-mix(in srgb, var(--color-status-review) 15%, transparent); color: var(--color-status-review); }

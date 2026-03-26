@@ -9,23 +9,31 @@ export interface ProjectMeta {
   slug: string;
 }
 
-export type Category = 'application' | 'pitch' | 'cv' | 'bio' | 'assessment';
-export type Status = 'draft' | 'review' | 'final';
+export type Category =
+  | "application"
+  | "pitch"
+  | "cv"
+  | "bio"
+  | "assessment"
+  | "guide";
+export type Status = "draft" | "review" | "final";
 
 export const CATEGORY_LABELS: Record<Category, string> = {
-  application: 'Application',
-  pitch: 'Pitch',
-  cv: 'CV',
-  bio: 'Biography',
-  assessment: 'Assessment',
+  application: "Application",
+  pitch: "Pitch",
+  cv: "CV",
+  bio: "Biography",
+  assessment: "Assessment",
+  guide: "Guide",
 };
 
 export const CATEGORY_ORDER: Category[] = [
-  'cv',
-  'bio',
-  'application',
-  'pitch',
-  'assessment',
+  "cv",
+  "bio",
+  "application",
+  "pitch",
+  "assessment",
+  "guide",
 ];
 
 export function stripFrontmatter(content: string): string {
@@ -37,12 +45,14 @@ export function stripFrontmatter(content: string): string {
 export function slugify(text: string): string {
   return text
     .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
-export function groupByCategory(projects: ProjectMeta[]): Map<Category, ProjectMeta[]> {
+export function groupByCategory(
+  projects: ProjectMeta[],
+): Map<Category, ProjectMeta[]> {
   const groups = new Map<Category, ProjectMeta[]>();
 
   for (const cat of CATEGORY_ORDER) {

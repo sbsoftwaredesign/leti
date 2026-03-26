@@ -4,6 +4,27 @@ Reverse-chronological log of work done on the Writer Factory project. Used for t
 
 ---
 
+## 2026-03-26 · Session 4: AI Agent System & Guide Category
+
+### Agent system
+
+- **Created**: Three custom VS Code agent modes in `.github/agents/`: `@writer` (document writing with AU/UK English rules), `@translator` (Argentinean Spanish localisation), `@app` (build, test, deploy, maintenance)
+- **Created**: `AGENTS.md` readme with agent table and workflow overview
+- **Why**: Establish structured AI workflows for document management: @writer edits content, @translator creates ES versions, @app builds and deploys
+
+### New "guide" content category
+
+- **Added**: `guide` category to content schema (`content.config.ts`), type system (`content-utils.ts`), i18n translations (`i18n.ts`), and CSS badge styling (`global.css`) with indigo (#6366f1) badge colour
+- **Created**: `agent-instructions.md` content page (EN + ES) visible in sidebar under "Guide" category, documenting all three agents and the document workflow
+- **Impact**: Sidebar now shows 6 categories (CV, Biography, Application, Pitch, Assessment, Guide)
+
+### Documentation updates
+
+- **Updated**: `copilot-instructions.md` with new content files in workspace structure, guide category in schema, agent-instructions in Content Structure Registry, corrected page count, and Agent System section
+- **Updated**: i18n test with `category_guide` assertions
+
+---
+
 ## 2026-03-22 · Session 3: Deployment fixes, guardrails, documentation
 
 ### Deployment pipeline fix

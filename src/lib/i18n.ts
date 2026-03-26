@@ -24,6 +24,7 @@ const translations: Record<string, Record<Locale, string>> = {
   category_application: { en: "Application", es: "Solicitud" },
   category_pitch: { en: "Pitch", es: "Pitch" },
   category_assessment: { en: "Assessment", es: "Evaluación" },
+  category_guide: { en: "Guide", es: "Guía" },
   status_draft: { en: "Draft", es: "Borrador" },
   status_review: { en: "Review", es: "Revisión" },
   status_final: { en: "Final", es: "Final" },

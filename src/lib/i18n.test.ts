@@ -52,6 +52,8 @@ describe("t", () => {
     expect(t("category_pitch", "es")).toBe("Pitch");
     expect(t("category_assessment", "es")).toBe("Evaluación");
     expect(t("category_application", "es")).toBe("Solicitud");
+    expect(t("category_guide", "en")).toBe("Guide");
+    expect(t("category_guide", "es")).toBe("Guía");
   });
 
   it("translates status keys", () => {
