@@ -2,7 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ProjectCard from '@components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
-import { CATEGORY_ORDER, type ProjectMeta } from '@lib/content-utils';
+import { buildNavSections, type ProjectMeta } from '@lib/content-utils';
 import { t, stripLocalePrefix } from '@lib/i18n';
 
 const allProjects = await getCollection('projects');
@@ -18,14 +18,11 @@ const projectMetas: ProjectMeta[] = allProjects
     order: p.data.order,
     description: p.data.description,
     slug: stripLocalePrefix(p.id),
+    project: p.data.project,
   }))
   .sort((a, b) => a.order - b.order);
 
-const grouped = new Map<string, ProjectMeta[]>();
-for (const cat of CATEGORY_ORDER) {
-  const items = projectMetas.filter((p) => p.category === cat);
-  if (items.length > 0) grouped.set(cat, items);
-}
+const sections = buildNavSections(projectMetas);
 ---
 
 <BaseLayout title={t('documents', 'es')} locale="es">
@@ -36,13 +33,24 @@ for (const cat of CATEGORY_ORDER) {
     </p>
   </div>
 
-  {Array.from(grouped.entries()).map(([category, items]) => (
+  {sections.map((section) => section.type === 'standalone' ? (
     <section class="mb-10">
       <h2 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-4">
-        {t(`category_${category}`, 'es')}
+        {t(`category_${section.category}`, 'es')}
       </h2>
       <div class="grid gap-4 sm:grid-cols-2">
-        {items.map((project) => (
+        {section.items.map((project) => (
+          <ProjectCard project={project} locale="es" />
+        ))}
+      </div>
+    </section>
+  ) : (
+    <section class="mb-10">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-4">
+        {t(`project_${section.projectKey}`, 'es')}
+      </h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {section.items.map((project) => (
           <ProjectCard project={project} locale="es" />
         ))}
       </div>

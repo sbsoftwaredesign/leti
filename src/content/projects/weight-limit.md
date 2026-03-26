@@ -5,6 +5,7 @@ date: "2026-03-01"
 category: "pitch"
 status: "final"
 order: 1
+project: "weight-limit"
 description: "Pitch document for Weight Limit, a 13-minute family drama about the hidden emotional toll of migration."
 ---
 

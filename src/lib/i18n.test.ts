@@ -89,6 +89,15 @@ describe("t", () => {
     expect(t("open_nav", "es")).toBe("Abrir menú de navegación");
     expect(t("close_nav", "es")).toBe("Cerrar menú de navegación");
   });
+
+  it("translates project keys", () => {
+    expect(t("projects", "en")).toBe("Projects");
+    expect(t("projects", "es")).toBe("Proyectos");
+    expect(t("project_tiff", "en")).toBe("TIFF");
+    expect(t("project_carrar", "en")).toBe("Carrar");
+    expect(t("project_weight-limit", "en")).toBe("Weight Limit");
+    expect(t("project_weight-limit", "es")).toBe("Límite de Peso");
+  });
 });
 
 describe("getLocaleDateFormat", () => {

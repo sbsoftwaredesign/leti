@@ -1,11 +1,11 @@
 import {
+    buildNavSections,
     type Category,
-    CATEGORY_ORDER,
-    groupByCategory,
+    PROJECT_ORDER,
     type ProjectMeta,
 } from '@lib/content-utils';
 import { type Locale, t } from '@lib/i18n';
-import { ChevronDown, ChevronRight, FileText, Menu, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, FileText, FolderOpen, Menu, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -17,7 +17,12 @@ interface Props {
 
 export default function BurgerMenu({ projects, currentSlug, locale = 'en' }: Props) {
   const [open, setOpen] = useState(false);
-  const [expanded, setExpanded] = useState<Set<Category>>(new Set(CATEGORY_ORDER));
+  const defaultExpanded = new Set<string>([
+    ...(['cv', 'bio', 'guide'] as Category[]),
+    ...PROJECT_ORDER,
+    'projects',
+  ]);
+  const [expanded, setExpanded] = useState<Set<string>>(defaultExpanded);
   const [mounted, setMounted] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -45,16 +50,43 @@ export default function BurgerMenu({ projects, currentSlug, locale = 'en' }: Pro
     };
   }, [open]);
 
-  function toggleCategory(cat: Category) {
+  function toggleSection(key: string) {
     setExpanded((prev) => {
       const next = new Set(prev);
-      if (next.has(cat)) next.delete(cat);
-      else next.add(cat);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
       return next;
     });
   }
 
-  const grouped = groupByCategory(projects);
+  const sections = buildNavSections(projects);
+  const projectSections = sections.filter((s) => s.type === 'project');
+  const standaloneSections = sections.filter((s) => s.type === 'standalone');
+  const standaloneBeforeProjects = standaloneSections.filter(
+    (s) => s.type === 'standalone' && s.category !== 'guide'
+  );
+  const guideSection = standaloneSections.find(
+    (s) => s.type === 'standalone' && s.category === 'guide'
+  );
+
+  function renderLink(project: ProjectMeta, indent: string) {
+    const href = locale === 'en' ? `/projects/${project.slug}/` : `/es/projects/${project.slug}/`;
+    return (
+      <li key={project.slug}>
+        <a
+          href={href}
+          className={`flex items-center gap-2 ${indent} pr-4 py-1.5 text-sm hover:bg-[var(--color-bg-secondary)] transition-colors ${
+            currentSlug === project.slug
+              ? 'font-semibold text-[var(--color-accent)]'
+              : 'text-[var(--color-text-secondary)]'
+          }`}
+        >
+          <FileText size={14} className="shrink-0" />
+          <span className="truncate">{project.title}</span>
+        </a>
+      </li>
+    );
+  }
 
   return (
     <>
@@ -103,42 +135,100 @@ export default function BurgerMenu({ projects, currentSlug, locale = 'en' }: Pro
                 {t('home', locale)}
               </a>
 
-              {Array.from(grouped.entries()).map(([category, items]) => (
-                <div key={category}>
+              {/* Standalone categories before projects (CV, Biography) */}
+              {standaloneBeforeProjects.map((section) => {
+                if (section.type !== 'standalone') return null;
+                return (
+                  <div key={section.category}>
+                    <button
+                      onClick={() => toggleSection(section.category)}
+                      className="flex items-center justify-between w-full px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] hover:bg-[var(--color-bg-secondary)] transition-colors"
+                      aria-expanded={expanded.has(section.category)}
+                    >
+                      <span>{t(`category_${section.category}`, locale)}</span>
+                      {expanded.has(section.category) ? (
+                        <ChevronDown size={14} />
+                      ) : (
+                        <ChevronRight size={14} />
+                      )}
+                    </button>
+                    {expanded.has(section.category) && (
+                      <ul className="pb-1">
+                        {section.items.map((project) => renderLink(project, 'pl-6'))}
+                      </ul>
+                    )}
+                  </div>
+                );
+              })}
+
+              {/* Projects parent group */}
+              {projectSections.length > 0 && (
+                <div>
                   <button
-                    onClick={() => toggleCategory(category)}
+                    onClick={() => toggleSection('projects')}
                     className="flex items-center justify-between w-full px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] hover:bg-[var(--color-bg-secondary)] transition-colors"
-                    aria-expanded={expanded.has(category)}
+                    aria-expanded={expanded.has('projects')}
                   >
-                    <span>{t(`category_${category}`, locale)}</span>
-                    {expanded.has(category) ? (
+                    <span>{t('projects', locale)}</span>
+                    {expanded.has('projects') ? (
                       <ChevronDown size={14} />
                     ) : (
                       <ChevronRight size={14} />
                     )}
                   </button>
 
-                  {expanded.has(category) && (
+                  {expanded.has('projects') && projectSections.map((section) => {
+                    if (section.type !== 'project') return null;
+                    return (
+                      <div key={section.projectKey} className="pl-2">
+                        <button
+                          onClick={() => toggleSection(section.projectKey)}
+                          className="flex items-center justify-between w-full px-4 py-1.5 text-xs font-medium text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-secondary)] transition-colors"
+                          aria-expanded={expanded.has(section.projectKey)}
+                        >
+                          <span className="flex items-center gap-1.5">
+                            <FolderOpen size={13} className="shrink-0" />
+                            {t(`project_${section.projectKey}`, locale)}
+                          </span>
+                          {expanded.has(section.projectKey) ? (
+                            <ChevronDown size={12} />
+                          ) : (
+                            <ChevronRight size={12} />
+                          )}
+                        </button>
+                        {expanded.has(section.projectKey) && (
+                          <ul className="pb-1">
+                            {section.items.map((project) => renderLink(project, 'pl-10'))}
+                          </ul>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Guide at the end */}
+              {guideSection && guideSection.type === 'standalone' && (
+                <div>
+                  <button
+                    onClick={() => toggleSection('guide')}
+                    className="flex items-center justify-between w-full px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] hover:bg-[var(--color-bg-secondary)] transition-colors"
+                    aria-expanded={expanded.has('guide')}
+                  >
+                    <span>{t('category_guide', locale)}</span>
+                    {expanded.has('guide') ? (
+                      <ChevronDown size={14} />
+                    ) : (
+                      <ChevronRight size={14} />
+                    )}
+                  </button>
+                  {expanded.has('guide') && (
                     <ul className="pb-1">
-                      {items.map((project) => (
-                        <li key={project.slug}>
-                          <a
-                            href={locale === 'en' ? `/projects/${project.slug}/` : `/es/projects/${project.slug}/`}
-                            className={`flex items-center gap-2 pl-6 pr-4 py-1.5 text-sm hover:bg-[var(--color-bg-secondary)] transition-colors ${
-                              currentSlug === project.slug
-                                ? 'font-semibold text-[var(--color-accent)]'
-                                : 'text-[var(--color-text-secondary)]'
-                            }`}
-                          >
-                            <FileText size={14} className="shrink-0" />
-                            <span className="truncate">{project.title}</span>
-                          </a>
-                        </li>
-                      ))}
+                      {guideSection.items.map((project) => renderLink(project, 'pl-6'))}
                     </ul>
                   )}
                 </div>
-              ))}
+              )}
             </div>
           </nav>
         </>,

@@ -5,6 +5,7 @@ date: "2026-03-26"
 category: "application"
 status: "draft"
 order: 2
+project: "tiff"
 description: "Draft responses for the TIFF Directors' Lab 2026 application questionnaire, including creative questions, project information, and clip submission details."
 ---
 

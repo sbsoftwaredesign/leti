@@ -6,6 +6,7 @@ category: "application"
 status: "draft"
 order: 2
 locale: "es"
+project: "tiff"
 description: "Borrador de respuestas para el cuestionario de solicitud del TIFF Directors' Lab 2026, incluyendo preguntas creativas, información del proyecto y detalles del clip."
 ---
 

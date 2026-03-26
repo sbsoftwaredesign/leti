@@ -6,7 +6,9 @@ import { describe, expect, it } from 'vitest';
 const mockProjects: ProjectMeta[] = [
   { title: 'CV & Filmography', slug: 'cv-filmography', category: 'cv', status: 'final', order: 1, date: '2026-01-01', description: 'CV' },
   { title: 'Biography', slug: 'biography', category: 'bio', status: 'final', order: 1, date: '2026-01-01', description: 'Bio' },
-  { title: 'Weight Limit', slug: 'weight-limit', category: 'pitch', status: 'final', order: 1, date: '2026-01-01', description: 'Pitch' },
+  { title: 'Weight Limit', slug: 'weight-limit', category: 'pitch', status: 'final', order: 1, date: '2026-01-01', description: 'Pitch', project: 'weight-limit' },
+  { title: 'TIFF Assessment', slug: 'tiff-assessment', category: 'assessment', status: 'final', order: 1, date: '2026-01-01', description: 'Assessment', project: 'tiff' },
+  { title: 'AI Agent Instructions', slug: 'agent-instructions', category: 'guide', status: 'final', order: 1, date: '2026-01-01', description: 'Guide' },
 ];
 
 describe('BurgerMenu', () => {
@@ -22,12 +24,13 @@ describe('BurgerMenu', () => {
     expect(screen.getByLabelText(/close navigation menu/i)).toBeInTheDocument();
   });
 
-  it('shows category headings', () => {
+  it('shows category and project headings', () => {
     render(<BurgerMenu projects={mockProjects} />);
     fireEvent.click(screen.getByLabelText(/open navigation menu/i));
     expect(screen.getByText('CV')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /biography/i })).toBeInTheDocument();
-    expect(screen.getByText('Pitch')).toBeInTheDocument();
+    expect(screen.getByText('Projects')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /guide/i })).toBeInTheDocument();
   });
 
   it('shows Home link', () => {
@@ -36,14 +39,16 @@ describe('BurgerMenu', () => {
     expect(screen.getByText('Home')).toBeInTheDocument();
   });
 
-  it('expands all categories by default', () => {
+  it('expands all sections by default', () => {
     render(<BurgerMenu projects={mockProjects} />);
     fireEvent.click(screen.getByLabelText(/open navigation menu/i));
 
     // All project links should be visible without clicking categories
     expect(screen.getByText('CV & Filmography')).toBeInTheDocument();
     expect(screen.getAllByText('Biography').length).toBeGreaterThanOrEqual(2); // category + project
-    expect(screen.getByText('Weight Limit')).toBeInTheDocument();
+    // Weight Limit appears as both project group heading and document link
+    expect(screen.getAllByText('Weight Limit').length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText('AI Agent Instructions')).toBeInTheDocument();
   });
 
   it('highlights current page', () => {
@@ -84,7 +89,7 @@ describe('BurgerMenu', () => {
     expect(sidebar.className).not.toContain('open');
   });
 
-  it('collapses category on click and re-expands on second click', () => {
+  it('collapses section on click and re-expands on second click', () => {
     render(<BurgerMenu projects={mockProjects} />);
     fireEvent.click(screen.getByLabelText(/open navigation menu/i));
 
@@ -117,6 +122,8 @@ describe('BurgerMenu', () => {
     expect(screen.getByText('Documentos')).toBeInTheDocument();
     // 'Biografía' appears as category heading
     expect(screen.getByRole('button', { name: /biografía/i })).toBeInTheDocument();
+    // 'Proyectos' appears as projects parent
+    expect(screen.getByText('Proyectos')).toBeInTheDocument();
   });
 
   it('links to /es/ paths when locale is es', () => {

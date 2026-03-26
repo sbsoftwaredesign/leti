@@ -7,6 +7,7 @@ export interface ProjectMeta {
   order: number;
   description: string;
   slug: string;
+  project?: string;
 }
 
 export type Category =
@@ -35,6 +36,59 @@ export const CATEGORY_ORDER: Category[] = [
   "assessment",
   "guide",
 ];
+
+export const PROJECT_ORDER: string[] = ["tiff", "carrar", "weight-limit"];
+
+export const STANDALONE_CATEGORIES: Category[] = ["cv", "bio", "guide"];
+
+export interface MenuGroup {
+  type: "standalone";
+  category: Category;
+  items: ProjectMeta[];
+}
+
+export interface ProjectGroup {
+  type: "project";
+  projectKey: string;
+  items: ProjectMeta[];
+}
+
+export type NavSection = MenuGroup | ProjectGroup;
+
+export function buildNavSections(projects: ProjectMeta[]): NavSection[] {
+  const sections: NavSection[] = [];
+
+  // Standalone categories first (cv, bio)
+  for (const cat of STANDALONE_CATEGORIES) {
+    if (cat === "guide") continue; // guide goes at end
+    const items = projects
+      .filter((p) => p.category === cat && !p.project)
+      .sort((a, b) => a.order - b.order);
+    if (items.length > 0) {
+      sections.push({ type: "standalone", category: cat, items });
+    }
+  }
+
+  // Project groups
+  for (const proj of PROJECT_ORDER) {
+    const items = projects
+      .filter((p) => p.project === proj)
+      .sort((a, b) => a.order - b.order);
+    if (items.length > 0) {
+      sections.push({ type: "project", projectKey: proj, items });
+    }
+  }
+
+  // Guide at end
+  const guideItems = projects
+    .filter((p) => p.category === "guide" && !p.project)
+    .sort((a, b) => a.order - b.order);
+  if (guideItems.length > 0) {
+    sections.push({ type: "standalone", category: "guide", items: guideItems });
+  }
+
+  return sections;
+}
 
 export function stripFrontmatter(content: string): string {
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);

@@ -6,6 +6,7 @@ category: "pitch"
 status: "final"
 order: 1
 locale: "es"
+project: "weight-limit"
 description: "Documento de presentación de Weight Limit, un drama familiar de 13 minutos sobre el costo emocional oculto de la migración."
 ---
 
