@@ -18,6 +18,12 @@ Reverse-chronological log of work done on the Writer Factory project. Used for t
 - **Created**: `agent-instructions.md` content page (EN + ES) visible in sidebar under "Guide" category, documenting all three agents and the document workflow
 - **Impact**: Sidebar now shows 6 categories (CV, Biography, Application, Pitch, Assessment, Guide)
 
+### TIFF questionnaire update: clip submission
+
+- **Changed**: Clip submission switched from _Erotic Stories_ to _Weight Limit_ (short film, 2025)
+- **Added**: Clip Description (250 words max), Festivals status, and "Why this clip" answer (200 words max) in both EN and ES
+- **Fixes**: Corrected "immanent" → "imminent", "sooth" → "soothe", added missing hyphens, replaced en dashes with colons, expanded contractions for formal tone consistency
+
 ### Documentation updates
 
 - **Updated**: `copilot-instructions.md` with new content files in workspace structure, guide category in schema, agent-instructions in Content Structure Registry, corrected page count, and Agent System section

@@ -154,33 +154,40 @@ _Bean_ es en esencia una película impulsada por las actuaciones, y aquí es don
 
 ## Clip de Cinco Minutos
 
-- **Título del proyecto:** _Erotic Stories_
-- **Tipo de proyecto:** Serie de TV
+- **Título del proyecto:** _Weight Limit_
+- **Tipo de proyecto:** Cortometraje
 - **Género:** Drama
-- **Año de producción:** 2024
+- **Año de producción:** 2025
 - **Duración del proyecto:** [completar]
 - **¿Este clip proviene de un largometraje?** No
 - **Detalle sobre largometraje:** N/A
-- **¿Otros roles además de directora?** No
+- **¿Otros roles además de directora?** Guionista, Productora
 
 ### Descripción del Clip
 
 _(máximo 250 palabras)_
 
-[Completar: describir el clip específico seleccionado de _Erotic Stories_, su contexto dentro del episodio y dónde se sitúa en la narrativa. El clip debe mostrar el rango directorial, particularmente el equilibrio de vulnerabilidad emocional, humor y sensualidad que recibió elogios de la crítica.]
+Josefina ha pasado su vida construyendo un refugio en Australia desde su emigración de Colombia. Cuando acepta dejar atrás su comunidad, identidad y la estabilidad ganada con esfuerzo por la carrera de su esposo Carl en Japón, debe enmascarar su dolor con una cara valiente para su hija, Lucía. En la víspera de su fiesta de despedida, la gravedad de lo que está perdiendo se vuelve insoportable.
+
+Atormentada por los sacrificios del pasado, el instinto de Josefina de protegerse desencadena una huida desesperada. Solo cuando los gritos de Lucía atraviesan su pánico, Josefina deja de huir. En un momento de vulnerabilidad, madre e hija confrontan la magnitud de su desplazamiento. A través de la tranquila seguridad de Lucía, Josefina comprende que no lleva este peso sola, y encuentra el coraje para abrazar el próximo capítulo incierto.
+
+Una obra semiautobiográfica de la guionista y directora argentino-australiana Leticia Cáceres, _Weight Limit_ es una conmovedora exploración de la experiencia migrante y el pesado costo emocional de empezar de nuevo.
 
 ### Festivales y Plataformas
 
 _(máximo 5)_
 
-1. SBS On Demand (Australia), emisión original 2024
-2. [Completar: listar festivales adicionales o plataformas de ventas internacionales]
+_Weight Limit_ se completó a fines de 2025 y actualmente se encuentra en su primera ronda de postulaciones a festivales.
 
 ### ¿Por qué eligió este clip específico?
 
 _(máximo 200 palabras)_
 
-[Completar: explicar por qué este clip representa mejor su voz directorial y su relevancia para _Bean_. Considerar destacar: control tonal entre vulnerabilidad y humor, capacidad de extraer actuaciones matizadas de los actores, decisiones de narrativa visual, y cómo estas habilidades se transfieren directamente a las exigencias de _Bean_.]
+_Weight Limit_ es un cortometraje centrado en los personajes que escribí y dirigí en 2025. Las escenas seleccionadas ilustran una relación madre-hija. La primera escena destaca la intimidad y el estrecho vínculo entre ellas, mostrando cómo una madre enmascara su ansiedad y dolor por mudarse a Japón para calmar a su hija. Esta escena fue filmada cámara en mano, en primeros planos muy íntimos, con una profundidad de campo muy reducida. Demuestra mis habilidades dirigiendo actuaciones naturales y creíbles para la pantalla.
+
+La segunda escena es más dinámica. La madre, incapaz de enmascarar su miedo ante la inminente reubicación, sufre un impactante ataque de pánico en su fiesta de despedida y huye. Su hija la persigue y encuentra las palabras para consolarla. Estas escenas son espejos temáticos que destacan el intento de cada personaje de calmar la aprensión que la otra siente por la mudanza; la madre ayuda a la hija en la primera escena, y la hija ayuda a la madre en la segunda.
+
+Técnicamente, la segunda escena demuestra una nueva técnica de cámara: la secuencia de carrera fue filmada con un Polaris para capturar movimiento frenético, velocidad y ritmo. Intercalamos entre tomas de seguimiento, primeros planos, planos medios abiertos e insertos de pies corriendo. Ambas escenas reflejan actuaciones genuinas, matizadas y emocionalmente cargadas.
 
 ## Confirmaciones
 

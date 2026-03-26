@@ -154,33 +154,40 @@ _Bean_ is ultimately a performance-driven film, and this is where my theatre bac
 
 ## Five-Minute Clip Submission
 
-- **Project Title:** _Erotic Stories_
-- **Type of Project:** TV Series
+- **Project Title:** _Weight Limit_
+- **Type of Project:** Short Film
 - **Genre:** Drama
-- **Production Year:** 2024
+- **Production Year:** 2025
 - **Run Time of Project:** [to complete]
 - **Is this clip from a feature film?** No
 - **Feature film elaboration:** N/A
-- **Other roles besides director:** No
+- **Other roles besides director:** Writer, Producer
 
 ### Clip Description
 
 _(maximum 250 words)_
 
-[To complete: please describe the specific clip selected from _Erotic Stories_, its context within the episode, and where it sits in the narrative. The clip should showcase directorial range, particularly the balance of emotional vulnerability, humour, and sensuality that drew critical praise.]
+Josefina has spent her life building a sanctuary in Australia since her emigration from Colombia. When she agrees to leave behind her community, identity, and hard-won stability for her husband Carl's career in Japan, she must mask her grief with a brave face for their daughter, Lucia. On the eve of their farewell party, the gravity of what she is losing becomes unbearable.
+
+Haunted by her sacrifices of the past, Josefina's instinct to protect herself triggers a desperate escape. It is only when Lucia's cries pierce through her panic that Josefina stops fleeing. In a vulnerable moment, mother and daughter confront the magnitude of their displacement. Through Lucia's quiet reassurance, Josefina realises she is not carrying this weight alone, and finds the courage to embrace the next uncertain chapter.
+
+A semi-autobiographical work by Argentine-Australian writer-director Leticia Cáceres, _Weight Limit_ is a poignant exploration of the migrant experience and the heavy emotional toll of starting over.
 
 ### Festivals and Platforms
 
 _(maximum 5)_
 
-1. SBS On Demand (Australia), original broadcast 2024
-2. [To complete: list any additional festivals or international sales platforms]
+_Weight Limit_ was completed in late 2025 and is currently in its first round of festival submissions.
 
 ### Why did you choose this specific clip?
 
 _(maximum 200 words)_
 
-[To complete: explain why this clip best represents your directorial voice and its relevance to _Bean_. Consider highlighting: tonal control across vulnerability and humour, capacity to draw nuanced performances from actors, visual storytelling choices, and how these skills transfer directly to the demands of _Bean_.]
+_Weight Limit_ is a character-driven short I wrote and directed in 2025. The scenes selected illustrate a mother-daughter relationship. The first scene highlights the intimacy and close bond between them, showing how a mother masks her anxiety and grief about moving to Japan to calm her child. This scene was shot handheld, in very intimate close-ups, with a very shallow depth of field. It demonstrates my skills directing natural, believable screen performances.
+
+The second scene is more dynamic. The mother, unable to mask her fear of the imminent relocation, has a shocking panic attack at her farewell party and flees. Her child breaks into a chase and finds the language to soothe her mum. These scenes are thematic mirrors, highlighting each character's attempt to soothe the apprehension the other feels about relocating; the mother helps the daughter in scene one, and the daughter helps the mother in scene two.
+
+Technically, the second scene demonstrates a new camera technique: the running sequence was shot on a Polaris to capture frenetic movement, speed, and rhythm. We intercut between lead and follow shots, close-ups, medium wides, and insert shots of running feet. Both scenes reflect truthful, nuanced, emotionally charged performances.
 
 ## Acknowledgements
 
