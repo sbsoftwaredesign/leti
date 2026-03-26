@@ -27,3 +27,4 @@ drafts/how-to-publish-a-project-in-my-network.md
 # Environment
 .env
 .env.*
+scripts/count_words_check.py
