@@ -15,10 +15,13 @@ src/
   content/projects/               : ⭐ SOURCE OF TRUTH — edit content here
     biography.md                  : Biography (category: bio)
     cv-filmography.md             : CV & Filmography (category: cv)
-    tiff-assessment.md            : TIFF Application Assessment (category: assessment)
-    tiff-questionnaire.md         : TIFF Questionnaire responses (category: application)
-    weight-limit.md               : Weight Limit pitch (category: pitch)
+    tiff-assessment.md            : TIFF Application Assessment (category: assessment, project: tiff)
+    tiff-questionnaire.md         : TIFF Questionnaire responses (category: application, project: tiff)
+    tiff-pitch.md                 : TIFF Pitch: Bean (category: pitch, project: tiff)
+    weight-limit.md               : Weight Limit pitch (category: pitch, project: weight-limit)
+    carrar.md                     : Señora Carrar's Rifles pitch (category: pitch, project: carrar)
     agent-instructions.md         : AI Agent Instructions (category: guide)
+    es/                           : Spanish (es-AR) translations of all above files
   content.config.ts               : Content collection schema (Zod validation)
   pages/
     index.astro                   : Home page (document listing)
@@ -82,6 +85,8 @@ category: "application" | "pitch" | "cv" | "bio" | "assessment" | "guide"
 status: "draft" | "review" | "final"
 order: 1
 description: "Brief description for card listing."
+locale: "en" | "es"              # defaults to "en"; ES files use "es"
+project: "tiff" | "carrar" | "weight-limit"  # optional; groups documents under a project in navigation
 ---
 ```
 
@@ -137,7 +142,7 @@ description: "Brief description for card listing."
 />
 ```
 
-New output pages should reuse these tokens; see `output/cv-v2-style.css` for the full reference implementation.
+New pages should reuse these tokens.
 
 ---
 
@@ -275,17 +280,19 @@ These are the expected section counts for each content file. If a file has fewer
 | File                    | Expected H2 sections                                                         |
 | ----------------------- | ---------------------------------------------------------------------------- |
 | `tiff-assessment.md`    | 6 (Exec Summary, Parts 1 to 6)                                               |
+| `tiff-questionnaire.md` | 7 (form fields + creative responses)                                         |
+| `tiff-pitch.md`         | 4 (Logline, Synopsis, Artist Statement, Specifications)                      |
 | `cv-filmography.md`     | Varies (CV + Filmography sections)                                           |
 | `biography.md`          | 0 (flowing prose, no H2s)                                                    |
 | `weight-limit.md`       | 6 (Logline, Synopsis, Director's Vision, Specifications, Key Cast, Key Crew) |
-| `tiff-questionnaire.md` | 7 (form fields + creative responses)                                         |
+| `carrar.md`             | 5 (Synopsis, Themes, Director's Statement, Specifications, Key Crew)         |
 | `agent-instructions.md` | 6 (@writer, @translator, @app agents + Document Workflow)                    |
 
 ### Build Verification
 
 - Always run `pnpm build` after content changes to verify rendering
 - Always run `pnpm test:run` before committing
-- Check that page count in build output matches expected number of content files (currently 6 projects × 2 routes × 2 locales + 2 index = 26 pages)
+- Check that page count in build output matches expected number of content files (currently 8 projects × 2 routes × 2 locales + 2 index = 34 pages)
 
 ### Agent System
 

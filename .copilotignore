@@ -22,12 +22,22 @@ coverage/
 ._*
 Thumbs.db
 *.log
+*.pdf
 
-# Legacy output (superseded by Astro content collection)
-output/web/*.html
-output/web/*-standalone.html
-output/md/
-drafts/md/
+# Legacy / reference-only (superseded by Astro content collection)
+output/
+drafts/
+sources/
+
+# Generated exports (regenerated via pnpm exports)
+public/exports/
+public/downloads/
+
+# Binary assets
+public/fonts/
+
+# Legacy script (not part of main pipeline)
+scripts/generate-standalone.js
 drafts/Web Format/
 
 # Binary files

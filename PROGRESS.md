@@ -1,156 +1,62 @@
 # Progress Log
 
-Reverse-chronological log of work done on the Writer Factory project. Used for tracking progress and maintaining continuity across AI-assisted sessions.
+Reverse-chronological log of significant changes. Completed sessions are summarised; only the most recent session has full detail.
 
 ---
 
-## 2026-03-26 · Session 4: AI Agent System & Guide Category
+## 2026-03-27 · Session 5: Multi-project navigation + new content
 
-### Agent system
+### Navigation restructure
 
-- **Created**: Three custom VS Code agent modes in `.github/agents/`: `@writer` (document writing with AU/UK English rules), `@translator` (Argentinean Spanish localisation), `@app` (build, test, deploy, maintenance)
-- **Created**: `AGENTS.md` readme with agent table and workflow overview
-- **Why**: Establish structured AI workflows for document management: @writer edits content, @translator creates ES versions, @app builds and deploys
+- **Rewrote** BurgerMenu and index pages to use hierarchical navigation via `buildNavSections()`
+- **Added** `project` field to content schema, `PROJECT_ORDER` and `STANDALONE_CATEGORIES` to content-utils
+- **Menu structure**: CV, Biography → Projects (TIFF sub-group, Carrar, Weight Limit) → AI Agent Instructions
+- **Impact**: 34 pages (8 projects × 2 routes × 2 locales + 2 index)
 
-### New "guide" content category
+### New content
 
-- **Added**: `guide` category to content schema (`content.config.ts`), type system (`content-utils.ts`), i18n translations (`i18n.ts`), and CSS badge styling (`global.css`) with indigo (#6366f1) badge colour
-- **Created**: `agent-instructions.md` content page (EN + ES) visible in sidebar under "Guide" category, documenting all three agents and the document workflow
-- **Impact**: Sidebar now shows 6 categories (CV, Biography, Application, Pitch, Assessment, Guide)
+- **Created** `carrar.md` (EN + ES): Señora Carrar's Rifles pitch for Belvoir, improved from draft
+- **Created** `tiff-pitch.md` (EN + ES): Bean project pitch extracted from TIFF assessment recommendations
+- **Added** `project` field to existing TIFF and Weight Limit content files
 
-### TIFF questionnaire update: clip submission
+### AI context optimisation
 
-- **Changed**: Clip submission switched from _Erotic Stories_ to _Weight Limit_ (short film, 2025)
-- **Added**: Clip Description (250 words max), Festivals status, and "Why this clip" answer (200 words max) in both EN and ES
-- **Fixes**: Corrected "immanent" → "imminent", "sooth" → "soothe", added missing hyphens, replaced en dashes with colons, expanded contractions for formal tone consistency
-
-### Documentation updates
-
-- **Updated**: `copilot-instructions.md` with new content files in workspace structure, guide category in schema, agent-instructions in Content Structure Registry, corrected page count, and Agent System section
-- **Updated**: i18n test with `category_guide` assertions
+- Cleaned up AI memory: removed Gardel Network references, updated repo state file
+- Expanded `.copilotignore` to exclude all legacy/generated/binary files
+- Updated `copilot-instructions.md` for current architecture
 
 ---
 
-## 2026-03-22 · Session 3: Deployment fixes, guardrails, documentation
+## Completed Sessions (Summary)
 
-### Deployment pipeline fix
-
-- **Problem**: Site on miniweb-vm was not updating after pushes
-- **Root cause**: Nginx `root` pointed to `/var/www/writer-factory` (project root) instead of `/var/www/writer-factory/dist` (Astro build output). A stale `index.html` from a previous SCP copy was being served instead of the freshly built one.
-- **Fix**: Updated nginx config on server to `root /var/www/writer-factory/dist;`. Cleaned up stale files (`index.html`, `_astro/`, `pagefind/`, `exports/`) from project root.
-
-### WCAG AA font sizes
-
-- Audited all font sizes across `document.css` and `global.css`
-- Bumped 4 sizes below AA thresholds:
-  - Table headers: 0.75rem (12px) → 0.875rem (14px)
-  - Contact line: 0.8125rem → 0.875rem
-  - Badges: 0.6875rem (11px) → 0.75rem (12px)
-  - Code viewer: 0.8125rem → 0.875rem
-
-### Assessment content restoration
-
-- **Problem**: `tiff-assessment.md` was missing Part 5 (Pitch Video Guidance) and Part 6 (Application Alignment Checklist)
-- **Root cause**: Content was never added to the Astro source file when the project was initially set up. The complete content existed in `output/md/assessment.md` and `output/web/assessment.html` but was not fully transferred to `src/content/projects/tiff-assessment.md`.
-- **Fix**: Added Parts 5 & 6 from the output sources. Assessment now has all 6 expected H2 sections.
-
-### AI content integrity guardrails
-
-- **Problem**: No safeguards existed to prevent content loss across AI conversation boundaries
-- **Fixes applied**:
-  1. Updated `copilot-instructions.md` from legacy pipeline docs to Astro content collection architecture
-  2. Added "AI Agent Rules" section with content integrity requirements (read before edit, verify sections after edit)
-  3. Added "Content Structure Registry" documenting expected H2 section counts per file
-  4. Extended `writing-rules.instructions.md` scope to include `src/content/projects/**` (was only `drafts/` and `output/`)
-  5. Added legacy `output/`, `drafts/md/`, `drafts/Web Format/` to `.copilotignore` to reduce context noise
-  6. Added `pnpm exports` step to Woodpecker CI pipeline
-
-### Deployment verification
-
-- Pushed to both remotes, Woodpecker CI ran successfully
-- Server confirmed: HTTP 200 on all pages, exports generated (4 markdown + 3 PDF files)
-
-### Documentation
-
-- Created `README.md` with full project summary
-- Created this progress log
-
----
-
-## 2026-03-21 · Session 2: Desktop sidebar, test coverage, CI fixes
-
-### Desktop sidebar (always visible)
-
-- Added CSS media query `@media (min-width: 1024px)` to show sidebar permanently on desktop
-- Hid burger/close buttons and overlay on desktop via CSS classes
-- Added `desktop-sidebar-offset` class for main content margin-left
-- Modified `BurgerMenu.tsx` with `burger-toggle` and `sidebar-close` CSS classes
-- Mobile-only body scroll lock
-
-### Test coverage improvement
-
-- **Starting point**: 51 tests, 51% statement coverage (scripts/ at 0% dragging it down)
-- Excluded `scripts/**/*.ts` from coverage include in `vitest.config.ts`
-- Added tests for:
-  - MarkdownViewer: frontmatter, blockquotes, HR, list items, inline formatting, keyboard copy
-  - SearchOverlay: backdrop click, no pagefind, clear results, Ctrl+K, Cmd+K toggle
-  - BurgerMenu: Escape key, overlay click, category collapse, no currentSlug
-  - ThemeToggle: double-click (dark→light branch)
-  - Clipboard: execCommand throw, navigator undefined SSR guard
-  - Theme: dark prefers-color-scheme with matchMedia mock
-- **Final**: 72 tests, 90.26% statements, 85.71% branches, 96.42% functions, 91.3% lines
-
-### CI/CD fixes
-
-- Updated `.woodpecker.yml` to use `/var/www/writer-factory` instead of `/home/sebastian/writer-factory`
-- Fixed nginx config to match new deploy path
-
----
-
-## 2026-03-20 · Session 1: Initial Astro app build
-
-### Astro writer factory app
-
-- Built complete Astro SSG application from scratch
-- Created content collection with 4 markdown documents (biography, cv-filmography, tiff-assessment, weight-limit)
-- Implemented 3 route types: index, project detail (`/projects/:slug/`), print (`/print/:slug/`)
-- Created 3 layouts: BaseLayout (app shell), ProjectLayout (document view), PrintLayout (PDF)
-- Built 4 React island components:
-  - BurgerMenu (portal-based slide-out navigation)
-  - SearchOverlay (Pagefind full-text search)
-  - ThemeToggle (dark/light with localStorage)
-  - MarkdownViewer (syntax-highlighted expandable source)
-- Implemented design system: Source Serif 4 + Inter fonts, warm colour palette, dark mode
-- Created `document.css` (scoped serif styling), `print.css` (A4 @page rules), `global.css` (Tailwind theme)
-- Set up Woodpecker CI pipeline for automated deployment
-- Integrated Pagefind for post-build search indexing
-
-### Legacy pipeline
-
-- Prior to this session, documents were managed as standalone HTML files in `output/web/`
-- The `generate-standalone.js` script converted print-ready HTML to self-contained files
-- This pipeline is now superseded by Astro but files remain as reference
+| Session | Date       | Key Changes                                                                                  |
+| ------- | ---------- | -------------------------------------------------------------------------------------------- |
+| 4       | 2026-03-26 | Agent system (@writer, @translator, @app), guide category, clip submission update            |
+| 3       | 2026-03-22 | Deployment fixes (nginx root), WCAG AA fonts, assessment Parts 5 & 6 restored, AI guardrails |
+| 2       | 2026-03-21 | Desktop sidebar, test coverage (51→72, 90% stmt), CI/CD fixes                                |
+| 1       | 2026-03-20 | Initial Astro app build, 4 content docs, React islands, Pagefind, Woodpecker CI              |
 
 ---
 
 ## Content Inventory
 
-Current state of all source documents in `src/content/projects/`:
+| Document                | Category    | Project      | Status | H2 Sections |
+| ----------------------- | ----------- | ------------ | ------ | ----------- |
+| `biography.md`          | bio         | —            | final  | 0 (prose)   |
+| `cv-filmography.md`     | cv          | —            | final  | Varies      |
+| `tiff-assessment.md`    | assessment  | tiff         | final  | 6           |
+| `tiff-questionnaire.md` | application | tiff         | final  | 7           |
+| `tiff-pitch.md`         | pitch       | tiff         | draft  | 4           |
+| `weight-limit.md`       | pitch       | weight-limit | final  | 6           |
+| `carrar.md`             | pitch       | carrar       | draft  | 5           |
+| `agent-instructions.md` | guide       | —            | final  | 6           |
 
-| Document             | Status | Sections             | Word Count (approx) | Notes                              |
-| -------------------- | ------ | -------------------- | ------------------- | ---------------------------------- |
-| `biography.md`       | final  | 0 H2s (prose)        | ~400                | Complete                           |
-| `cv-filmography.md`  | final  | Varies               | ~2,500              | Complete                           |
-| `tiff-assessment.md` | final  | 6 H2s (Parts 1 to 6) | ~5,000              | Restored Parts 5 & 6 on 2026-03-22 |
-| `weight-limit.md`    | final  | 6 H2s                | ~1,200              | Complete                           |
+All EN files have corresponding ES translations in `es/` subfolder.
 
 ---
 
-## Known Issues & Future Work
+## Known Issues
 
-- [ ] Page content centering needs adjustment with desktop sidebar offset
-- [ ] Sidebar may flicker on initial desktop load (portal mount delay)
-- [ ] Footer could be made fixed/sticky
-- [ ] Document styles could better match the reference HTML files in `drafts/Web Format/`
-- [ ] `weight-limit.pdf` not generated in last deploy (possibly Chrome path issue on server)
-- [ ] Legacy `output/` and `drafts/` folders could be cleaned up or archived
+- [ ] biography.md line 17: false-positive lint warning ("Cortile Theater im Hof" is a German proper name)
+- [ ] `weight-limit.pdf` not generated in last deploy (Chrome path issue on server)
+- [ ] Legacy `output/` and `drafts/` folders could be archived or removed
