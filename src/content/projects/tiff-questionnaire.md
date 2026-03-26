@@ -171,11 +171,11 @@ _Bean_ is ultimately a performance-driven film, and this is where my theatre bac
 - **Run Time of Project:** [to complete]
 - **Is this clip from a feature film?** No
 - **Feature film elaboration:** N/A
-- **Other roles besides director:** Writer, Producer
+- **Other than director, did you hold any other roles on the project?** Writer, Producer
 
 ### Clip Description
 
-_(maximum 250 words)_
+_(maximum 250 words: Please put the clip in context and explain where it is in the project.)_
 
 Josefina has spent her life building a sanctuary in Australia since her emigration from Colombia. When she agrees to leave behind her community, identity, and hard-won stability for her husband Carl's career in Japan, she must mask her grief with a brave face for their daughter, Lucia. On the eve of their farewell party, the gravity of what she is losing becomes unbearable.
 
@@ -185,7 +185,7 @@ A semi-autobiographical work by Argentine-Australian writer-director Leticia Cá
 
 ### Festivals and Platforms
 
-_(maximum 5)_
+_(Please list up to five festivals/platforms where this project has screened. Please include if your film received any awards or nominations.)_
 
 _Weight Limit_ was completed in late 2025 and is currently in its first round of festival submissions.
 

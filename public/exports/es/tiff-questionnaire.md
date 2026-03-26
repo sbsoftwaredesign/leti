@@ -161,11 +161,11 @@ _Bean_ es en esencia una película impulsada por las actuaciones, y aquí es don
 - **Duración del proyecto:** [completar]
 - **¿Este clip proviene de un largometraje?** No
 - **Detalle sobre largometraje:** N/A
-- **¿Otros roles además de directora?** Guionista, Productora
+- **¿Además de directora, desempeñó algún otro rol en el proyecto?** Guionista, Productora
 
 ### Descripción del Clip
 
-_(máximo 250 palabras)_
+_(máximo 250 palabras: Ponga el clip en contexto y explique en qué parte del proyecto se encuentra.)_
 
 Josefina ha pasado su vida construyendo un refugio en Australia desde su emigración de Colombia. Cuando acepta dejar atrás su comunidad, identidad y la estabilidad ganada con esfuerzo por la carrera de su esposo Carl en Japón, debe enmascarar su dolor con una cara valiente para su hija, Lucía. En la víspera de su fiesta de despedida, la gravedad de lo que está perdiendo se vuelve insoportable.
 
@@ -175,7 +175,7 @@ Una obra semiautobiográfica de la guionista y directora argentino-australiana L
 
 ### Festivales y Plataformas
 
-_(máximo 5)_
+_(Enumere hasta cinco festivales/plataformas donde se haya exhibido este proyecto. Incluya si su película recibió premios o nominaciones.)_
 
 _Weight Limit_ se completó a fines de 2025 y actualmente se encuentra en su primera ronda de postulaciones a festivales.
 

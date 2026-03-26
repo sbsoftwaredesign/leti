@@ -1,0 +1,14 @@
+Question 1: Other than director, did you hold any other roles on the project?
+Question 2: Clip Description (maximum 250 words): Please put the clip in context and explain where it is in the project.
+Question 3: Please list up to five festivals/platforms where this project has screened. Please include if your film received any awards or nominations.
+Question 4: Why did you choose this specific clip? (maximum 200 words)
+
+Answer 1: Writer, Producer
+
+Answer 2: Josefina has spent her life building a sanctuary in Australia since her emigration from Colombia. So when she agrees to leave behind her community, identity and hard-won stability for her husband Carl’s career in Japan, she must mask her grief with a brave face for their daughter, Lucia. However, on the eve of their farewell party, the gravity of what she is losing becomes unbearable.
+Haunted by her sacrifices of the past, Josefina’s instinct to protect herself triggers a desperate escape. It is only when Lucia’s cries pierce through her panic that Josefina stops fleeing. In a vulnerable moment, mother and daughter confront the magnitude of their displacement. Through Lucia’s quiet reassurance, Josefina realises she isn't carrying this weight alone, and finds the courage to embrace the next uncertain chapter.
+A semi-autobiographical work by Argentine-Australian writer-director, Leticia Caceres, Weight Limit is a poignant exploration of the migrant experience and the heavy emotional toll of starting over.
+
+Answer 3: I have only just completed this project and have therefore only now started submitting it to festivals.
+
+Answer 4: Weight Limit is a character driven short I wrote and directed in 2025. The scenes selected illustrate a mother -daughter relationship. Scene one highlights the intimacy and close bond between them. It highlights how a mother masks her anxiety and grief about moving to Japan to calm her child. This scene was shot handheld, in very intimate close ups, with a very shallow depth of field. It demonstrates my skills directing natural, believable screen performances. The second scene is more dynamic. The mother, unable to mask her fear of the immanent relocation has a shocking panic attack at her farewell party and flees. Her child breaks into a chase and finds the language to sooth her mum. These scenes are thematic mirrors, highlighting each character's attempt to soothe the apprehension the other feels about relocating. The mother helps the daughter in scene one, the daughter, helps the mother in scene two. Technically, the second scene demonstrates a new camera technique - the running sequence was shot on a Polaris, to capture frenetic movement, speed, and rhythm. We intercut between lead and follows, close ups, medium wides and insert shots of running feet. Both scenes reflect truthful, nuanced, emotionally charged performances.
